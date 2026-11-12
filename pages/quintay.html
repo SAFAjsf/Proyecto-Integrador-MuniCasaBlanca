@@ -1,0 +1,561 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="Descubre Quintay, su paisaje costero, memoria marítima, patrimonio y tradiciones locales, en la comuna de Casablanca."
+    data-i18n-content="quintay.meta.description"
+  />
+
+  <meta name="theme-color" content="#246777" />
+
+  <title data-i18n="quintay.meta.title">Quintay | Casablanca Chile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/quintay.css" />
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="../index.html"
+      aria-label="Casablanca, inicio"
+      data-i18n-attr="aria-label:nav.home"
+    >
+      CASABLANCA<span>CHILE</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Abrir menú"
+      data-i18n-attr="aria-label:nav.open"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="main-nav" class="main-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.main">
+      <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+      <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+      <a href="historia.html" data-i18n="nav.history">Historia</a>
+      <a href="quintay.html" aria-current="page" data-i18n="nav.quintay">Quintay</a>
+      <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+      <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      <div class="language-control">
+        <label for="language-switcher" data-i18n="language.label">Idioma</label>
+        <select id="language-switcher" data-language-switcher data-i18n-attr="aria-label:language.label">
+          <option value="es" data-i18n="language.spanish">Español</option>
+          <option value="en" data-i18n="language.english">English</option>
+          <option value="pt" data-i18n="language.portuguese">Português</option>
+        </select>
+      </div>
+    </nav>
+
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="inner-hero quintay-hero">
+
+      <img
+        class="inner-hero-image"
+        src="../img/quintay.jpg"
+        alt="Paisaje costero de Quintay"
+        data-i18n-attr="alt:quintay.hero.imageAlt"
+        fetchpriority="high"
+      />
+
+      <div class="inner-hero-shade"></div>
+
+      <div class="inner-hero-content">
+
+        <span class="eyebrow light">
+          <span data-i18n="quintay.hero.eyebrow">COSTA · OFICIOS · MEMORIA</span>
+        </span>
+
+        <h1>
+          <span data-i18n="quintay.hero.title">Quintay,</span><br />
+          <em data-i18n="quintay.hero.titleItalic">mirada al mar.</em>
+        </h1>
+
+        <p data-i18n="quintay.hero.description">
+          Una costa de paisajes, historias y tradiciones
+          que forman parte de la identidad de Casablanca.
+        </p>
+
+        <a class="button button-light" href="#lugares">
+          <span data-i18n="quintay.hero.cta">Explorar Quintay</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+
+    <section class="section quintay-intro">
+
+      <span class="eyebrow">
+        <span data-i18n="quintay.intro.eyebrow">OTRA FORMA DE VIVIR CASABLANCA</span>
+      </span>
+
+      <h2>
+        <span data-i18n="quintay.intro.title">Donde la historia</span><br />
+        <span data-i18n="quintay.intro.titleSecond">se encuentra con el océano.</span>
+      </h2>
+
+      <p data-i18n="quintay.intro.paragraphOne">
+        Alejado del paisaje tradicional del valle, Quintay ofrece
+        una experiencia marcada por el océano, sus paisajes costeros
+        y una memoria profundamente vinculada a las actividades
+        marítimas. Es un lugar para recorrer con calma, conocer
+        su patrimonio y acercarse a la vida de una comunidad
+        que mantiene una estrecha relación con el mar.
+      </p>
+
+      <p data-i18n="quintay.intro.paragraphTwo">
+        Sus playas, espacios patrimoniales y expresiones locales
+        permiten descubrir otra faceta de la comuna de Casablanca.
+      </p>
+
+    </section>
+
+    <!-- IDENTIDAD COSTERA -->
+
+    <section class="coast-identity">
+
+      <div class="coast-identity-image">
+        <img
+          src="../img/quintay.jpg"
+          alt="Vista del paisaje y el océano en Quintay"
+          data-i18n-attr="alt:quintay.identity.imageAlt"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="coast-identity-content">
+
+        <span class="eyebrow">
+          <span data-i18n="quintay.identity.eyebrow">ENTRE EL VALLE Y EL MAR</span>
+        </span>
+
+        <h2>
+          <span data-i18n="quintay.identity.title">Un territorio</span><br />
+          <span data-i18n="quintay.identity.titleSecond">con identidad propia.</span>
+        </h2>
+
+        <p data-i18n="quintay.identity.paragraphOne">
+          Quintay representa una dimensión distinta del territorio
+          de Casablanca. Su paisaje, sus actividades tradicionales
+          y su historia marítima complementan la identidad rural
+          y vitivinícola del interior de la comuna.
+        </p>
+
+        <p data-i18n="quintay.identity.paragraphTwo">
+          Visitar este sector es también una oportunidad para
+          reconocer el valor de sus espacios naturales, su
+          patrimonio y las personas que forman parte de su historia.
+        </p>
+
+        <a class="text-link" href="#experiencias">
+          <span data-i18n="quintay.identity.cta">Descubrir sus atractivos</span>
+          <span aria-hidden="true">→</span>
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- LUGARES DE INTERÉS -->
+
+   
+<!-- EXPLORADOR INTERACTIVO DE QUINTAY -->
+
+<section id="lugares" class="coast-places coast-explorer">
+
+  <div class="section-heading coast-section-heading">
+    <span class="eyebrow" data-i18n="quintay.explorer.eyebrow">LUGARES PARA DESCUBRIR</span>
+
+    <h2>
+      <span data-i18n="quintay.explorer.title">Explora los rincones</span><br />
+      <span data-i18n="quintay.explorer.titleSecond">de Quintay.</span>
+    </h2>
+
+    <p data-i18n="quintay.explorer.description">
+      Selecciona un lugar y descubre los paisajes, la memoria
+      marítima y las expresiones que forman parte de la identidad
+      de esta localidad costera.
+    </p>
+  </div>
+
+  <div class="coast-explorer-layout">
+
+    <!-- SELECTOR DE LUGARES -->
+
+    <div class="coast-explorer-options" aria-label="Lugares de Quintay" data-i18n-attr="aria-label:quintay.explorer.optionsLabel">
+
+      <button
+        class="coast-explorer-option active"
+        type="button"
+        data-place="playas"
+        aria-pressed="true"
+      >
+        <span class="explorer-option-number">01</span>
+        <span class="explorer-option-content">
+          <strong data-i18n="quintay.place.beaches.title">Playa Grande y Playa Chica</strong>
+          <small data-i18n="quintay.place.beaches.category">Playas y paisaje costero</small>
+        </span>
+        <span class="explorer-option-arrow" aria-hidden="true">→</span>
+      </button>
+
+      <button
+        class="coast-explorer-option"
+        type="button"
+        data-place="museo"
+        aria-pressed="false"
+      >
+        <span class="explorer-option-number">02</span>
+        <span class="explorer-option-content">
+          <strong data-i18n="quintay.place.museum.title">Museo de la Ex Ballenera</strong>
+          <small data-i18n="quintay.place.museum.category">Historia y patrimonio</small>
+        </span>
+        <span class="explorer-option-arrow" aria-hidden="true">→</span>
+      </button>
+
+      <button
+        class="coast-explorer-option"
+        type="button"
+        data-place="comunidad"
+        aria-pressed="false"
+      >
+        <span class="explorer-option-number">03</span>
+        <span class="explorer-option-content">
+          <strong data-i18n="quintay.place.community.title">Artesanía y vida costera</strong>
+          <small data-i18n="quintay.place.community.category">Cultura y comunidad</small>
+        </span>
+        <span class="explorer-option-arrow" aria-hidden="true">→</span>
+      </button>
+
+    </div>
+
+    <!-- CONTENIDO DINÁMICO -->
+
+    <article class="coast-explorer-detail" aria-live="polite">
+
+      <div class="coast-explorer-image">
+
+        <img
+          id="coast-explorer-img"
+          src="../img/quintay.jpg"
+          alt="Paisaje de playa y costa en Quintay"
+          data-i18n-attr="alt:quintay.explorer.imageAlt"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <span id="coast-explorer-number" class="coast-image-number">
+          01
+        </span>
+
+      </div>
+
+      <div class="coast-explorer-copy">
+
+        <span id="coast-explorer-category" class="eyebrow">
+          <span data-i18n="quintay.place.beaches.eyebrow">PLAYAS · PAISAJE COSTERO</span>
+        </span>
+
+        <h3 id="coast-explorer-title">
+          <span data-i18n="quintay.place.beaches.detailTitle">Playa Grande y Playa Chica.</span>
+        </h3>
+
+        <p id="coast-explorer-description">
+          Dos espacios representativos del paisaje costero
+          de Quintay. Sus entornos permiten disfrutar del
+          océano, contemplar el paisaje y recorrer el borde
+          costero con tranquilidad.
+        </p>
+
+        <p id="coast-explorer-extra">
+          Antes de ingresar al agua, revisa las condiciones
+          del mar, las señalizaciones y las recomendaciones
+          de seguridad vigentes.
+        </p>
+
+        <span id="coast-explorer-tag" class="coast-place-tag">
+          <span data-i18n="quintay.place.beaches.tag">Naturaleza y contemplación</span>
+        </span>
+
+      </div>
+
+    </article>
+
+  </div>
+
+  <p class="coast-explorer-note">
+    <span aria-hidden="true">ⓘ</span>
+    <span data-i18n="quintay.explorer.note">La información presentada es orientativa. Las condiciones de acceso y disponibilidad de actividades pueden variar.</span>
+  </p>
+
+</section>
+
+    <!-- EXPERIENCIAS -->
+
+    <section id="experiencias" class="coast-experiences">
+
+      <div class="section-heading">
+
+        <span class="eyebrow">
+          <span data-i18n="quintay.experiences.eyebrow">VIVE LA EXPERIENCIA</span>
+        </span>
+
+        <h2>
+          <span data-i18n="quintay.experiences.title">Mucho más que</span><br />
+          <span data-i18n="quintay.experiences.titleSecond">un destino costero.</span>
+        </h2>
+
+        <p data-i18n="quintay.experiences.description">
+          Quintay ofrece distintas formas de disfrutar
+          el territorio, siempre desde el respeto por
+          su entorno y comunidad.
+        </p>
+
+      </div>
+
+      <div class="coast-experience-grid">
+
+        <article class="coast-experience-card">
+
+          <span class="experience-number">01</span>
+
+          <div class="experience-icon" aria-hidden="true">
+            ◇
+          </div>
+
+          <h3 data-i18n="quintay.experiences.nature.title">Paisajes y naturaleza.</h3>
+
+          <p data-i18n="quintay.experiences.nature.description">
+            Contempla el océano, recorre los espacios
+            costeros habilitados y disfruta de los
+            paisajes que caracterizan este sector.
+          </p>
+
+        </article>
+
+        <article class="coast-experience-card">
+
+          <span class="experience-number">02</span>
+
+          <div class="experience-icon" aria-hidden="true">
+            ◎
+          </div>
+
+          <h3 data-i18n="quintay.experiences.heritage.title">Historia y patrimonio.</h3>
+
+          <p data-i18n="quintay.experiences.heritage.description">
+            Acércate a la memoria marítima de Quintay
+            y conoce los espacios que permiten comprender
+            su pasado y transformación.
+          </p>
+
+        </article>
+
+        <article class="coast-experience-card">
+
+          <span class="experience-number">03</span>
+
+          <div class="experience-icon" aria-hidden="true">
+            ✳
+          </div>
+
+          <h3 data-i18n="quintay.experiences.culture.title">Cultura local.</h3>
+
+          <p data-i18n="quintay.experiences.culture.description">
+            Descubre las expresiones, productos y
+            actividades de la comunidad, respetando
+            sus tiempos y formas de vida.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- VISITA RESPONSABLE -->
+
+    <section class="coast-practical">
+
+      <div class="coast-practical-heading">
+
+        <span class="eyebrow">
+          <span data-i18n="quintay.practical.eyebrow">ANTES DE VISITAR</span>
+        </span>
+
+        <h2>
+          <span data-i18n="quintay.practical.title">Disfruta la costa</span><br />
+          <span data-i18n="quintay.practical.titleSecond">con respeto.</span>
+        </h2>
+
+        <p data-i18n="quintay.practical.description">
+          Una buena experiencia también depende de cuidar
+          el entorno y planificar el recorrido.
+        </p>
+
+      </div>
+
+      <div class="coast-practical-content">
+
+        <div class="coast-tip">
+          <span>01</span>
+          <div>
+            <h3 data-i18n="quintay.practical.beachSafety.title">Seguridad en las playas</h3>
+            <p data-i18n="quintay.practical.beachSafety.description">
+              Revisa las condiciones del mar y respeta
+              las indicaciones de seguridad.
+            </p>
+          </div>
+        </div>
+
+        <div class="coast-tip">
+          <span>02</span>
+          <div>
+            <h3 data-i18n="quintay.practical.environment.title">Cuidado del entorno</h3>
+            <p data-i18n="quintay.practical.environment.description">
+              Evita dejar residuos y respeta los espacios
+              naturales y señalizaciones.
+            </p>
+          </div>
+        </div>
+
+        <div class="coast-tip">
+          <span>03</span>
+          <div>
+            <h3 data-i18n="quintay.practical.planning.title">Planifica tu visita</h3>
+            <p data-i18n="quintay.practical.planning.description">
+              Confirma horarios, condiciones de acceso
+              y disponibilidad de servicios antes de viajar.
+            </p>
+          </div>
+        </div>
+
+        <div class="coast-tip">
+          <span>04</span>
+          <div>
+            <h3 data-i18n="quintay.practical.community.title">Respeta a la comunidad</h3>
+            <p data-i18n="quintay.practical.community.description">
+              Mantén una actitud responsable con los
+              residentes y las actividades locales.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="button button-dark" href="como-llegar.html">
+        <span data-i18n="quintay.practical.cta">Cómo llegar a Quintay</span>
+        <span aria-hidden="true">→</span>
+      </a>
+
+    </section>
+
+    <!-- CIERRE -->
+
+    <section class="quintay-closing">
+
+      <div class="quintay-closing-content">
+
+        <span class="eyebrow light">
+          <span data-i18n="quintay.closing.eyebrow">HISTORIAS ENTRE EL VALLE Y EL MAR</span>
+        </span>
+
+        <h2>
+          <span data-i18n="quintay.closing.title">Casablanca también</span><br />
+          <span data-i18n="quintay.closing.titleSecond">se descubre desde</span><br />
+          <span data-i18n="quintay.closing.titleThird">el océano.</span>
+        </h2>
+
+        <p data-i18n="quintay.closing.description">
+          Continúa explorando los paisajes, la historia
+          y las experiencias que ofrece la comuna.
+        </p>
+
+        <div class="quintay-closing-actions">
+
+          <a class="button button-light" href="como-llegar.html">
+            <span data-i18n="quintay.closing.cta">Planificar mi visita</span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="quintay-secondary-link" href="historia.html">
+            <span data-i18n="quintay.closing.historyLink">Explorar la historia de Casablanca</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer">
+
+    <div class="footer-top">
+
+      <a class="brand brand-footer" href="../index.html" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <p data-i18n="footer.description">Historias entre el valle y el mar.</p>
+
+      <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+        <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+        <a href="historia.html" data-i18n="nav.history">Historia</a>
+        <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+        <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+      <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
+    </div>
+
+  </footer>
+
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/quintay.js"></script>
+
+</body>
+</html>

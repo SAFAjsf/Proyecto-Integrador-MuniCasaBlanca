@@ -1,0 +1,245 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="Noticias, novedades, actividades y actualidad turística de Casablanca, Chile."
+  />
+
+  <meta name="theme-color" content="#263b32" />
+
+  <title>Noticias y novedades | Casablanca Chile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/noticias.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a
+      class="brand"
+      href="../index.html"
+      aria-label="Casablanca, inicio"
+      data-i18n-attr="aria-label:nav.home"
+    >
+      CASABLANCA<span>CHILE</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Abrir menú"
+      data-i18n-attr="aria-label:nav.open"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      id="main-nav"
+      class="main-nav"
+      aria-label="Navegación principal"
+      data-i18n-attr="aria-label:nav.main"
+    >
+      <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+      <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+      <a href="historia.html" data-i18n="nav.history">Historia</a>
+      <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+      <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+      <a href="noticias.html" aria-current="page" data-i18n="nav.news">Noticias</a>
+
+      <div class="language-control">
+        <label for="language-switcher" data-i18n="language.label">Idioma</label>
+        <select
+          id="language-switcher"
+          data-language-switcher
+          data-i18n-attr="aria-label:language.label"
+        >
+          <option value="es" data-i18n="language.spanish">Español</option>
+          <option value="en" data-i18n="language.english">English</option>
+          <option value="pt" data-i18n="language.portuguese">Português</option>
+        </select>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="news-hero">
+      <div class="news-hero-image" aria-hidden="true"></div>
+      <div class="news-hero-shade"></div>
+
+      <div class="news-hero-content">
+        <h1>
+          <span data-i18n="news.heroTitle">Actualidad</span><br />
+          <em data-i18n="news.heroTitleItalic">local.</em>
+        </h1>
+
+        <p data-i18n="news.heroText">
+          Descubre actividades, iniciativas y novedades de Casablanca.
+        </p>
+
+        <a class="button button-light" href="#listado-noticias">
+          <span data-i18n="news.explore">Explorar novedades</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="listado-noticias" class="news-list-section section">
+
+      <div class="news-toolbar">
+        <div>
+          <span class="eyebrow" data-i18n="news.allUpdates">
+            TODAS LAS NOVEDADES
+          </span>
+
+          <h2 data-i18n="news.latestTitle">
+            Últimas publicaciones
+          </h2>
+        </div>
+
+        <div class="news-filters" role="group" aria-label="Filtrar noticias">
+          <button class="news-filter is-active" type="button" data-category="all" data-i18n="news.filterAll">
+            Todas
+          </button>
+
+          <button class="news-filter" type="button" data-category="turismo" data-i18n="news.filterTourism">
+            Turismo
+          </button>
+
+          <button class="news-filter" type="button" data-category="cultura" data-i18n="news.filterCulture">
+            Cultura
+          </button>
+
+          <button class="news-filter" type="button" data-category="enoturismo" data-i18n="news.filterWine">
+            Enoturismo
+          </button>
+
+          <button class="news-filter" type="button" data-category="eventos" data-i18n="news.filterEvents">
+            Eventos
+          </button>
+        </div>
+      </div>
+
+      <div id="news-grid" class="news-grid" aria-live="polite">
+        <!-- Las noticias se generan desde noticias.js -->
+      </div>
+
+      <p id="news-empty" class="news-empty" hidden data-i18n="news.empty">
+        No hay publicaciones disponibles en esta categoría.
+      </p>
+
+      <p id="news-error" class="news-error" hidden data-i18n="news.error">
+        No fue posible cargar las publicaciones. Inténtalo nuevamente más tarde.
+      </p>
+
+    </section>
+
+    <section class="news-contact">
+      <div>
+        <span class="eyebrow light" data-i18n="news.contactEyebrow">
+          INFORMACIÓN MUNICIPAL
+        </span>
+
+        <h2 data-i18n="news.contactTitle">
+          Sigue descubriendo Casablanca.
+        </h2>
+
+        <p data-i18n="news.contactText">
+          Consulta también los canales oficiales de la Municipalidad
+          para conocer sus comunicados y actividades.
+        </p>
+      </div>
+
+      <a
+        class="button button-light"
+        href="https://municipalidadcasablanca.cl/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span data-i18n="news.municipalWebsite">Sitio municipal</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a
+        class="brand brand-footer"
+        href="../index.html"
+        aria-label="Casablanca, inicio"
+        data-i18n-attr="aria-label:nav.home"
+      >
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <p data-i18n="footer.description">
+        Historias entre el valle y el mar.
+      </p>
+
+      <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+        <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+        <a href="historia.html" data-i18n="nav.history">Historia</a>
+        <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+        <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+      <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
+    </div>
+  </footer>
+
+  <!-- VENTANA DE LECTURA -->
+  <dialog id="news-dialog" class="news-dialog">
+    <div class="news-dialog-content">
+      <button
+        class="news-dialog-close"
+        type="button"
+        aria-label="Cerrar noticia"
+        data-i18n-attr="aria-label:news.close"
+      >
+        ×
+      </button>
+
+      <img id="news-dialog-image" src="" alt="" />
+
+      <div class="news-dialog-body">
+        <span id="news-dialog-category" class="news-category"></span>
+        <span id="news-dialog-demo" class="news-demo-label" hidden></span>
+
+        <h2 id="news-dialog-title"></h2>
+
+        <div id="news-dialog-text" class="news-dialog-text"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/noticias-data.js"></script>
+  <script src="../js/noticias.js"></script>
+
+</body>
+</html>

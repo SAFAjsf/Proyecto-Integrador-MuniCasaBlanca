@@ -1,0 +1,443 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="Explora la Ruta del Vino del Valle de Casablanca y descubre sus viñas y experiencias."
+    data-i18n-content="wineRoute.meta.description"
+  />
+
+  <title data-i18n="wineRoute.meta.title">Ruta del Vino | Casablanca</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/ruta-vino.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+      CASABLANCA<span>CHILE</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Abrir menú"
+      data-i18n-attr="aria-label:nav.open"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="main-nav" class="main-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.main">
+      <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+      <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+      <a href="historia.html" data-i18n="nav.history">Historia</a>
+      <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+      <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+      <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      <div class="language-control">
+        <label for="language-switcher" data-i18n="language.label">Idioma</label>
+        <select id="language-switcher" data-language-switcher data-i18n-attr="aria-label:language.label">
+          <option value="es" data-i18n="language.spanish">Español</option>
+          <option value="en" data-i18n="language.english">English</option>
+          <option value="pt" data-i18n="language.portuguese">Português</option>
+        </select>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PRESENTACIÓN -->
+
+    <section class="ruta-hero">
+      <div class="ruta-hero-contenido">
+        <span class="eyebrow light" data-i18n="wineRoute.hero.eyebrow">VALLE DE CASABLANCA · CHILE</span>
+
+        <h1><span data-i18n="wineRoute.hero.title">La Ruta</span><br /><em data-i18n="wineRoute.hero.titleItalic">del Vino.</em></h1>
+
+        <p data-i18n="wineRoute.hero.description">
+          Un recorrido por los paisajes, viñedos y establecimientos
+          que dan vida a la tradición vitivinícola de Casablanca.
+        </p>
+
+        <a href="#mapa-interactivo" class="button button-light">
+          <span data-i18n="wineRoute.hero.cta">Explorar el mapa</span> <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+
+    <section class="ruta-intro">
+      <span class="eyebrow" data-i18n="wineRoute.intro.eyebrow">DESCUBRE EL VALLE</span>
+
+      <h2><span data-i18n="wineRoute.intro.title">13 establecimientos.</span><br /><span data-i18n="wineRoute.intro.titleSecond">Un valle por descubrir.</span></h2>
+
+      <p data-i18n="wineRoute.intro.description">
+        Explora el mapa interactivo y selecciona los distintos
+        establecimientos para conocer sus características,
+        propuestas y experiencias.
+      </p>
+    </section>
+
+    <!-- MAPA INTERACTIVO -->
+
+    <section class="ruta-explorador" id="mapa-interactivo">
+
+      <div class="ruta-explorador-encabezado">
+        <div>
+          <span class="eyebrow" data-i18n="wineRoute.map.eyebrow">EXPLORACIÓN INTERACTIVA</span>
+          <h2 data-i18n="wineRoute.map.title">Explora la ruta.</h2>
+        </div>
+
+        <div class="ruta-explorador-acciones">
+          <button
+            type="button"
+            id="restablecer-mapa"
+            class="boton-restablecer"
+          >
+            <span aria-hidden="true">↺</span>
+            <span data-i18n="wineRoute.map.reset">Restablecer selección</span>
+          </button>
+          <button
+            type="button"
+            id="ampliar-mapa"
+            class="boton-restablecer"
+            aria-haspopup="dialog"
+            aria-controls="mapa-dialog"
+          >
+            <span data-i18n="wineRoute.map.enlarge">Ampliar mapa</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ruta-interactiva-layout">
+
+        <!-- MAPA -->
+
+        <div class="mapa-contenedor">
+
+          <div class="mapa-superficie">
+
+            <img
+              src="../img/ruta-vino/mapa-ruta-vino.jpg"
+              alt="Mapa ilustrado de la Ruta del Vino de Casablanca"
+              data-i18n-attr="alt:wineRoute.map.imageAlt"
+              class="mapa-imagen"
+            />
+
+            <div
+              class="mapa-marcadores"
+              id="mapa-marcadores"
+              aria-label="Establecimientos de la Ruta del Vino"
+              data-i18n-attr="aria-label:wineRoute.map.markersLabel"
+            >
+              <!-- Los 13 marcadores se generan desde JavaScript -->
+            </div>
+
+          </div>
+
+          <div class="mapa-pie">
+            <span data-i18n="wineRoute.map.instruction">Selecciona un número para explorar cada establecimiento.</span>
+            <span data-i18n="wineRoute.map.caption">Mapa de la Ruta del Vino de Casablanca.</span>
+          </div>
+
+        </div>
+
+        <!-- FICHA LATERAL -->
+
+        <aside class="ruta-ficha" id="ruta-ficha" aria-live="polite">
+
+          <div class="ficha-inicial" id="ficha-inicial">
+
+            <div class="ficha-inicial-icono">
+              <span aria-hidden="true">⌖</span>
+            </div>
+
+            <span class="eyebrow" data-i18n="wineRoute.initial.eyebrow">DESCUBRE EL VALLE</span>
+
+            <h3 data-i18n="wineRoute.initial.title">Elige tu próximo destino.</h3>
+
+            <p data-i18n="wineRoute.initial.description">
+              Selecciona uno de los establecimientos del mapa
+              para conocer más sobre su identidad y propuesta.
+            </p>
+
+            <div class="ficha-inicial-indicador">
+              <span>13</span>
+              <div>
+                <strong data-i18n="wineRoute.initial.establishments">Establecimientos</strong>
+                <small data-i18n="wineRoute.initial.available">Disponibles para explorar</small>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="ficha-contenido" id="ficha-contenido" hidden>
+
+            <div class="ficha-imagen-contenedor">
+              <img
+                id="ficha-imagen"
+                src=""
+                alt=""
+              />
+
+              <span class="ficha-numero" id="ficha-numero"></span>
+            </div>
+
+            <div class="ficha-detalle">
+
+              <span class="eyebrow" data-i18n="wineRoute.detail.eyebrow">RUTA DEL VINO · CASABLANCA</span>
+
+              <h3 id="ficha-nombre"></h3>
+
+              <p id="ficha-descripcion"></p>
+
+              <div class="ficha-datos">
+
+                <div class="ficha-dato">
+                  <span data-i18n="wineRoute.detail.specialty">Especialidad</span>
+                  <strong id="ficha-especialidad">
+                    <span data-i18n="wineRoute.detail.pending">Información pendiente</span>
+                  </strong>
+                </div>
+
+                <div class="ficha-dato">
+                  <span data-i18n="wineRoute.detail.experiences">Experiencias</span>
+                  <strong id="ficha-experiencias">
+                    <span data-i18n="wineRoute.detail.pending">Información pendiente</span>
+                  </strong>
+                </div>
+
+                <div class="ficha-dato">
+                  <span data-i18n="wineRoute.detail.visits">Visitas</span>
+                  <strong id="ficha-visitas">
+                    <span data-i18n="wineRoute.detail.pending">Consulta el sitio oficial para más información.</span>
+                  </strong>
+                </div>
+
+              </div>
+
+              <p class="ficha-nota" data-i18n="wineRoute.detail.note">
+                La información de esta ficha es preliminar y
+                deberá confirmarse con el establecimiento.
+              </p>
+
+              <a
+                href="#"
+                id="ficha-enlace"
+                class="ficha-enlace"
+                target="_blank"
+                rel="noopener noreferrer"
+                hidden
+              >
+                <span data-i18n="wineRoute.detail.officialSite">Visitar sitio oficial</span> →
+              </a>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+      
+
+<dialog
+  id="mapa-dialog"
+  class="mapa-dialog"
+  aria-label="Mapa ampliado de la Ruta del Vino"
+  data-i18n-attr="aria-label:wineRoute.map.dialogLabel"
+>
+  <div class="mapa-dialog-contenido">
+
+    <!-- CERRAR MAPA AMPLIADO -->
+
+    <button
+      type="button"
+      id="cerrar-mapa"
+      class="mapa-dialog-cerrar"
+      aria-label="Cerrar mapa ampliado"
+      data-i18n-attr="aria-label:wineRoute.map.close"
+    >
+      ×
+    </button>
+
+    <!-- MAPA COMPLETO -->
+
+    <div class="mapa-superficie mapa-superficie-ampliada">
+
+      <img
+        src="../img/ruta-vino/mapa-ruta-vino.jpg"
+        alt="Mapa completo de la Ruta del Vino de Casablanca"
+        data-i18n-attr="alt:wineRoute.map.fullImageAlt"
+        class="mapa-imagen"
+      />
+
+      <div
+        class="mapa-marcadores"
+        id="mapa-marcadores-ampliado"
+        aria-label="Establecimientos de la Ruta del Vino"
+        data-i18n-attr="aria-label:wineRoute.map.markersLabel"
+      ></div>
+
+    </div>
+
+    <!-- PANEL DE INFORMACIÓN -->
+
+    <aside
+      class="mapa-dialog-panel"
+      id="mapa-dialog-panel"
+      aria-label="Información del establecimiento"
+      data-i18n-attr="aria-label:wineRoute.detail.panelLabel"
+      hidden
+    >
+
+      <button
+        type="button"
+        id="cerrar-ficha-ampliada"
+        class="mapa-panel-cerrar"
+        aria-label="Cerrar información del establecimiento"
+        data-i18n-attr="aria-label:wineRoute.detail.close"
+      >
+        ×
+      </button>
+
+      <div id="mapa-dialog-ficha-slot"></div>
+
+    </aside>
+
+    <!-- INDICACIÓN -->
+
+    <span class="mapa-dialog-instruccion">
+      <span data-i18n="wineRoute.map.dialogInstruction">Selecciona un punto del mapa para descubrir más.</span>
+    </span>
+
+  </div>
+</dialog>
+
+
+
+      <!-- LEYENDA -->
+
+      <div class="ruta-leyenda">
+        <span class="eyebrow" data-i18n="wineRoute.legend.title">SIMBOLOGÍA DEL MAPA</span>
+
+        <div class="leyenda-elementos">
+          <div><span class="leyenda-simbolo peaje">P</span> <span data-i18n="wineRoute.legend.toll">Peaje</span></div>
+          <div><span class="leyenda-simbolo informacion">i</span> <span data-i18n="wineRoute.legend.information">Información turística</span></div>
+          <div><span class="leyenda-simbolo iglesia">Ig</span> <span data-i18n="wineRoute.legend.church">Iglesia</span></div>
+          <div><span class="leyenda-simbolo gastronomia">R</span> <span data-i18n="wineRoute.legend.reservationDining">Gastronomía previa reserva</span></div>
+          <div><span class="leyenda-simbolo restaurante">R</span> <span data-i18n="wineRoute.legend.restaurant">Restaurante</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CIERRE -->
+
+    <section class="ruta-cierre">
+      <span class="eyebrow light" data-i18n="wineRoute.closing.eyebrow">HISTORIAS ENTRE EL VALLE Y EL MAR</span>
+
+      <h2><span data-i18n="wineRoute.closing.title">Descubre lo que</span><br /><span data-i18n="wineRoute.closing.titleSecond">el valle tiene para ofrecer.</span></h2>
+
+      <a href="vinas.html" class="button button-light">
+        <span data-i18n="wineRoute.closing.cta">Volver a Valle y viñas</span> <span aria-hidden="true">→</span>
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+
+    <div class="footer-top">
+      <a class="brand brand-footer" href="../index.html" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <p data-i18n="footer.description">Historias entre el valle y el mar.</p>
+
+      <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+        <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+        <a href="historia.html" data-i18n="nav.history">Historia</a>
+        <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+        <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+      <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
+    </div>
+
+  </footer>
+  <!-- CONFIRMACIÓN DE MAYORÍA DE EDAD -->
+
+<dialog
+  id="age-gate"
+  class="age-gate"
+  aria-labelledby="age-gate-title"
+  aria-describedby="age-gate-description"
+>
+  <div class="age-gate-content">
+
+    <span class="eyebrow">CASABLANCA · CHILE</span>
+
+    <h2 id="age-gate-title" data-i18n="ageGate.title">
+      Antes de continuar...
+    </h2>
+
+    <p id="age-gate-description" data-i18n="wineRoute.ageGate.description">
+      Esta sección contiene información sobre establecimientos
+      y experiencias relacionadas con bebidas alcohólicas.
+    </p>
+
+    <p data-i18n="ageGate.question">
+      ¿Confirmas que tienes 18 años o más?
+    </p>
+
+    <div class="age-gate-actions">
+
+      <button type="button" id="age-confirm">
+        <span data-i18n="ageGate.confirm">Sí, soy mayor de 18 años</span>
+      </button>
+
+      <button type="button" id="age-deny">
+        <span data-i18n="ageGate.denySection">No, salir de esta sección</span>
+      </button>
+
+    </div>
+
+    <p class="age-gate-note" data-i18n="ageGate.note">
+      Esta confirmación es una medida informativa de acceso.
+    </p>
+
+  </div>
+  </dialog>
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/ruta-vino.js"></script>
+  <script src="../js/age-gate.js"></script>
+
+</body>
+</html>

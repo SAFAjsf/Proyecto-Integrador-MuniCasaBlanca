@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="Descubre los atractivos de Casablanca y Quintay: patrimonio, naturaleza, playas, cultura y vida costera."
+    data-i18n-content="attractions.meta.description"
+  />
+
+  <meta name="theme-color" content="#263b32" />
+
+  <title data-i18n="attractions.meta.title">Atractivos turísticos | Casablanca Chile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/atractivos.css" />
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="../index.html"
+      aria-label="Casablanca, inicio"
+      data-i18n-attr="aria-label:nav.home"
+    >
+      CASABLANCA<span>CHILE</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Abrir menú"
+      data-i18n-attr="aria-label:nav.open"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      id="main-nav"
+      class="main-nav"
+      aria-label="Navegación principal"
+      data-i18n-attr="aria-label:nav.main"
+    >
+      <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+      <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+      <a href="historia.html" data-i18n="nav.history">Historia</a>
+      <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+      <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+      <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+
+      <div class="language-control">
+        <label for="language-switcher" data-i18n="language.label">
+          Idioma
+        </label>
+
+        <select
+          id="language-switcher"
+          data-language-switcher
+          data-i18n-attr="aria-label:language.label"
+        >
+          <option value="es" data-i18n="language.spanish">Español</option>
+          <option value="en" data-i18n="language.english">English</option>
+          <option value="pt" data-i18n="language.portuguese">Português</option>
+        </select>
+      </div>
+    </nav>
+
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="inner-hero attractions-hero">
+
+      <img
+        class="inner-hero-image"
+        src="../img/atractivos/lagunillas.jpg"
+        alt="Paisaje patrimonial de Casablanca"
+        data-i18n-attr="alt:attractions.hero.imageAlt"
+        fetchpriority="high"
+      />
+
+      <div class="inner-hero-shade"></div>
+
+      <div class="inner-hero-content">
+
+        <span class="eyebrow light">
+          <span data-i18n="attractions.hero.eyebrow">HISTORIA · NATURALEZA · TRADICIÓN</span>
+        </span>
+
+        <h1>
+          <span data-i18n="attractions.hero.title">Descubre los</span><br />
+          <em data-i18n="attractions.hero.titleItalic">atractivos de Casablanca.</em>
+        </h1>
+
+        <p data-i18n="attractions.hero.description">
+          Desde lugares de encuentro y peregrinación hasta paisajes
+          naturales y localidades llenas de historia. Encuentra
+          el rincón que quieres descubrir.
+        </p>
+
+        <a class="button button-light" href="#explorador-atractivos">
+          <span data-i18n="attractions.hero.cta">Explorar atractivos</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- INTRODUCCIÓN Y EXPLORADOR -->
+
+    <section
+      id="explorador-atractivos"
+      class="attractions-section"
+    >
+
+      <div class="attractions-heading">
+
+        <div>
+          <span class="eyebrow" data-i18n="attractions.casablanca.eyebrow">
+            ENCUENTRA TU PRÓXIMO DESTINO
+          </span>
+
+          <h2>
+            <span data-i18n="attractions.casablanca.title">Atractivos de Casablanca.</span><br />
+            <em data-i18n="attractions.casablanca.titleItalic">Muchas formas de descubrir.</em>
+          </h2>
+        </div>
+
+        <p data-i18n="attractions.casablanca.description">
+          Casablanca reúne espacios de valor religioso, cultural,
+          patrimonial y natural. Selecciona el atractivo que más
+          te interese para conocer su historia y características.
+        </p>
+
+      </div>
+
+
+      <!-- TARJETAS -->
+
+      <div class="attractions-grid">
+
+        <button
+          class="attraction-card"
+          type="button"
+          data-attraction="lo-vasquez"
+          aria-haspopup="dialog"
+        >
+
+          <div class="attraction-card-image">
+            <img
+              src="../img/atractivos/lo-vasquez.jpg"
+              alt="Santuario Purísima Virgen de Lo Vásquez"
+              data-i18n-attr="alt:attractions.card.loVasquez.alt"
+              loading="lazy"
+            />
+
+            <span class="attraction-card-number">01</span>
+
+            <span class="attraction-card-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+
+          <div class="attraction-card-content">
+
+            <span class="attraction-category" data-i18n="attractions.card.loVasquez.category">
+              TURISMO RELIGIOSO
+            </span>
+
+            <h3 data-i18n="attractions.card.loVasquez.title">Santuario de Lo Vásquez</h3>
+
+            <p data-i18n="attractions.card.loVasquez.description">
+              Fe, tradición y una de las peregrinaciones
+              más importantes del país.
+            </p>
+
+            <span class="attraction-card-link">
+              <span data-i18n="attractions.explore">Explorar atractivo</span>
+              <span aria-hidden="true">→</span>
+            </span>
+
+          </div>
+
+        </button>
+
+
+        <button
+          class="attraction-card"
+          type="button"
+          data-attraction="museo"
+          aria-haspopup="dialog"
+        >
+
+          <div class="attraction-card-image">
+            <img
+              src="../img/atractivos/museo.jpg"
+              alt="Museo Arqueológico y Antropológico de Casablanca"
+              data-i18n-attr="alt:attractions.card.museum.alt"
+              loading="lazy"
+            />
+
+            <span class="attraction-card-number">02</span>
+
+            <span class="attraction-card-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+
+          <div class="attraction-card-content">
+
+            <span class="attraction-category" data-i18n="attractions.card.museum.category">
+              HISTORIA Y CULTURA
+            </span>
+
+            <h3 data-i18n="attractions.card.museum.title">Museo Arqueológico</h3>
+
+            <p data-i18n="attractions.card.museum.description">
+              Un espacio dedicado a investigar, conservar
+              y compartir la memoria del territorio.
+            </p>
+
+            <span class="attraction-card-link">
+              <span data-i18n="attractions.explore">Explorar atractivo</span>
+              <span aria-hidden="true">→</span>
+            </span>
+
+          </div>
+
+        </button>
+
+
+        <button
+          class="attraction-card"
+          type="button"
+          data-attraction="tunquen"
+          aria-haspopup="dialog"
+        >
+
+          <div class="attraction-card-image">
+            <img
+              src="../img/atractivos/tunquen.jpg"
+              alt="Playa y paisaje natural del Humedal de Tunquén"
+              data-i18n-attr="alt:attractions.card.tunquen.alt"
+              loading="lazy"
+            />
+
+            <span class="attraction-card-number">03</span>
+
+            <span class="attraction-card-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+
+          <div class="attraction-card-content">
+
+            <span class="attraction-category" data-i18n="attractions.card.tunquen.category">
+              NATURALEZA Y CONSERVACIÓN
+            </span>
+
+            <h3 data-i18n="attractions.card.tunquen.title">Tunquén: playa y humedal</h3>
+
+            <p data-i18n="attractions.card.tunquen.description">
+              Paisajes costeros, dunas y un ecosistema
+              de gran valor natural.
+            </p>
+
+            <span class="attraction-card-link">
+              <span data-i18n="attractions.explore">Explorar atractivo</span>
+              <span aria-hidden="true">→</span>
+            </span>
+
+          </div>
+
+        </button>
+
+
+        <button
+          class="attraction-card"
+          type="button"
+          data-attraction="lagunillas"
+          aria-haspopup="dialog"
+        >
+
+          <div class="attraction-card-image">
+            <img
+              src="../img/atractivos/lagunillas.jpg"
+              alt="Iglesia Nuestra Señora de las Mercedes de Lagunillas"
+              data-i18n-attr="alt:attractions.card.lagunillas.alt"
+              loading="lazy"
+            />
+
+            <span class="attraction-card-number">04</span>
+
+            <span class="attraction-card-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+
+          <div class="attraction-card-content">
+
+            <span class="attraction-category" data-i18n="attractions.card.lagunillas.category">
+              PATRIMONIO RURAL
+            </span>
+
+            <h3 data-i18n="attractions.card.lagunillas.title">Lagunillas</h3>
+
+            <p data-i18n="attractions.card.lagunillas.description">
+              Una localidad que conserva arquitectura
+              tradicional y memoria rural.
+            </p>
+
+            <span class="attraction-card-link">
+              <span data-i18n="attractions.explore">Explorar atractivo</span>
+              <span aria-hidden="true">→</span>
+            </span>
+
+          </div>
+
+        </button>
+
+      </div>
+
+
+      <p class="attractions-note">
+        <span aria-hidden="true">ⓘ</span>
+        <span data-i18n="attractions.casablanca.note">La información turística es orientativa. Las condiciones de acceso, horarios y disponibilidad de servicios pueden variar.</span>
+      </p>
+
+    </section>
+
+    <section
+      id="atractivos-quintay"
+      class="attractions-section quintay-attractions"
+      aria-labelledby="quintay-attractions-title"
+    >
+      <div class="quintay-attractions-inner">
+        <div class="attractions-heading">
+          <div>
+            <span class="eyebrow" data-i18n="attractions.quintay.eyebrow">PATRIMONIO · MAR · NATURALEZA</span>
+            <h2 id="quintay-attractions-title">
+              <span data-i18n="attractions.quintay.title">Conoce los atractivos</span><br />
+              <em data-i18n="attractions.quintay.titleItalic">de Quintay.</em>
+            </h2>
+          </div>
+
+          <p data-i18n="attractions.quintay.description">
+            Explora la historia de la ex ballenera, la vida de la caleta
+            y los paisajes naturales que hacen de Quintay un destino
+            costero único.
+          </p>
+        </div>
+
+        <div class="attractions-grid quintay-attractions-grid">
+          <button
+            class="attraction-card quintay-attraction-card"
+            type="button"
+            data-attraction="museo-ballenera"
+            aria-haspopup="dialog"
+          >
+            <div class="attraction-card-image">
+              <img
+                src="../img/atractivos/museoballenera.jpg"
+                alt="Museo de la ex Ballenera de Quintay"
+                data-i18n-attr="alt:attractions.card.whalingMuseum.alt"
+                loading="lazy"
+              />
+              <span class="attraction-card-number">01</span>
+              <span class="attraction-card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="attraction-card-content">
+              <span class="attraction-category" data-i18n="attractions.card.whalingMuseum.category">HISTORIA Y CONSERVACIÓN</span>
+              <h3 data-i18n="attractions.card.whalingMuseum.title">Museo de la ex Ballenera</h3>
+              <p data-i18n="attractions.card.whalingMuseum.description">
+                Conoce la historia de la ballenera y el trabajo de
+                conservación del ecosistema marino de Quintay.
+              </p>
+              <span class="attraction-card-link">
+                <span data-i18n="attractions.explore">Explorar atractivo</span>
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </button>
+
+          <button
+            class="attraction-card quintay-attraction-card"
+            type="button"
+            data-attraction="caleta-quintay"
+            aria-haspopup="dialog"
+          >
+            <div class="attraction-card-image">
+              <img
+                src="../img/atractivos/caleta.jpg"
+                alt="Caleta de pescadores de Quintay"
+                data-i18n-attr="alt:attractions.card.cove.alt"
+                loading="lazy"
+              />
+              <span class="attraction-card-number">02</span>
+              <span class="attraction-card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="attraction-card-content">
+              <span class="attraction-category" data-i18n="attractions.card.cove.category">CULTURA Y VIDA COSTERA</span>
+              <h3 data-i18n="attractions.card.cove.title">Caleta de pescadores</h3>
+              <p data-i18n="attractions.card.cove.description">
+                Recorre la feria de artesanía, conoce las escuelas de buceo
+                y disfruta la gastronomía típica local.
+              </p>
+              <span class="attraction-card-link">
+                <span data-i18n="attractions.explore">Explorar atractivo</span>
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </button>
+
+          <button
+            class="attraction-card quintay-attraction-card"
+            type="button"
+            data-attraction="humedal-estero-jote"
+            aria-haspopup="dialog"
+          >
+            <div class="attraction-card-image">
+              <img
+                src="../img/atractivos/humedal-jote.jpg"
+                alt="Humedal Estero El Jote en Quintay"
+                data-i18n-attr="alt:attractions.card.wetland.alt"
+                loading="lazy"
+              />
+              <span class="attraction-card-number">03</span>
+              <span class="attraction-card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="attraction-card-content">
+              <span class="attraction-category" data-i18n="attractions.card.wetland.category">NATURALEZA Y BIODIVERSIDAD</span>
+              <h3 data-i18n="attractions.card.wetland.title">Humedal Estero El Jote</h3>
+              <p data-i18n="attractions.card.wetland.description">
+                Descubre un refugio de flora y fauna donde habitan pilpilenes,
+                garzas y cormoranes yecos.
+              </p>
+              <span class="attraction-card-link">
+                <span data-i18n="attractions.explore">Explorar atractivo</span>
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </button>
+
+          <button
+            class="attraction-card quintay-attraction-card"
+            type="button"
+            data-attraction="playa-grande-quintay"
+            aria-haspopup="dialog"
+          >
+            <div class="attraction-card-image">
+              <img
+                src="../img/atractivos/playa-grande.jpg"
+                alt="Playa Grande junto al Estero El Jote en Quintay"
+                data-i18n-attr="alt:attractions.card.beach.alt"
+                loading="lazy"
+              />
+              <span class="attraction-card-number">04</span>
+              <span class="attraction-card-arrow" aria-hidden="true">↗</span>
+            </div>
+            <div class="attraction-card-content">
+              <span class="attraction-category" data-i18n="attractions.card.beach.category">PLAYA Y PAISAJE COSTERO</span>
+              <h3 data-i18n="attractions.card.beach.title">Playa Grande</h3>
+              <p data-i18n="attractions.card.beach.description">
+                Un paisaje de mar, estero y cerros para hacer una pausa,
+                disfrutar la calma y renovar energías.
+              </p>
+              <span class="attraction-card-link">
+                <span data-i18n="attractions.explore">Explorar atractivo</span>
+                <span aria-hidden="true">→</span>
+              </span>
+            </div>
+          </button>
+        </div>
+
+        <p class="attractions-note">
+          <span aria-hidden="true">ⓘ</span>
+          <span data-i18n="attractions.quintay.note">La información turística es orientativa. Respeta las áreas naturales y confirma las condiciones de acceso y servicios antes de tu visita.</span>
+        </p>
+      </div>
+    </section>
+
+
+    <!-- CIERRE -->
+
+    <section class="attractions-bottom">
+
+      <div>
+        <span class="eyebrow light" data-i18n="attractions.closing.eyebrow">
+          SIGUE DESCUBRIENDO
+        </span>
+
+        <h2>
+          <span data-i18n="attractions.closing.title">Casablanca tiene</span><br />
+          <em data-i18n="attractions.closing.titleItalic">mucho más por ofrecer.</em>
+        </h2>
+
+        <p data-i18n="attractions.closing.description">
+          Continúa explorando el valle, la historia local y los paisajes
+          costeros de Quintay.
+        </p>
+      </div>
+
+      <div class="attractions-bottom-actions">
+
+        <a class="button button-light" href="vinas.html">
+          <span data-i18n="attractions.closing.valleyCta">Descubrir el valle</span>
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <a class="attractions-secondary-link" href="como-llegar.html">
+          <span data-i18n="attractions.closing.directionsCta">Planificar cómo llegar</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- PIE DE PÁGINA -->
+
+  <footer class="site-footer">
+
+    <div class="footer-top">
+
+      <a
+        class="brand brand-footer"
+        href="../index.html"
+        aria-label="Casablanca, inicio"
+        data-i18n-attr="aria-label:nav.home"
+      >
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <p data-i18n="footer.description">
+        Historias entre el valle y el mar.
+      </p>
+
+      <nav
+        aria-label="Navegación del pie"
+        data-i18n-attr="aria-label:nav.footer"
+      >
+        <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+        <a href="historia.html" data-i18n="nav.history">Historia</a>
+        <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+        <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span data-i18n="footer.platform">
+        Plataforma turística de Casablanca
+      </span>
+
+      <span data-i18n="footer.notice">
+        Contenido informativo sujeto a actualización.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- FICHA INTERACTIVA -->
+
+  <dialog
+    id="attraction-dialog"
+    class="attraction-dialog"
+    aria-labelledby="attraction-dialog-title"
+  >
+
+    <div class="attraction-dialog-content">
+
+      <button
+        type="button"
+        class="attraction-dialog-close"
+        id="attraction-dialog-close"
+        aria-label="Cerrar información"
+        data-i18n-attr="aria-label:attractions.dialog.close"
+      >
+        ×
+      </button>
+
+      <div class="attraction-dialog-image">
+
+        <img
+          id="attraction-dialog-img"
+          src=""
+          alt=""
+        />
+
+        <span
+          id="attraction-dialog-number"
+          class="attraction-dialog-number"
+        ></span>
+
+      </div>
+
+      <div class="attraction-dialog-body">
+
+        <span
+          id="attraction-dialog-category"
+          class="eyebrow"
+        ></span>
+
+        <h2 id="attraction-dialog-title"></h2>
+
+        <p
+          id="attraction-dialog-intro"
+          class="attraction-dialog-intro"
+        ></p>
+
+        <div
+          id="attraction-dialog-details"
+          class="attraction-dialog-details"
+        ></div>
+
+        <div
+          id="attraction-dialog-rules"
+          class="attraction-dialog-rules"
+          hidden
+        ></div>
+
+        <div
+          id="attraction-dialog-links"
+          class="attraction-dialog-links"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </dialog>
+
+
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/atractivos.js"></script>
+
+</body>
+</html>
