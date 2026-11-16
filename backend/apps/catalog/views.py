@@ -1,3 +1,4 @@
+
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
 
@@ -12,7 +13,7 @@ class CategoriaListAPIView(generics.ListAPIView):
     def get_queryset(self):
         return Categoria.objects.filter(
             activa=True
-        ).order_by('nombre')
+        ).order_by("nombre")
 
 
 class AtractivoListAPIView(generics.ListAPIView):
@@ -20,19 +21,36 @@ class AtractivoListAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-        return Atractivo.objects.filter(
-            publicado=True,
-            categoria__activa=True
-        ).select_related('categoria').order_by('nombre')
+        return (
+            Atractivo.objects.filter(
+                publicado=True,
+                categoria__activa=True,
+            )
+            .select_related("categoria")
+            .prefetch_related(
+                "imagenes",
+                "secciones",
+                "recomendaciones",
+            )
+            .order_by("nombre")
+        )
 
 
 class AtractivoDetailAPIView(generics.RetrieveAPIView):
     serializer_class = AtractivoSerializer
     permission_classes = [AllowAny]
-    lookup_field = 'slug'
+    lookup_field = "slug"
 
     def get_queryset(self):
-        return Atractivo.objects.filter(
-            publicado=True,
-            categoria__activa=True
-        ).select_related('categoria')
+        return (
+            Atractivo.objects.filter(
+                publicado=True,
+                categoria__activa=True,
+            )
+            .select_related("categoria")
+            .prefetch_related(
+                "imagenes",
+                "secciones",
+                "recomendaciones",
+            )
+        )
