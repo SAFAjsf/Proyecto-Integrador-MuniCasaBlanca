@@ -90,7 +90,8 @@
     const locale = {
       es: "es-CL",
       en: "en-GB",
-      pt: "pt-BR"
+      pt: "pt-BR",
+      fr: "fr-FR"
     }[language] || "es-CL";
 
     return new Intl.DateTimeFormat(locale, {

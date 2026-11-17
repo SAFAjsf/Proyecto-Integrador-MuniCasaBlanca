@@ -15,7 +15,7 @@ Abrir `index.html` en un navegador o utilizar la extensión Live Server de Visua
 ## Organización
 - `css/base.css`: tokens visuales, navegación, botones, footer y estilos compartidos.
 - Un CSS por página para facilitar mantenimiento.
-- `js/translations.js` y `js/i18n.js`: catálogo de español, inglés y portugués, con selector de idioma para navegación y textos comunes del pie.
+- `js/translations.js` y `js/i18n.js`: catálogo de español, inglés y portugués, con traducciones al francés para Inicio, Atractivos, Valle y viñas, Ruta del Vino, Historia, Quintay, Cómo llegar y Noticias; los textos aún no traducidos usan el respaldo en español.
 - `js/main.js`: menú móvil, accesos rápidos a las secciones de cada página y línea temporal de Historia.
 - `img/`: imágenes optimizadas copiadas del prototipo recibido.
 

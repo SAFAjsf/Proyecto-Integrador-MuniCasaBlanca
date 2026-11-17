@@ -524,3 +524,9 @@ button:focus-visible {
     margin-top: 8px;
   }
 }
+
+@media (max-width: 560px) {
+  .section-jump {
+    display: none;
+  }
+}

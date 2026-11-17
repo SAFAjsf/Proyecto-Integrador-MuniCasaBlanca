@@ -192,102 +192,6 @@
 }
 
 /* =========================================
-   DESTINOS
-========================================= */
-
-.discover-section {
-  padding-top: 100px;
-  padding-bottom: 110px;
-}
-
-.discover-section .section-heading {
-  margin-bottom: 48px;
-}
-
-.destination-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.destination-card {
-  position: relative;
-  display: block;
-  min-height: 470px;
-  overflow: hidden;
-  color: white;
-  background: var(--deep);
-  text-decoration: none;
-  isolation: isolate;
-}
-
-.destination-card::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  background: linear-gradient(
-    0deg,
-    rgba(22, 25, 19, 0.84),
-    rgba(22, 25, 19, 0.04) 75%
-  );
-  transition: background-color 0.3s ease;
-}
-
-.destination-card img {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.75s ease;
-}
-
-.destination-card:hover img {
-  transform: scale(1.07);
-}
-
-.destination-card:hover::after {
-  background-color: rgba(22, 25, 19, 0.12);
-}
-
-.card-number {
-  position: absolute;
-  z-index: 1;
-  top: 24px;
-  left: 24px;
-  font-size: 0.64rem;
-  letter-spacing: 0.17em;
-}
-
-.destination-copy {
-  position: absolute;
-  z-index: 1;
-  left: 25px;
-  right: 25px;
-  bottom: 27px;
-}
-
-.destination-copy h3 {
-  font: 400 clamp(1.65rem, 2.5vw, 2.25rem)/1.1 var(--font-title);
-  margin: 10px 0;
-}
-
-.destination-copy p {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: #ffffffd1;
-  margin: 0 0 20px;
-}
-
-.destination-copy .text-link {
-  color: white;
-  border-color: #ffffff8c;
-}
-
-/* =========================================
    PATRIMONIO Y MUSEO
 ========================================= */
 
@@ -378,7 +282,6 @@
    ACCESIBILIDAD Y EFECTOS
 ========================================= */
 
-.destination-card:focus-visible,
 .text-link:focus-visible {
   outline: 3px solid var(--earth);
   outline-offset: 5px;
@@ -393,13 +296,10 @@
     animation: none;
   }
 
-  .destination-card img,
-  .museum-image img,
-  .destination-card::after {
+  .museum-image img {
     transition: none;
   }
 
-  .destination-card:hover img,
   .museum-image:hover img {
     transform: none;
   }
@@ -410,15 +310,6 @@
 ========================================= */
 
 @media (max-width: 900px) {
-  .destination-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .destination-card:last-child {
-    grid-column: 1 / -1;
-    min-height: 390px;
-  }
-
   .museum-strip {
     grid-template-columns: 1fr;
   }
@@ -476,16 +367,6 @@
 
   .welcome-content h2 {
     font-size: clamp(2.6rem, 12vw, 3.5rem);
-  }
-
-  .destination-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .destination-card,
-  .destination-card:last-child {
-    grid-column: auto;
-    min-height: 420px;
   }
 
   .museum-image,
@@ -780,4 +661,158 @@
 .welcome-content {
   background-color: var(--cream);
   box-shadow: none;
+}
+
+/* =========================================
+   EXPLORA EL VALLE Y LA COSTA
+========================================= */
+
+.territories-showcase {
+  padding: clamp(68px, 8vw, 105px) clamp(24px, 8vw, 120px);
+  background: #e7e0d2;
+}
+
+.territories-showcase-heading {
+  max-width: 760px;
+  margin: 0 auto 38px;
+  text-align: center;
+}
+
+.territories-showcase-heading h2 {
+  font: 400 clamp(2.6rem, 5vw, 4.3rem)/1.08 var(--font-title);
+  letter-spacing: -0.035em;
+  margin: 16px 0;
+}
+
+.territories-showcase-heading > p {
+  max-width: 580px;
+  margin: 0 auto;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.territories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.territory-card {
+  position: relative;
+  display: flex;
+  min-height: clamp(330px, 38vw, 490px);
+  overflow: hidden;
+  isolation: isolate;
+  align-items: flex-end;
+  color: #fff;
+  background: var(--deep);
+  text-decoration: none;
+}
+
+.territory-card::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(22, 25, 19, 0.82), rgba(22, 25, 19, 0.02) 78%);
+  content: "";
+  transition: background-color 0.4s ease;
+}
+
+.territory-card img {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.territory-card:hover img {
+  transform: scale(1.05);
+}
+
+.territory-card:hover::after {
+  background-color: rgba(22, 25, 19, 0.12);
+}
+
+.territory-card-copy {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.territory-card-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.17em;
+  color: #ffffffdf;
+}
+
+.territory-card-title {
+  margin: 12px 0 18px;
+  font: 400 clamp(2rem, 4vw, 3.2rem)/1.08 var(--font-title);
+}
+
+.territory-card-link {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ffffff80;
+  font-size: 0.83rem;
+  color: #ffffffdf;
+}
+
+.territory-card-link b {
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: transform 0.3s ease;
+}
+
+.territory-card:hover .territory-card-link b {
+  transform: translate(3px, -3px);
+}
+
+.territory-card:focus-visible {
+  outline: 3px solid var(--earth);
+  outline-offset: -5px;
+}
+
+@media (max-width: 700px) {
+  .territories-showcase {
+    padding: 62px 24px;
+  }
+
+  .territories-showcase-heading {
+    margin-bottom: 28px;
+    text-align: left;
+  }
+
+  .territories-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .territory-card {
+    min-height: 350px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .territory-card img,
+  .territory-card::after,
+  .territory-card-link b {
+    transition: none;
+  }
+
+  .territory-card:hover img {
+    transform: none;
+  }
 }

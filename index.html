@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/inicio.css" />
     <link rel="stylesheet" href="css/noticias.css" />
+    <link rel="stylesheet" href="css/clima.css" />
+    
   </head>
 
   <body>
@@ -58,6 +60,7 @@
             <option value="es" data-i18n="language.spanish">Español</option>
             <option value="en" data-i18n="language.english">English</option>
             <option value="pt" data-i18n="language.portuguese">Português</option>
+            <option value="fr" data-i18n="language.french">Français</option>
           </select>
         </div>
       </nav>
@@ -203,7 +206,150 @@
         </div>
       </section>
 
-    
+      <!-- RESUMEN METEOROLÓGICO -->
+      <section class="home-weather-section" id="home-weather">
+
+        <div class="home-weather-heading">
+          <span class="eyebrow" data-clima="homeEyebrow">
+            PREPARA TU VISITA
+          </span>
+
+          <h2 data-clima="homeTitle">
+            El tiempo en Casablanca.
+          </h2>
+
+          <p data-clima="homeDescription">
+            Consulta las condiciones actuales antes de comenzar tu recorrido.
+          </p>
+        </div>
+
+        <div class="home-weather-card">
+
+          <div class="home-weather-main">
+
+            <div class="home-weather-condition">
+              <span
+                class="home-weather-icon"
+                id="home-weather-icon"
+                aria-hidden="true"
+              >
+                ⛅
+              </span>
+
+              <div>
+                <strong id="home-weather-temperature">--°</strong>
+
+                <span id="home-weather-description">
+                  Consultando el clima...
+                </span>
+              </div>
+            </div>
+
+            <div class="home-weather-range">
+              <span>
+                <span data-clima="minimum">Mínima</span>
+                <strong id="home-weather-min">--°</strong>
+              </span>
+
+              <span>
+                <span data-clima="maximum">Máxima</span>
+                <strong id="home-weather-max">--°</strong>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="home-weather-tip">
+
+            <span class="home-weather-tip-icon" aria-hidden="true">
+              ✦
+            </span>
+
+            <div>
+              <span class="home-weather-tip-label" data-clima="homeTip">
+                CONSEJO PARA TU VISITA
+              </span>
+
+              <h3 id="home-weather-tip-title">
+                Preparando recomendaciones...
+              </h3>
+
+              <p id="home-weather-tip-description">
+                Estamos consultando las condiciones meteorológicas.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="home-weather-footer">
+
+            <span id="home-weather-updated">
+              Actualizando información...
+            </span>
+
+            <a href="pages/clima.html" class="home-weather-link">
+              <span data-clima="discoverWeather">Descubre más</span>
+              <b aria-hidden="true">→</b>
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- VALLE Y COSTA -->
+      <section class="territories-showcase" aria-labelledby="territories-showcase-title">
+        <div class="territories-showcase-heading">
+          <span class="eyebrow" data-i18n="home.territories.eyebrow">DOS PAISAJES, UNA COMUNA</span>
+          <h2 id="territories-showcase-title" data-i18n="home.territories.title">
+            Descubre el valle y la costa.
+          </h2>
+          <p data-i18n="home.territories.description">
+            Recorre los paisajes vitivinícolas de Casablanca y déjate
+            sorprender por la vida junto al mar en Quintay.
+          </p>
+        </div>
+
+        <div class="territories-grid">
+          <a class="territory-card" href="pages/vinas.html">
+            <img
+              src="img/valle.jpg"
+              alt="Paisaje del valle de Casablanca"
+              data-i18n-attr="alt:home.territories.valleyAlt"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="territory-card-copy">
+              <span class="territory-card-label" data-i18n="home.territories.valleyLabel">VALLE · VIÑAS · VINO</span>
+              <span class="territory-card-title" data-i18n="home.territories.valleyTitle">Valle y viñas</span>
+              <span class="territory-card-link">
+                <span data-i18n="home.territories.valleyCta">Explorar el valle</span>
+                <b aria-hidden="true">↗</b>
+              </span>
+            </span>
+          </a>
+
+          <a class="territory-card" href="pages/quintay.html">
+            <img
+              src="img/quintay.jpg"
+              alt="Paisaje costero de Quintay"
+              data-i18n-attr="alt:home.territories.coastAlt"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="territory-card-copy">
+              <span class="territory-card-label" data-i18n="home.territories.coastLabel">COSTA · HISTORIA · MAR</span>
+              <span class="territory-card-title" data-i18n="home.territories.coastTitle">Quintay</span>
+              <span class="territory-card-link">
+                <span data-i18n="home.territories.coastCta">Descubrir la costa</span>
+                <b aria-hidden="true">↗</b>
+              </span>
+            </span>
+          </a>
+        </div>
+      </section>
 
       <!-- ATRACTIVOS DE CASABLANCA -->
       <section id="descubre" class="attractions-showcase" aria-labelledby="attractions-showcase-title">
@@ -415,10 +561,6 @@
 
       </section>
 
-      <!-- DESTINOS -->
-      <section id="descubre" class="section discover-section">
-      </section>
-
       <!-- NOTICIAS Y NOVEDADES -->
 
 <section class="section home-news-section">
@@ -545,5 +687,6 @@
     <script src="js/inicio.js"></script>
     <script src="js/noticias-data.js" ></script>
     <script src="js/noticias.js" ></script>
+    <script src="js/clima.js" ></script>
   </body>
 </html>
