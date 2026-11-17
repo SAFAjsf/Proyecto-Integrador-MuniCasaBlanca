@@ -1,0 +1,117 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block titulo %}Usuarios{% endblock %}
+
+{% block content %}
+
+  <div class="g-page-head">
+    <div>
+      <h1>Usuarios del panel</h1>
+      <p>{{ filas|length }} cuenta{{ filas|length|pluralize:"s" }} registrada{{ filas|length|pluralize:"s" }}.</p>
+    </div>
+
+    <a class="button button-dark" href="{% url 'usuario_crear' %}">+ Nuevo usuario</a>
+  </div>
+
+  <div class="g-toolbar">
+    <form class="g-search" method="get">
+      <input
+        type="search"
+        name="q"
+        value="{{ busqueda }}"
+        placeholder="Buscar por nombre, usuario o correo"
+        aria-label="Buscar usuarios"
+      >
+      <button type="submit" class="button button-dark">Buscar</button>
+
+      {% if busqueda %}
+        <a href="{% url 'gestion_usuarios' %}">Limpiar</a>
+      {% endif %}
+    </form>
+  </div>
+
+  <div class="g-card">
+
+    {% if filas %}
+      <div class="g-table-wrap">
+        <table class="g-table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Correo</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Último acceso</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for fila in filas %}
+              <tr>
+                <td>
+                  <div class="g-user-cell">
+                    <span class="g-avatar">{{ fila.iniciales }}</span>
+
+                    <div>
+                      <div class="g-user-name">
+                        {{ fila.nombre }}
+                        {% if fila.usuario == user %}
+                          <span class="g-badge g-badge--you">Tú</span>
+                        {% endif %}
+                      </div>
+                      <div class="g-user-handle">@{{ fila.usuario.username }}</div>
+                    </div>
+                  </div>
+                </td>
+
+                <td>{{ fila.usuario.email|default:"—" }}</td>
+
+                <td>
+                  {% if fila.rol == "superusuario" %}
+                    <span class="g-badge g-badge--admin">Superusuario</span>
+                  {% elif fila.rol == "administrador" %}
+                    <span class="g-badge g-badge--admin">Administrador</span>
+                  {% elif fila.rol == "funcionario" %}
+                    <span class="g-badge g-badge--func">Funcionario</span>
+                  {% else %}
+                    <span class="g-badge g-badge--none">Sin acceso</span>
+                  {% endif %}
+                </td>
+
+                <td>
+                  {% if fila.usuario.is_active %}
+                    <span class="g-badge g-badge--on">Activo</span>
+                  {% else %}
+                    <span class="g-badge g-badge--off">Inactivo</span>
+                  {% endif %}
+                </td>
+
+                <td>
+                  {{ fila.usuario.last_login|date:"d-m-Y H:i"|default:"Nunca" }}
+                </td>
+
+                <td>
+                  <div class="g-actions">
+                    <a href="{% url 'usuario_editar' fila.usuario.pk %}">Editar</a>
+
+                    {% if fila.usuario != user %}
+                      <a class="g-danger" href="{% url 'usuario_eliminar' fila.usuario.pk %}">Eliminar</a>
+                    {% endif %}
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="g-empty">
+        <p>No hay usuarios que coincidan{% if busqueda %} con «{{ busqueda }}»{% endif %}.</p>
+        <a class="button button-dark" href="{% url 'usuario_crear' %}">Crear el primero</a>
+      </div>
+    {% endif %}
+
+  </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ atractivo.nombre }} | Casablanca</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+  <main class="section">
+    <a href="{% url 'atractivos' %}">← Volver a atractivos</a>
+
+    <h1>{{ atractivo.nombre }}</h1>
+    <p>{{ atractivo.categoria.nombre }}</p>
+
+    {% with portada=atractivo.imagen_portada %}
+      {% if portada %}
+        <img
+          src="{{ portada.imagen.url }}"
+          alt="{{ portada.texto_alternativo|default:atractivo.nombre }}"
+          style="max-width: 100%; height: auto;"
+        >
+      {% endif %}
+    {% endwith %}
+    <div>{{ atractivo.descripcion|linebreaks }}</div>
+    {% for seccion in atractivo.secciones.all %}
+      <section>
+        <h2>{{ seccion.titulo }}</h2>
+        {{ seccion.contenido|linebreaks }}
+      </section>
+    {% endfor %}
+    {% if atractivo.recomendaciones.all %}
+      <h2>Recomendaciones</h2>
+      <ul>
+        {% for recomendacion in atractivo.recomendaciones.all %}
+          <li>{{ recomendacion.texto }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </main>
+</body>
+</html>

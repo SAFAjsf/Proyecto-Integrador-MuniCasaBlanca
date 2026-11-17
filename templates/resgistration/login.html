@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso funcionarios | Casablanca</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+  <main class="section" style="max-width: 520px; margin: 4rem auto;">
+    <h1>Acceso funcionarios municipales</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {{ form.as_p }}
+      <button type="submit" class="button button-dark">Ingresar</button>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block titulo %}Eliminar usuario{% endblock %}
+
+{% block content %}
+
+  <div class="g-page-head">
+    <div>
+      <h1>Eliminar usuario</h1>
+      <p>Esta acción no se puede deshacer.</p>
+    </div>
+  </div>
+
+  <div class="g-card">
+    <div class="g-form">
+      <p>
+        ¿Seguro que quieres eliminar la cuenta
+        <strong>@{{ usuario.username }}</strong>{% if usuario.get_full_name %}
+        ({{ usuario.get_full_name }}){% endif %}?
+      </p>
+
+      <form method="post" class="g-actions-bar">
+        {% csrf_token %}
+        <button type="submit" class="button button-dark">Sí, eliminar</button>
+        <a href="{% url 'gestion_usuarios' %}">Cancelar</a>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

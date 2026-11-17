@@ -1,0 +1,758 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Conoce el Valle de Casablanca: su clima costero, paisajes, variedades de vino, tradición vitivinícola y experiencias."
+      data-i18n-content="wines.meta.description"
+    />
+    <meta name="theme-color" content="#263d35" />
+
+    <title data-i18n="wines.meta.title">Valle y viñas | Casablanca Chile</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vinas.css' %}" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a
+        class="brand"
+        href="{% url 'inicio' %}"
+        aria-label="Casablanca, inicio"
+        data-i18n-attr="aria-label:nav.home"
+      >
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Abrir menú"
+        data-i18n-attr="aria-label:nav.open"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="main-nav" class="main-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.main">
+        <a href="{% url 'vinas' %}" aria-current="page" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+        <a href="{% url 'historia' %}" data-i18n="nav.history">Historia</a>
+        <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+        <a href="{% url 'como_llegar' %}" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        <div class="language-control">
+          <label for="language-switcher" data-i18n="language.label">Idioma</label>
+          <select id="language-switcher" data-language-switcher data-i18n-attr="aria-label:language.label">
+            <option value="es" data-i18n="language.spanish">Español</option>
+            <option value="en" data-i18n="language.english">English</option>
+            <option value="pt" data-i18n="language.portuguese">Português</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="inner-hero vinas-hero">
+        <img
+          class="inner-hero-image"
+          src="{% static 'images/valle.jpg' %}"
+          alt="Paisaje del Valle de Casablanca"
+          data-i18n-attr="alt:wines.hero.imageAlt"
+          fetchpriority="high"
+        />
+
+        <div class="inner-hero-shade"></div>
+
+        <div class="inner-hero-content">
+          <span class="eyebrow light">
+            <span data-i18n="wines.hero.eyebrow">VALLE · VINO · NATURALEZA</span>
+          </span>
+
+          <h1>
+            <span data-i18n="wines.hero.title">El carácter</span><br />
+            <em data-i18n="wines.hero.titleItalic">del valle.</em>
+          </h1>
+
+          <p data-i18n="wines.hero.description">
+            Un territorio donde la influencia del océano, la naturaleza
+            y la tradición vitivinícola dan forma a un paisaje único.
+          </p>
+
+          <a class="button button-light" href="#identidad">
+            <span data-i18n="wines.hero.cta">Descubrir el valle</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- IDENTIDAD -->
+      <section id="identidad" class="section wine-intro">
+        <div>
+          <span class="eyebrow" data-i18n="wines.identity.eyebrow">UNA IDENTIDAD RECONOCIDA</span>
+
+          <h2>
+            <span data-i18n="wines.identity.title">Mucho más que</span><br />
+            <span data-i18n="wines.identity.titleSecond">una copa de vino.</span>
+          </h2>
+        </div>
+
+        <div>
+          <p data-i18n="wines.identity.paragraphOne">
+            Ubicado en la Región de Valparaíso, el Valle de Casablanca
+            se ha consolidado como uno de los territorios vitivinícolas
+            más reconocidos de Chile, especialmente por la producción
+            de vinos de clima fresco.
+          </p>
+
+          <p data-i18n="wines.identity.paragraphTwo">
+            Su identidad está estrechamente relacionada con la cercanía
+            del océano Pacífico, sus paisajes de colinas y la actividad
+            agrícola que forma parte de la historia de la comuna.
+          </p>
+
+          <p data-i18n="wines.identity.paragraphThree">
+            Aquí, la vitivinicultura convive con la gastronomía,
+            la naturaleza y las tradiciones del mundo rural.
+          </p>
+        </div>
+      </section>
+
+      <!-- CLIMA Y TERRITORIO -->
+      <section class="wine-territory">
+        <div class="wine-territory-image">
+          <img
+            src="{% static 'images/valle.jpg' %}"
+            alt="Viñedos y colinas del Valle de Casablanca"
+            data-i18n-attr="alt:wines.territory.imageAlt"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="wine-territory-content">
+          <span class="eyebrow" data-i18n="wines.territory.eyebrow">EL VALLE Y SU ENTORNO</span>
+
+          <h2>
+            <span data-i18n="wines.territory.title">La influencia</span><br />
+            <span data-i18n="wines.territory.titleSecond">del océano.</span>
+          </h2>
+
+          <p data-i18n="wines.territory.paragraphOne">
+            Una de las características más importantes del Valle de
+            Casablanca es su proximidad al océano Pacífico. Esta
+            influencia marítima contribuye a moderar las temperaturas
+            y generar condiciones favorables para el cultivo de
+            variedades que se desarrollan mejor en climas frescos.
+          </p>
+
+          <p data-i18n="wines.territory.paragraphTwo">
+            Las mañanas frescas, las neblinas costeras y las diferencias
+            de temperatura durante el día forman parte de las condiciones
+            que distinguen a este territorio.
+          </p>
+
+          <p data-i18n="wines.territory.paragraphThree">
+            Estas características pueden favorecer una maduración más
+            pausada de las uvas y la conservación de su acidez natural,
+            cualidades especialmente apreciadas en determinados estilos
+            de vinos blancos y tintos.
+          </p>
+        </div>
+      </section>
+
+      <!-- CARACTERÍSTICAS DEL VALLE -->
+      <section class="section valley-features">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="wines.features.eyebrow">UN TERRITORIO CON PERSONALIDAD</span>
+            <h2 data-i18n="wines.features.title">¿Qué hace especial al valle?</h2>
+          </div>
+
+          <p data-i18n="wines.features.description">
+            La combinación de factores naturales y el trabajo vitivinícola
+            han contribuido a construir la identidad de Casablanca.
+          </p>
+        </div>
+
+        <div class="valley-feature-grid">
+          <article class="valley-feature">
+            <span class="feature-number">01</span>
+            <h3 data-i18n="wines.features.coastalClimate.title">Clima costero</h3>
+            <p data-i18n="wines.features.coastalClimate.description">
+              La cercanía del océano Pacífico ayuda a moderar las
+              temperaturas, creando condiciones adecuadas para
+              variedades de clima fresco.
+            </p>
+          </article>
+
+          <article class="valley-feature">
+            <span class="feature-number">02</span>
+            <h3 data-i18n="wines.features.morningFog.title">Neblinas matinales</h3>
+            <p data-i18n="wines.features.morningFog.description">
+              La presencia de nieblas y mañanas frescas forma parte
+              del entorno climático que caracteriza a distintos
+              sectores del valle.
+            </p>
+          </article>
+
+          <article class="valley-feature">
+            <span class="feature-number">03</span>
+            <h3 data-i18n="wines.features.soilDiversity.title">Diversidad de suelos</h3>
+            <p data-i18n="wines.features.soilDiversity.description">
+              Los distintos terrenos y condiciones de cultivo permiten
+              que cada sector presente características particulares
+              para el desarrollo de las vides.
+            </p>
+          </article>
+
+          <article class="valley-feature">
+            <span class="feature-number">04</span>
+            <h3 data-i18n="wines.features.winemaking.title">Tradición vitivinícola</h3>
+            <p data-i18n="wines.features.winemaking.description">
+              La experiencia de sus productores y el desarrollo
+              de técnicas de cultivo y elaboración han fortalecido
+              la identidad del valle.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- VARIEDADES -->
+      <section class="wine-varieties">
+        <div class="wine-varieties-image">
+          <img
+            src="{% static 'images/valle.jpg' %}"
+            alt="Viñedos del Valle de Casablanca"
+            data-i18n-attr="alt:wines.varieties.imageAlt"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="wine-varieties-copy">
+          <span class="eyebrow" data-i18n="wines.varieties.eyebrow">VINO Y TERRITORIO</span>
+
+          <h2>
+            <span data-i18n="wines.varieties.title">Sabores que expresan</span><br />
+            <span data-i18n="wines.varieties.titleSecond">el paisaje.</span>
+          </h2>
+
+          <p data-i18n="wines.varieties.paragraphOne">
+            Casablanca destaca especialmente por sus variedades
+            blancas, aunque también cuenta con una producción de
+            vinos tintos que aprovecha las condiciones de sus
+            distintos sectores.
+          </p>
+
+          <p data-i18n="wines.varieties.paragraphTwo">
+            Cada variedad posee características propias y puede
+            expresar diferentes aromas, sabores y estructuras
+            dependiendo del clima, el suelo y el proceso de elaboración.
+          </p>
+
+          <div class="variety-chips">
+            <span data-i18n="wines.varieties.chipWhite">Vinos blancos</span>
+            <span data-i18n="wines.varieties.chipRed">Vinos tintos</span>
+            <span data-i18n="wines.varieties.chipClimate">Clima fresco</span>
+            <span data-i18n="wines.varieties.chipTourism">Enoturismo</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- VINOS EMBLEMÁTICOS -->
+      
+<!-- EXPLORADOR INTERACTIVO DE VARIEDADES -->
+
+<section class="section wine-types wine-explorer">
+
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow" data-i18n="wines.explorer.eyebrow">VARIEDADES DEL VALLE</span>
+      <h2 data-i18n="wines.explorer.title">Vinos que identifican a Casablanca.</h2>
+    </div>
+
+    <p data-i18n="wines.explorer.description">
+      Explora algunas de las variedades que han contribuido
+      al reconocimiento vitivinícola del valle y descubre
+      sus principales características.
+    </p>
+  </div>
+
+  <div class="wine-explorer-layout">
+
+    <!-- SELECTOR DE VARIEDADES -->
+
+    <div class="wine-explorer-options" aria-label="Seleccionar variedad" data-i18n-attr="aria-label:wines.explorer.selectVariety">
+
+      <button
+        type="button"
+        class="wine-explorer-option active"
+        data-variety="sauvignon"
+        aria-pressed="true"
+      >
+        <span class="wine-option-number">01</span>
+        <span class="wine-option-info">
+          <strong>Sauvignon Blanc</strong>
+          <small data-i18n="wines.category.white">Vino blanco</small>
+        </span>
+        <span class="wine-option-arrow" aria-hidden="true">→</span>
+      </button>
+
+      <button
+        type="button"
+        class="wine-explorer-option"
+        data-variety="chardonnay"
+        aria-pressed="false"
+      >
+        <span class="wine-option-number">02</span>
+        <span class="wine-option-info">
+          <strong>Chardonnay</strong>
+          <small data-i18n="wines.category.white">Vino blanco</small>
+        </span>
+        <span class="wine-option-arrow" aria-hidden="true">→</span>
+      </button>
+
+      <button
+        type="button"
+        class="wine-explorer-option"
+        data-variety="pinot"
+        aria-pressed="false"
+      >
+        <span class="wine-option-number">03</span>
+        <span class="wine-option-info">
+          <strong>Pinot Noir</strong>
+          <small data-i18n="wines.category.red">Vino tinto</small>
+        </span>
+        <span class="wine-option-arrow" aria-hidden="true">→</span>
+      </button>
+
+      <button
+        type="button"
+        class="wine-explorer-option"
+        data-variety="syrah"
+        aria-pressed="false"
+      >
+        <span class="wine-option-number">04</span>
+        <span class="wine-option-info">
+          <strong>Syrah</strong>
+          <small data-i18n="wines.category.red">Vino tinto</small>
+        </span>
+        <span class="wine-option-arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
+
+    <!-- INFORMACIÓN DINÁMICA -->
+
+    <article class="wine-explorer-detail" aria-live="polite">
+
+      <div class="wine-explorer-image">
+
+        <img
+          id="wine-explorer-img"
+          src="{% static 'images/valle.jpg' %}"
+          alt="Paisaje vitivinícola del Valle de Casablanca"
+          data-i18n-attr="alt:wines.explorer.imageAlt"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <span class="wine-image-caption">
+          <span data-i18n="wines.explorer.imageCaption">VALLE DE CASABLANCA · CHILE</span>
+        </span>
+
+      </div>
+
+      <div class="wine-explorer-copy">
+
+        <span id="wine-explorer-category" class="wine-type-category">
+          <span data-i18n="wines.category.white">VINO BLANCO</span>
+        </span>
+
+        <h3 id="wine-explorer-title">
+          Sauvignon Blanc
+        </h3>
+
+        <p id="wine-explorer-description">
+          Una de las variedades más representativas de Casablanca.
+          Se caracteriza por sus perfiles frescos y aromáticos,
+          con notas que pueden recordar a cítricos y hierbas.
+        </p>
+
+        <div class="wine-explorer-characteristics">
+
+          <span class="wine-characteristics-label">
+            <span data-i18n="wines.explorer.profileLabel">PERFIL DE LA VARIEDAD</span>
+          </span>
+
+          <p id="wine-explorer-profile">
+            Fresco y aromático, con posibles notas cítricas y herbáceas.
+          </p>
+
+        </div>
+
+        <p class="wine-explorer-note" data-i18n="wines.explorer.note">
+          Las características son orientativas y pueden variar
+          según el productor, el viñedo y el método de elaboración.
+        </p>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+      <!-- COMPARADOR DE VARIEDADES -->
+      <section class="section wine-comparison" id="comparador-vinos">
+        <div class="section-heading">
+          <span class="section-kicker" data-i18n="wines.comparison.eyebrow">DESCUBRE Y COMPARA</span>
+          <h2 data-i18n="wines.comparison.title">¿Qué vino se adapta a tus gustos?</h2>
+          <p data-i18n="wines.comparison.description">
+            Cada variedad tiene una personalidad diferente.
+            Selecciona dos vinos y descubre sus principales características.
+          </p>
+        </div>
+
+        <div class="comparison-selector">
+          <div class="comparison-field">
+            <label for="wine-compare-one" data-i18n="wines.comparison.firstVariety">Primera variedad</label>
+            <select id="wine-compare-one">
+              <option value="sauvignon">Sauvignon Blanc</option>
+              <option value="chardonnay">Chardonnay</option>
+              <option value="pinot">Pinot Noir</option>
+              <option value="syrah">Syrah</option>
+            </select>
+          </div>
+
+          <div class="comparison-vs" aria-hidden="true">VS</div>
+
+          <div class="comparison-field">
+            <label for="wine-compare-two" data-i18n="wines.comparison.secondVariety">Segunda variedad</label>
+            <select id="wine-compare-two">
+              <option value="chardonnay">Chardonnay</option>
+              <option value="sauvignon">Sauvignon Blanc</option>
+              <option value="pinot">Pinot Noir</option>
+              <option value="syrah">Syrah</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="comparison-error" id="comparison-error"
+           role="status" aria-live="polite" hidden>
+          <span data-i18n="wines.comparison.error">Selecciona dos variedades diferentes para compararlas.</span>
+        </p>
+
+        <div class="comparison-results" id="comparison-results">
+          <article class="comparison-card" id="comparison-card-one">
+            <div class="comparison-image">
+              <img id="comparison-image-one"
+                   src="{% static 'images/valle.jpg' %}"
+                   alt="Sauvignon Blanc"
+                   data-i18n-attr="alt:wines.comparison.wineImageAlt">
+              <span id="comparison-category-one"></span>
+            </div>
+
+            <div class="comparison-content">
+              <h3 id="comparison-title-one">Sauvignon Blanc</h3>
+              <p id="comparison-description-one"></p>
+
+              <div class="comparison-characteristics">
+                <h4 data-i18n="wines.comparison.profileTitle">Perfil general</h4>
+                <div class="comparison-characteristic">
+                  <span data-i18n="wines.comparison.acidity">Acidez</span>
+                  <strong id="comparison-acidity-one"></strong>
+                </div>
+                <div class="comparison-characteristic">
+                  <span data-i18n="wines.comparison.body">Cuerpo</span>
+                  <strong id="comparison-body-one"></strong>
+                </div>
+                <div class="comparison-characteristic">
+                  <span data-i18n="wines.comparison.aroma">Perfil aromático</span>
+                  <strong id="comparison-aroma-one"></strong>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="comparison-card" id="comparison-card-two">
+            <div class="comparison-image">
+              <img id="comparison-image-two"
+                   src="{% static 'images/valle.jpg' %}"
+                   alt="Chardonnay"
+                   data-i18n-attr="alt:wines.comparison.wineImageAlt">
+              <span id="comparison-category-two"></span>
+            </div>
+
+            <div class="comparison-content">
+              <h3 id="comparison-title-two">Chardonnay</h3>
+              <p id="comparison-description-two"></p>
+
+              <div class="comparison-characteristics">
+                <h4 data-i18n="wines.comparison.profileTitle">Perfil general</h4>
+                <div class="comparison-characteristic">
+                  <span data-i18n="wines.comparison.acidity">Acidez</span>
+                  <strong id="comparison-acidity-two"></strong>
+                </div>
+                <div class="comparison-characteristic">
+                  <span data-i18n="wines.comparison.body">Cuerpo</span>
+                  <strong id="comparison-body-two"></strong>
+                </div>
+                <div class="comparison-characteristic">
+                  <span data-i18n="wines.comparison.aroma">Perfil aromático</span>
+                  <strong id="comparison-aroma-two"></strong>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="comparison-conclusion" aria-live="polite">
+          <span class="section-kicker" data-i18n="wines.comparison.conclusionEyebrow">¿CUÁL ES LA DIFERENCIA?</span>
+          <h3 data-i18n="wines.comparison.conclusionTitle">Dos variedades, distintas experiencias</h3>
+          <p id="comparison-summary"></p>
+        </div>
+
+        <p class="comparison-disclaimer" data-i18n="wines.comparison.disclaimer">
+          Las características descritas son orientativas. El perfil de cada vino
+          puede variar según el productor, el clima, la cosecha y el proceso
+          de elaboración.
+        </p>
+      </section>
+
+      <!-- CALIDAD -->
+      <section class="wine-quality">
+        <div class="wine-quality-content">
+          <span class="eyebrow light" data-i18n="wines.quality.eyebrow">CLIMA, TIERRA Y EXPERIENCIA</span>
+
+          <h2>
+            <span data-i18n="wines.quality.title">El secreto está</span><br />
+            <span data-i18n="wines.quality.titleSecond">en el territorio.</span>
+          </h2>
+
+          <p data-i18n="wines.quality.paragraphOne">
+            La calidad de un vino no depende de un solo factor.
+            En Casablanca, las condiciones climáticas, el entorno
+            geográfico y el trabajo de sus productores se combinan
+            para dar origen a diferentes estilos y expresiones.
+          </p>
+
+          <p data-i18n="wines.quality.paragraphTwo">
+            La influencia marítima puede favorecer la frescura y
+            acidez de ciertas variedades, mientras que las
+            características particulares de cada viñedo aportan
+            matices a sus vinos.
+          </p>
+        </div>
+
+        <div class="wine-quality-points">
+          <div>
+            <span>01</span>
+            <div>
+              <h3 data-i18n="wines.quality.natural.title">Condiciones naturales</h3>
+              <p data-i18n="wines.quality.natural.description">
+                Clima, temperaturas y exposición de los viñedos.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <span>02</span>
+            <div>
+              <h3 data-i18n="wines.quality.terrain.title">Características del terreno</h3>
+              <p data-i18n="wines.quality.terrain.description">
+                Suelos y condiciones particulares de cada sector.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <span>03</span>
+            <div>
+              <h3 data-i18n="wines.quality.winemaking.title">Trabajo vitivinícola</h3>
+              <p data-i18n="wines.quality.winemaking.description">
+                Experiencia, técnicas de cultivo y elaboración.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCIAS -->
+      <section class="section experiences-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="wines.experiences.eyebrow">EXPERIENCIAS DEL VALLE</span>
+            <h2 data-i18n="wines.experiences.title">Descubre a tu manera.</h2>
+          </div>
+
+          <p data-i18n="wines.experiences.description">
+            El valle ofrece distintas formas de acercarse a su
+            paisaje, su cultura y sus tradiciones.
+          </p>
+        </div>
+
+        <div class="experience-grid">
+          <article>
+            <span>01</span>
+            <h3 data-i18n="wines.experiences.wineTourism.title">Enoturismo</h3>
+            <p data-i18n="wines.experiences.wineTourism.description">
+              Conoce la actividad vitivinícola a través de visitas
+              a viñas y experiencias ofrecidas por sus establecimientos.
+            </p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3 data-i18n="wines.experiences.nature.title">Naturaleza</h3>
+            <p data-i18n="wines.experiences.nature.description">
+              Explora los paisajes rurales, las colinas y los caminos
+              del valle, respetando el entorno natural.
+            </p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3 data-i18n="wines.experiences.localFlavours.title">Sabores locales</h3>
+            <p data-i18n="wines.experiences.localFlavours.description">
+              Descubre la gastronomía y los productos que forman
+              parte de la identidad de Casablanca.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- RUTA DEL VINO -->
+      <section class="ruta-vino-destacada">
+        <div class="ruta-vino-imagen">
+          <img
+            src="{% static 'images/ruta-vino/mapa-ruta-vino.jpg' %}"
+            alt="Mapa ilustrado de la Ruta del Vino de Casablanca"
+            data-i18n-attr="alt:wines.route.imageAlt"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="ruta-vino-contenido">
+          <span class="eyebrow light" data-i18n="wines.route.eyebrow">DESCUBRE EL VALLE</span>
+
+          <h2>
+            <span data-i18n="wines.route.title">Un recorrido</span><br />
+            <span data-i18n="wines.route.titleSecond">entre viñedos.</span>
+          </h2>
+
+          <p data-i18n="wines.route.description">
+            Explora la Ruta del Vino de Casablanca, descubre sus
+            establecimientos y conoce las experiencias que ofrece
+            este territorio.
+          </p>
+
+          <a class="button button-light" href="{% url 'ruta_vino' %}">
+            <span data-i18n="wines.route.cta">Explorar la ruta</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- CIERRE -->
+      <section class="bottom-cta">
+        <div>
+          <span class="eyebrow light" data-i18n="wines.closing.eyebrow">CONTINÚA EXPLORANDO</span>
+
+          <h2 data-i18n="wines.closing.title">Del valle a la costa.</h2>
+
+          <p data-i18n="wines.closing.description">
+            Casablanca también guarda historias, paisajes y tradiciones
+            junto al océano.
+          </p>
+        </div>
+
+        <a class="button button-light" href="{% url 'quintay' %}">
+          <span data-i18n="wines.closing.cta">Descubrir Quintay</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand brand-footer" href="{% url 'inicio' %}" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+          CASABLANCA<span>CHILE</span>
+        </a>
+
+        <p data-i18n="footer.description">Historias entre el valle y el mar.</p>
+
+        <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+          <a href="{% url 'vinas' %}" aria-current="page" data-i18n="nav.wines">Valle y viñas</a>
+          <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+          <a href="{% url 'historia' %}" data-i18n="nav.history">Historia</a>
+          <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+          <a href="{% url 'como_llegar' %}" data-i18n="nav.directions">Cómo llegar</a>
+          <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+        <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
+      </div>
+    </footer>
+
+    <!-- CONFIRMACIÓN DE EDAD: se activará mediante vinas.js -->
+    <dialog
+      id="age-gate"
+      class="age-gate"
+      aria-labelledby="age-gate-title"
+      aria-describedby="age-gate-description"
+    >
+      <div class="age-gate-content">
+        <span class="eyebrow">CASABLANCA CHILE</span>
+
+        <h2 id="age-gate-title" data-i18n="ageGate.title">Antes de continuar...</h2>
+
+        <p id="age-gate-description" data-i18n="wines.ageGate.description">
+          Esta sección contiene información relacionada con bebidas
+          alcohólicas y actividades de enoturismo.
+        </p>
+
+        <p data-i18n="ageGate.question">¿Confirmas que tienes 18 años o más?</p>
+
+        <div class="age-gate-actions">
+          <button type="button" id="age-confirm">
+            <span data-i18n="ageGate.confirm">Sí, soy mayor de 18 años</span>
+          </button>
+
+          <button type="button" id="age-deny">
+            <span data-i18n="ageGate.deny">No, salir</span>
+          </button>
+        </div>
+
+        <p class="age-gate-note">
+          <span data-i18n="ageGate.note">El consumo nocivo de alcohol daña tu salud.</span>
+        </p>
+      </div>
+    </dialog>
+
+    <script src="{% static 'js/translations.js' %}"></script>
+    <script src="{% static 'js/i18n.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/age-gate.js' %}"></script>
+    <script src="{% static 'js/vinas.js' %}"></script>
+    <script src="{% static 'js/comparador-vinos.js' %}"></script>
+  </body>
+</html>

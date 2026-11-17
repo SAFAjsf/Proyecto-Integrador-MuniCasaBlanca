@@ -1,0 +1,414 @@
+
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Planifica cómo llegar a Casablanca y Quintay desde Santiago o Valparaíso. Conoce rutas por carretera y alternativas de transporte público."
+      data-i18n-content="directions.meta.description"
+    />
+    <title data-i18n="directions.meta.title">Cómo llegar a Casablanca y Quintay | Casablanca Chile</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/como-llegar.css' %}" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="brand" href="{% url 'inicio' %}" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Abrir menú"
+        data-i18n-attr="aria-label:nav.open"
+      >
+        <span></span><span></span>
+      </button>
+
+      <nav id="main-nav" class="main-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.main">
+        <a href="{% url 'vinas' %}" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+        <a href="{% url 'historia' %}" data-i18n="nav.history">Historia</a>
+        <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+        <a href="{% url 'como_llegar' %}" aria-current="page" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        <div class="language-control">
+          <label for="language-switcher" data-i18n="language.label">Idioma</label>
+          <select id="language-switcher" data-language-switcher data-i18n-attr="aria-label:language.label">
+            <option value="es" data-i18n="language.spanish">Español</option>
+            <option value="en" data-i18n="language.english">English</option>
+            <option value="pt" data-i18n="language.portuguese">Português</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="inner-hero arrival-hero">
+        <img
+          class="inner-hero-image"
+          src="{% static 'images/valle.jpg' %}"
+          alt="Paisaje del valle de Casablanca"
+          data-i18n-attr="alt:directions.hero.imageAlt"
+        />
+        <div class="inner-hero-shade"></div>
+
+        <div class="inner-hero-content">
+          <span class="eyebrow light" data-i18n="directions.hero.eyebrow">PLANIFICA TU VISITA</span>
+
+          <h1>
+            <span data-i18n="directions.hero.title">El camino</span><br />
+            <em data-i18n="directions.hero.titleItalic">también es parte.</em>
+          </h1>
+
+          <p data-i18n="directions.hero.description">
+            Descubre cómo llegar a Casablanca y Quintay desde Santiago o
+            Valparaíso, y encuentra la alternativa de transporte que mejor
+            se adapte a tu viaje.
+          </p>
+
+          <a class="button button-light" href="#origenes">
+            <span data-i18n="directions.hero.cta">Planificar recorrido</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- INTRODUCCIÓN -->
+      <section class="section arrival-intro">
+        <span class="eyebrow" data-i18n="directions.intro.eyebrow">CONECTANDO TERRITORIOS</span>
+
+        <h2>
+          <span data-i18n="directions.intro.title">Dos destinos,</span><br />
+          <span data-i18n="directions.intro.titleSecond">distintos caminos.</span>
+        </h2>
+
+        <p data-i18n="directions.intro.paragraphOne">
+          Casablanca se encuentra junto a la Ruta 68, entre Santiago y
+          Valparaíso. Desde la comuna también puedes continuar hacia Quintay,
+          una localidad costera conectada por caminos interiores.
+        </p>
+
+        <p data-i18n="directions.intro.paragraphTwo">
+          A continuación encontrarás orientaciones para llegar en vehículo
+          particular y alternativas de transporte público. Recuerda verificar
+          los servicios disponibles antes de iniciar tu viaje.
+        </p>
+      </section>
+
+      <!-- RECORRIDOS -->
+      <section id="origenes" class="arrival-routes">
+  <div class="arrival-section-heading">
+    <span class="eyebrow" data-i18n="directions.planner.eyebrow">PLANIFICA TU RECORRIDO</span>
+    <h2 data-i18n="directions.planner.title">Tu viaje comienza aquí.</h2>
+    <p data-i18n="directions.planner.description">
+      Elige desde dónde sales, cuál será tu destino y cómo prefieres viajar.
+      Te mostraremos las orientaciones disponibles para tu recorrido.
+    </p>
+  </div>
+
+  <div class="route-planner">
+
+    <!-- ORIGEN Y DESTINO -->
+    <div class="planner-location-panel">
+      <div class="planner-field">
+        <label for="route-origin" data-i18n="directions.planner.originLabel">Punto de partida</label>
+        <select id="route-origin">
+          <option value="valparaiso" data-i18n="directions.location.valparaiso">Valparaíso</option>
+          <option value="santiago" data-i18n="directions.location.santiago">Santiago</option>
+          <option value="casablanca" data-i18n="directions.location.casablanca">Casablanca</option>
+        </select>
+      </div>
+
+      <div class="planner-swap-icon" aria-hidden="true">
+        <span>→</span>
+      </div>
+
+      <div class="planner-field">
+        <label for="route-destination" data-i18n="directions.planner.destinationLabel">¿A dónde quieres llegar?</label>
+        <select id="route-destination">
+          <option value="casablanca" data-i18n="directions.location.casablanca">Casablanca</option>
+          <option value="quintay" data-i18n="directions.location.quintay">Quintay</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- MEDIO DE TRANSPORTE -->
+    <div class="planner-transport-heading">
+      <span class="eyebrow" data-i18n="directions.planner.transportEyebrow">ELIGE CÓMO VIAJAR</span>
+      <h3 data-i18n="directions.planner.transportTitle">¿Cómo quieres llegar?</h3>
+    </div>
+
+    <div class="transport-selector" role="group" aria-label="Medio de transporte" data-i18n-attr="aria-label:directions.planner.transportLabel">
+      <button
+        class="transport-option is-active"
+        type="button"
+        data-transport="car"
+        aria-pressed="true"
+      >
+        <span class="transport-option-icon" aria-hidden="true">🚗</span>
+        <span class="transport-option-title" data-i18n="directions.transport.car">Vehículo particular</span>
+        <span class="transport-option-description" data-i18n="directions.transport.carDescription">
+          Viaja a tu propio ritmo
+        </span>
+      </button>
+
+      <button
+        class="transport-option"
+        type="button"
+        data-transport="bus"
+        aria-pressed="false"
+      >
+        <span class="transport-option-icon" aria-hidden="true">🚌</span>
+        <span class="transport-option-title" data-i18n="directions.transport.bus">Transporte público</span>
+        <span class="transport-option-description" data-i18n="directions.transport.busDescription">
+          Consulta alternativas en bus
+        </span>
+      </button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div
+      id="route-result"
+      class="route-result"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <div class="route-result-top">
+        <span class="eyebrow" data-i18n="directions.result.eyebrow">TU RECORRIDO</span>
+        <span id="route-result-mode" class="route-result-mode">
+          🚗 <span data-i18n="directions.transport.car">Vehículo particular</span>
+        </span>
+      </div>
+
+      <h3 id="route-result-title" data-i18n="directions.result.initialTitle">
+        Valparaíso → Casablanca
+      </h3>
+
+      <p id="route-result-intro" class="route-result-intro" data-i18n="directions.result.initialIntro">
+        Orientaciones para viajar desde Valparaíso hasta Casablanca.
+      </p>
+
+      <div id="route-result-steps" class="route-result-steps"></div>
+
+      <div id="route-result-note" class="route-result-note"></div>
+
+      <div id="route-result-links" class="route-result-links"></div>
+    </div>
+
+    <p class="planner-disclaimer">
+      <span data-i18n="directions.planner.disclaimer">Las indicaciones son orientativas. Antes de viajar, confirma los
+      recorridos, horarios, tarifas, puntos de salida y disponibilidad
+      directamente con los operadores correspondientes.</span>
+    </p>
+  </div>
+</section>
+      <section class="local-transport">
+        <div class="local-transport-copy">
+          <span class="eyebrow light" data-i18n="directions.local.eyebrow">UNA VEZ EN CASABLANCA</span>
+          <h2><span data-i18n="directions.local.title">Continúa explorando</span><br /><span data-i18n="directions.local.titleSecond">la comuna.</span></h2>
+          <p data-i18n="directions.local.paragraphOne">
+            Si llegas a Casablanca y quieres visitar Quintay, las viñas u
+            otros sectores rurales, organiza con anticipación los traslados
+            entre localidades.
+          </p>
+          <p data-i18n="directions.local.paragraphTwo">
+            La disponibilidad de transporte local puede variar según el día,
+            la temporada y el sector que quieras visitar.
+          </p>
+        </div>
+
+        <div class="local-transport-tips">
+          <article>
+            <span>01</span>
+            <div>
+              <h3 data-i18n="directions.local.tip1.title">Consulta alternativas locales</h3>
+              <p data-i18n="directions.local.tip1.description">
+                Pregunta por servicios de taxi, transporte compartido o
+                traslados privados disponibles para tu destino.
+              </p>
+            </div>
+          </article>
+
+          <article>
+            <span>02</span>
+            <div>
+              <h3 data-i18n="directions.local.tip2.title">Coordina el regreso</h3>
+              <p data-i18n="directions.local.tip2.description">
+                Antes de salir, confirma cómo y a qué hora podrás regresar
+                a Casablanca o a tu ciudad de origen.
+              </p>
+            </div>
+          </article>
+
+          <article>
+            <span>03</span>
+            <div>
+              <h3 data-i18n="directions.local.tip3.title">Planifica las visitas</h3>
+              <p data-i18n="directions.local.tip3.description">
+                Algunas experiencias turísticas requieren reserva previa
+                y pueden encontrarse alejadas del centro urbano.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- OPERADORES -->
+      <section class="section transport-operators">
+        <div class="operators-heading">
+          <span class="eyebrow" data-i18n="directions.operators.eyebrow">INFORMACIÓN DE TRANSPORTE</span>
+          <h2><span data-i18n="directions.operators.title">Consulta directamente</span><br /><span data-i18n="directions.operators.titleSecond">con los operadores.</span></h2>
+          <p data-i18n="directions.operators.description">
+            Revisa sus canales de información antes de viajar. Los recorridos,
+            horarios, tarifas y disponibilidad pueden cambiar.
+          </p>
+        </div>
+
+        <div class="operator-grid">
+          <article class="operator-card">
+            <span class="operator-category" data-i18n="directions.operators.intercity">TRANSPORTE INTERURBANO</span>
+            <h3>Pullman Lago Peñuelas</h3>
+            <p data-i18n="directions.operators.pullman.description">
+              Publica recorridos entre Valparaíso y San Antonio que incluyen
+              Casablanca en determinados trazados.
+            </p>
+            <a
+              href="https://pullmanlagopenuelas.cl/rutas"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+            >
+              <span data-i18n="directions.operators.routes">Ver rutas</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href="https://pullmanlagopenuelas.cl/contacto"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+            >
+              <span data-i18n="directions.operators.contact">Contacto y oficinas</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="operator-card">
+            <span class="operator-category" data-i18n="directions.operators.toQuintay">TRANSPORTE A QUINTAY</span>
+            <h3>Buses GR Quintay</h3>
+            <p data-i18n="directions.operators.gr.description">
+              Consulta directamente por sus servicios hacia Quintay,
+              puntos de salida y horarios disponibles.
+            </p>
+            <a
+              href="https://busesgrquintay.es.tl/Oficina.htm"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+            >
+              <span data-i18n="directions.operators.information">Consultar información</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <article class="operator-card">
+            <span class="operator-category" data-i18n="directions.operators.intercity">TRANSPORTE INTERURBANO</span>
+            <h3>Turbus</h3>
+            <p data-i18n="directions.operators.turbus.description">
+              Consulta servicios entre Santiago y la Región de Valparaíso.
+              Confirma si existe una parada habilitada en Casablanca para
+              el servicio que deseas utilizar.
+            </p>
+            <a
+              href="https://www.turbus.cl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-link"
+            >
+              <span data-i18n="directions.operators.officialSite">Visitar sitio oficial</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONSEJOS -->
+      <section class="section travel-checklist">
+        <span class="eyebrow" data-i18n="directions.checklist.eyebrow">ANTES DE SALIR</span>
+        <h2 data-i18n="directions.checklist.title">Un viaje mejor preparado.</h2>
+
+        <div class="checklist-grid">
+          <p><b>01</b> <span data-i18n="directions.checklist.item1">Confirma horarios, tarifas y disponibilidad.</span></p>
+          <p><b>02</b> <span data-i18n="directions.checklist.item2">Revisa el punto exacto de salida y llegada.</span></p>
+          <p><b>03</b> <span data-i18n="directions.checklist.item3">Considera los traslados entre atractivos.</span></p>
+          <p><b>04</b> <span data-i18n="directions.checklist.item4">Guarda información del viaje de regreso.</span></p>
+          <p><b>05</b> <span data-i18n="directions.checklist.item5">Revisa el estado de las rutas y el tránsito.</span></p>
+          <p><b>06</b> <span data-i18n="directions.checklist.item6">Si visitas viñas, planifica un regreso seguro.</span></p>
+        </div>
+
+        <p class="editorial-note" data-i18n="directions.checklist.note">
+          La información de esta página es orientativa. Los servicios de
+          transporte pueden cambiar y deben confirmarse directamente con
+          sus operadores antes de viajar.
+        </p>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section class="arrival-final">
+        <span class="eyebrow light" data-i18n="directions.closing.eyebrow">TU PRÓXIMO DESTINO</span>
+        <h2><span data-i18n="directions.closing.title">Del valle</span><br /><span data-i18n="directions.closing.titleSecond">a la costa.</span></h2>
+        <p data-i18n="directions.closing.description">
+          Descubre Quintay y conoce otra cara de la comuna de Casablanca.
+        </p>
+        <a class="button button-light" href="{% url 'quintay' %}">
+          <span data-i18n="directions.closing.cta">Explorar Quintay</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand brand-footer" href="{% url 'inicio' %}" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+          CASABLANCA<span>CHILE</span>
+        </a>
+
+        <p data-i18n="footer.description">Historias entre el valle y el mar.</p>
+
+        <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+          <a href="{% url 'vinas' %}" data-i18n="nav.wines">Valle y viñas</a>
+          <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+          <a href="{% url 'historia' %}" data-i18n="nav.history">Historia</a>
+          <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+          <a href="{% url 'como_llegar' %}" data-i18n="nav.directions">Cómo llegar</a>
+          <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+        <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/translations.js' %}"></script>
+    <script src="{% static 'js/i18n.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/como-llegar.js' %}"></script>
+  </body>
+</html>

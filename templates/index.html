@@ -1,0 +1,550 @@
+{% load static %}
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta
+      name="description"
+      content="Conoce Casablanca, Chile: descubre sus viñas, historia, patrimonio, paisajes rurales y la costa de Quintay."
+      data-i18n-content="home.meta.description"
+    />
+
+    <meta name="theme-color" content="#263b32" />
+
+    <title data-i18n="home.meta.title">Casablanca | Historias entre el valle y el mar</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/noticias.css' %}" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a class="brand" href="{% url 'inicio' %}" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Abrir menú"
+        data-i18n-attr="aria-label:nav.open"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="main-nav" class="main-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.main">
+        <a href="{% url 'vinas' %}" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+        <a href="{% url 'historia' %}" data-i18n="nav.history">Historia</a>
+        <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+        <a href="{% url 'como_llegar' %}" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        <div class="language-control">
+          <label for="language-switcher" data-i18n="language.label">Idioma</label>
+          <select id="language-switcher" data-language-switcher data-i18n-attr="aria-label:language.label">
+            <option value="es" data-i18n="language.spanish">Español</option>
+            <option value="en" data-i18n="language.english">English</option>
+            <option value="pt" data-i18n="language.portuguese">Português</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO CON TRANSICIÓN DE IMÁGENES -->
+      <section class="home-hero" aria-label="Descubre Casablanca" data-i18n-attr="aria-label:home.hero.label">
+
+        <div class="hero-slideshow" aria-hidden="true">
+          <div class="hero-slide is-active">
+            <img
+              src="{% static 'images/hero.jpg' %}"
+              alt=""
+              fetchpriority="high"
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/valle.jpg' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/plaza.jpg' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/quintay.jpg' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/museo.jpg' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/atractivos/museoballenera.jpg' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/atractivos/caleta.jpg' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/atractivos/humedal-jote.jpg' %}"
+              alt=""
+            />
+          </div>
+
+          <div class="hero-slide">
+            <img
+              src="{% static 'images/atractivos/playa-grande.jpg' %}"
+              alt=""
+            />
+          </div>
+        </div>
+
+        <div class="hero-shade"></div>
+
+        <div class="home-hero-content">
+          <span class="eyebrow light">
+            <span data-i18n="home.hero.eyebrow">ENTRE EL VALLE Y EL MAR</span>
+          </span>
+
+          <h1>
+            <span data-i18n="home.hero.title">Hay más historias</span>
+            <br />
+            <em data-i18n="home.hero.titleItalic">por descubrir.</em>
+          </h1>
+
+          <p data-i18n="home.hero.description">
+            Vino, patrimonio, naturaleza y experiencias que conectan
+            el corazón del valle con la costa.
+          </p>
+
+          <a class="button button-light" href="#conoce">
+            <span data-i18n="home.hero.cta">Conoce Casablanca</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <span class="hero-side-note">
+          <span data-i18n="home.hero.sideNote">VALPARAÍSO · CHILE</span>
+        </span>
+
+        <span class="hero-bottom-note">
+          <span data-i18n="home.hero.bottomNote">UN TERRITORIO, MUCHAS HISTORIAS</span>
+        </span>
+      </section>
+
+      <!-- INTRODUCCIÓN -->
+      <section id="conoce" class="section welcome-section">
+        <div class="welcome-content">
+          <span class="eyebrow" data-i18n="home.welcome.eyebrow">BIENVENIDO A CASABLANCA</span>
+
+          <h2>
+            <span data-i18n="home.welcome.title">Conoce Casablanca.</span>
+            <br />
+            <em data-i18n="home.welcome.titleItalic">Descubre mucho más.</em>
+          </h2>
+
+          <p data-i18n="home.welcome.paragraphOne">
+            Entre Santiago y Valparaíso existe un territorio donde los
+            paisajes del valle se encuentran con la memoria de sus
+            habitantes y la vida junto al mar.
+          </p>
+
+          <p data-i18n="home.welcome.paragraphTwo">
+            Casablanca es conocido por su tradición vitivinícola, pero
+            también guarda historias, patrimonio, naturaleza y rincones
+            que invitan a recorrerlo con otra mirada.
+          </p>
+
+          <a class="text-link" href="#descubre">
+            <span data-i18n="home.welcome.cta">Comienza a explorar</span>
+            <b aria-hidden="true">↓</b>
+          </a>
+        </div>
+
+        <div class="welcome-side">
+          <span class="welcome-side-number">01 — 04</span>
+          <span class="welcome-side-text" data-i18n="home.welcome.sideText">
+            VALLE · HISTORIA · CULTURA · COSTA
+          </span>
+        </div>
+      </section>
+
+    
+
+      <!-- ATRACTIVOS DE CASABLANCA -->
+      <section id="descubre" class="attractions-showcase" aria-labelledby="attractions-showcase-title">
+
+        <div class="attractions-showcase-heading">
+          <div>
+            <span class="eyebrow" data-i18n="home.attractions.eyebrow">LUGARES QUE INSPIRAN</span>
+            <h2 id="attractions-showcase-title">
+              <span data-i18n="home.attractions.title">Conoce los atractivos</span><br />
+              <em data-i18n="home.attractions.titleItalic">de Casablanca.</em>
+            </h2>
+          </div>
+
+          <p data-i18n="home.attractions.description">
+            Desde espacios llenos de historia hasta paisajes naturales
+            y rincones rurales. Descubre algunos de los lugares que
+            hacen especial a nuestra comuna.
+          </p>
+        </div>
+
+        <div class="attractions-carousel" id="attractions-carousel">
+
+          <div class="attractions-track" id="attractions-track">
+
+            <!-- SECUENCIA PRINCIPAL -->
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/lo-vasquez.jpg' %}"
+                   alt="Santuario Purísima Virgen de Lo Vásquez"
+                   data-i18n-attr="alt:home.attractions.loVasquezAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.loVasquezCategory">01 / PATRIMONIO</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.loVasquezTitle">Lo Vásquez</h3>
+                <span><span data-i18n="home.attractions.loVasquezDescription">Tradición y devoción</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/museo.jpg' %}"
+                   alt="Museo Arqueológico de Casablanca"
+                   data-i18n-attr="alt:home.attractions.museumAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.museumCategory">02 / HISTORIA</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.museumTitle">Museo Arqueológico</h3>
+                <span><span data-i18n="home.attractions.museumDescription">Memoria e identidad</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/tunquen.jpg' %}"
+                   alt="Paisaje natural del Humedal de Tunquén"
+                   data-i18n-attr="alt:home.attractions.tunquenAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.tunquenCategory">03 / NATURALEZA</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.tunquenTitle">Tunquén</h3>
+                <span><span data-i18n="home.attractions.tunquenDescription">Costa y biodiversidad</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/lagunillas.jpg' %}"
+                   alt="Localidad rural de Lagunillas"
+                   data-i18n-attr="alt:home.attractions.lagunillasAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.lagunillasCategory">04 / TRADICIÓN</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.lagunillasTitle">Lagunillas</h3>
+                <span><span data-i18n="home.attractions.lagunillasDescription">Identidad rural</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/museoballenera.jpg' %}"
+                   alt="Museo de la ex Ballenera de Quintay"
+                   data-i18n-attr="alt:home.attractions.whalingMuseumAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.whalingMuseumCategory">05 / HISTORIA</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.whalingMuseumTitle">Ex Ballenera</h3>
+                <span><span data-i18n="home.attractions.whalingMuseumDescription">Memoria y conservación</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/caleta.jpg' %}"
+                   alt="Caleta de pescadores de Quintay"
+                   data-i18n-attr="alt:home.attractions.coveAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.coveCategory">06 / VIDA COSTERA</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.coveTitle">Caleta de Quintay</h3>
+                <span><span data-i18n="home.attractions.coveDescription">Tradición junto al mar</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/humedal-jote.jpg' %}"
+                   alt="Humedal Estero El Jote de Quintay"
+                   data-i18n-attr="alt:home.attractions.wetlandAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.wetlandCategory">07 / NATURALEZA</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.wetlandTitle">Estero El Jote</h3>
+                <span><span data-i18n="home.attractions.wetlandDescription">Refugio de biodiversidad</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <a class="attraction-slide" href="{% url 'atractivos' %}">
+              <img src="{% static 'images/atractivos/playa-grande.jpg' %}"
+                   alt="Playa Grande de Quintay"
+                   data-i18n-attr="alt:home.attractions.beachAlt"
+                   loading="lazy" />
+              <span class="attraction-slide-number" data-i18n="home.attractions.beachCategory">08 / COSTA</span>
+              <div class="attraction-slide-copy">
+                <h3 data-i18n="home.attractions.beachTitle">Playa Grande</h3>
+                <span><span data-i18n="home.attractions.beachDescription">Calma junto al estero</span> <b aria-hidden="true">↗</b></span>
+              </div>
+            </a>
+
+            <!-- COPIA PARA CONSEGUIR UN DESPLAZAMIENTO CONTINUO -->
+            <div class="attractions-track-copy" aria-hidden="true" inert>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/lo-vasquez.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.loVasquezCategory">01 / PATRIMONIO</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.loVasquezTitle">Lo Vásquez</h3>
+                  <span><span data-i18n="home.attractions.loVasquezDescription">Tradición y devoción</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/museo.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.museumCategory">02 / HISTORIA</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.museumTitle">Museo Arqueológico</h3>
+                  <span><span data-i18n="home.attractions.museumDescription">Memoria e identidad</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/tunquen.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.tunquenCategory">03 / NATURALEZA</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.tunquenTitle">Tunquén</h3>
+                  <span><span data-i18n="home.attractions.tunquenDescription">Costa y biodiversidad</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/lagunillas.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.lagunillasCategory">04 / TRADICIÓN</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.lagunillasTitle">Lagunillas</h3>
+                  <span><span data-i18n="home.attractions.lagunillasDescription">Identidad rural</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/museoballenera.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.whalingMuseumCategory">05 / HISTORIA</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.whalingMuseumTitle">Ex Ballenera</h3>
+                  <span><span data-i18n="home.attractions.whalingMuseumDescription">Memoria y conservación</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/caleta.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.coveCategory">06 / VIDA COSTERA</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.coveTitle">Caleta de Quintay</h3>
+                  <span><span data-i18n="home.attractions.coveDescription">Tradición junto al mar</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/humedal-jote.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.wetlandCategory">07 / NATURALEZA</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.wetlandTitle">Estero El Jote</h3>
+                  <span><span data-i18n="home.attractions.wetlandDescription">Refugio de biodiversidad</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+              <a class="attraction-slide" href="{% url 'atractivos' %}" tabindex="-1">
+                <img src="{% static 'images/atractivos/playa-grande.jpg' %}" alt="" loading="lazy" />
+                <span class="attraction-slide-number" data-i18n="home.attractions.beachCategory">08 / COSTA</span>
+                <div class="attraction-slide-copy">
+                  <h3 data-i18n="home.attractions.beachTitle">Playa Grande</h3>
+                  <span><span data-i18n="home.attractions.beachDescription">Calma junto al estero</span> <b aria-hidden="true">↗</b></span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="attractions-showcase-footer">
+          <span data-i18n="home.attractions.footer">CASABLANCA · VALLE, HISTORIA Y COSTA</span>
+
+          <a class="button button-dark" href="{% url 'atractivos' %}">
+            <span data-i18n="home.attractions.cta">Conoce los atractivos de Casablanca</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+      </section>
+
+      <!-- DESTINOS -->
+      <section id="descubre" class="section discover-section">
+      </section>
+
+      <!-- NOTICIAS Y NOVEDADES -->
+
+<section class="section home-news-section">
+
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow" data-i18n="news.eyebrow">
+        ACTUALIDAD LOCAL
+      </span>
+
+      <h2 data-i18n="news.latestTitle">
+        Últimas publicaciones
+      </h2>
+    </div>
+
+    <p data-i18n="news.introText">
+      Descubre actividades, iniciativas y novedades relacionadas
+      con Casablanca.
+    </p>
+  </div>
+
+  <div id="home-news-grid" class="news-grid">
+    <!-- Las tres noticias se generan mediante JavaScript -->
+  </div>
+
+  <div class="home-news-action">
+    <a class="button button-dark" href="{% url 'noticias' %}">
+      <span data-i18n="news.discoverMore">Descubre más</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+</section>
+
+      <!-- PATRIMONIO -->
+      <section class="museum-strip">
+        <div class="museum-image">
+          <img
+            src="{% static 'images/museo.jpg' %}"
+            alt="Espacio museográfico de Casablanca"
+            data-i18n-attr="alt:home.museum.imageAlt"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="museum-copy">
+          <span class="eyebrow" data-i18n="home.museum.eyebrow">
+            HISTORIA · CULTURA · PATRIMONIO
+          </span>
+
+          <h2>
+            <span data-i18n="home.museum.title">Una historia</span>
+            <br />
+            <span data-i18n="home.museum.titleSecond">en cada lugar.</span>
+          </h2>
+
+          <p data-i18n="home.museum.description">
+            Descubre relatos y vestigios que permiten conocer el
+            territorio desde una perspectiva diferente. La identidad
+            de Casablanca también se construye a través de su historia,
+            sus habitantes y sus tradiciones.
+          </p>
+
+          <a class="text-link" href="{% url 'historia' %}">
+            <span data-i18n="home.museum.cta">Explorar la historia</span>
+            <b aria-hidden="true">→</b>
+          </a>
+        </div>
+      </section>
+
+      <!-- PLANIFICA TU VISITA -->
+      <section class="visit-banner">
+        <div>
+          <span class="eyebrow light" data-i18n="home.visit.eyebrow">
+            PLANIFICA TU VISITA
+          </span>
+
+          <h2>
+            <span data-i18n="home.visit.title">Casablanca está</span>
+            <br />
+            <em data-i18n="home.visit.titleItalic">más cerca de lo que crees.</em>
+          </h2>
+
+          <p data-i18n="home.visit.description">
+            Organiza tu llegada desde Santiago o Valparaíso y comienza
+            a descubrir todo lo que este territorio tiene para ofrecer.
+          </p>
+        </div>
+
+        <a class="button button-light" href="{% url 'como_llegar' %}">
+          <span data-i18n="home.visit.cta">Cómo llegar</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand brand-footer" href="{% url 'inicio' %}" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+          CASABLANCA<span>CHILE</span>
+        </a>
+
+        <p data-i18n="footer.description">Historias entre el valle y el mar.</p>
+
+        <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+          <a href="{% url 'vinas' %}" data-i18n="nav.wines">Valle y viñas</a>
+          <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+          <a href="{% url 'historia' %}" data-i18n="nav.history">Historia</a>
+          <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+          <a href="{% url 'como_llegar' %}" data-i18n="nav.directions">Cómo llegar</a>
+          <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+        <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
+      </div>
+    </footer>
+
+    <script src="{% static 'js/translations.js' %}"></script>
+    <script src="{% static 'js/i18n.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/inicio.js' %}"></script>
+    <script src="{% static 'js/noticias-data.js' %}?v=2"></script>
+    <script src="{% static 'js/noticias.js' %}?v=2"></script>
+  </body>
+</html>
