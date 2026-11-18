@@ -1,0 +1,163 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block content %}
+
+<h1>{{ version.nombre }}</h1>
+
+<p>
+    Versión {{ version.numero_version }}
+    | {{ version.get_estado_display }}
+</p>
+
+{% if version.es_version_publicada %}
+
+<p>Esta es la versión pública actual.</p>
+
+{% endif %}
+
+<p>Categoría: {{ version.categoria.nombre }}</p>
+
+<p>Zona: {{ version.get_zona_display }}</p>
+
+<p>Dirección: {{ version.direccion }}</p>
+
+<p>{{ version.descripcion|linebreaksbr }}</p>
+
+<h2>Fotografías</h2>
+
+{% for imagen in version.imagenes.all %}
+
+<img
+    src="{{ imagen.imagen.url }}"
+    alt="{{ imagen.texto_alternativo }}"
+    width="250"
+>
+
+{% endfor %}
+
+<h2>Secciones</h2>
+
+{% for seccion in version.secciones.all %}
+
+<h3>{{ seccion.titulo }}</h3>
+
+<p>{{ seccion.contenido|linebreaksbr }}</p>
+
+{% endfor %}
+
+<h2>Recomendaciones</h2>
+
+<ul>
+
+    {% for recomendacion in version.recomendaciones.all %}
+
+    <li>{{ recomendacion.texto }}</li>
+
+    {% endfor %}
+
+</ul>
+
+{% if version.observaciones %}
+
+<h2>Observaciones</h2>
+
+<p>{{ version.observaciones|linebreaksbr }}</p>
+
+{% endif %}
+
+
+{% if version.es_editable %}
+
+<a href="{% url 'version_editar' version.pk %}">
+    Editar versión
+</a>
+
+<form
+    method="post"
+    action="{% url 'version_enviar' version.pk %}"
+>
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Enviar a revisión
+    </button>
+
+</form>
+
+{% endif %}
+
+
+{% if version.estado == "pendiente" %}
+
+    {% if puede_aprobar %}
+
+    <form
+        method="post"
+        action="{% url 'version_aprobar' version.pk %}"
+    >
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Aprobar y publicar
+        </button>
+
+    </form>
+
+    {% endif %}
+
+
+    {% if puede_observar %}
+
+    <form
+        method="post"
+        action="{% url 'version_observar' version.pk %}"
+    >
+
+        {% csrf_token %}
+
+        {{ observacion_form.as_p }}
+
+        <button type="submit">
+            Solicitar correcciones
+        </button>
+
+    </form>
+
+    {% endif %}
+
+{% endif %}
+
+
+<h2>Historial de acciones</h2>
+
+<ul>
+
+    {% for evento in version.eventos_editoriales.all %}
+
+    <li>
+
+        {{ evento.fecha|date:"d/m/Y H:i" }}
+
+        — {{ evento.get_accion_display }}
+
+        — {{ evento.usuario|default:"Sistema" }}
+
+        — {{ evento.descripcion }}
+
+    </li>
+
+    {% empty %}
+
+    <li>No existen eventos registrados.</li>
+
+    {% endfor %}
+
+</ul>
+
+<a href="{% url 'atractivo_editar' version.atractivo_id %}">
+    Volver al historial
+</a>
+
+{% endblock %}

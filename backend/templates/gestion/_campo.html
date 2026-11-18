@@ -1,0 +1,12 @@
+<div class="g-field">
+  {{ campo.label_tag }}
+  {{ campo }}
+
+  {% if campo.help_text %}
+    <span class="g-help">{{ campo.help_text }}</span>
+  {% endif %}
+
+  {% for error in campo.errors %}
+    <span class="g-error">{{ error }}</span>
+  {% endfor %}
+</div>

@@ -1,0 +1,450 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Conoce relatos, patrimonio y el Museo Arqueológico y Antropológico de Casablanca."
+      data-i18n-content="history.meta.description"
+    />
+    <title data-i18n="history.meta.title">Historia de Casablanca | Casablanca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/historia.css' %}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="{% url 'inicio' %}" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+        CASABLANCA<span>CHILE</span>
+      </a>
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Abrir menú"
+        data-i18n-attr="aria-label:nav.open"
+      >
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="main-nav" class="main-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.main">
+        <a href="{% url 'vinas' %}" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+        <a href="{% url 'historia' %}" aria-current="page" data-i18n="nav.history">Historia</a>
+        <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+        <a href="{% url 'como_llegar' %}" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        <div class="language-control">
+          <label for="language-switcher" data-i18n="language.label">Idioma</label>
+          <select id="language-switcher" data-language-switcher data-i18n-attr="aria-label:language.label">
+            <option value="es" data-i18n="language.spanish">Español</option>
+            <option value="en" data-i18n="language.english">English</option>
+            <option value="pt" data-i18n="language.portuguese">Português</option>
+          </select>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="inner-hero history-hero">
+        <img
+          class="inner-hero-image"
+          src="{% static 'images/museo2.jpg' %}"
+          alt="Paisaje y patrimonio de Casablanca"
+          data-i18n-attr="alt:history.hero.imageAlt"
+        />
+        <div class="inner-hero-shade"></div>
+        <div class="inner-hero-content">
+          <span class="eyebrow light" data-i18n="history.hero.eyebrow">MEMORIA · PATRIMONIO · CULTURA</span>
+          <h1><span data-i18n="history.hero.title">La historia</span><br /><em data-i18n="history.hero.titleItalic">detrás del valle.</em></h1>
+          <p data-i18n="history.hero.description">
+            Mucho antes de sus viñedos, este territorio ya guardaba historias
+            entre el valle y el mar.
+          </p>
+          <a class="button button-light" href="#linea-tiempo">
+            <span data-i18n="history.hero.cta">Recorrer la historia</span> <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+      <section class="section history-intro">
+        <span class="eyebrow" data-i18n="history.intro.eyebrow">UN TERRITORIO CON MEMORIA</span>
+        <h2><span data-i18n="history.intro.title">Pequeños relatos.</span><br /><span data-i18n="history.intro.titleSecond">Grandes historias.</span></h2>
+        <p data-i18n="history.intro.description">
+          El paisaje de Casablanca reúne huellas naturales, arqueológicas y
+          culturales. Esta selección es una introducción para descubrirlas; el
+          contenido histórico definitivo deberá revisarse con fuentes locales y
+          el museo.
+        </p>
+      </section>
+      <section class="explorador-historico">
+        <div class="explorador-encabezado">
+          <span class="subtitulo" data-i18n="history.explorer.eyebrow">PATRIMONIO E IDENTIDAD</span>
+          <h2 data-i18n="history.explorer.title">Explora la historia de Casablanca</h2>
+          <p data-i18n="history.explorer.description">
+            Descubre algunos de los lugares y acontecimientos que forman parte
+            de la identidad de nuestra comuna. Selecciona los puntos para
+            conocer más.
+          </p>
+        </div>
+        <div class="explorador-contenido">
+          <div class="explorador-imagen">
+            <img
+              id="historia-imagen"
+              src="{% static 'images/museo2.jpg' %}"
+              alt="Vista histórica de Casablanca"
+              data-i18n-attr="alt:history.explorer.imageAlt"
+            />
+            <button
+              class="punto-historico punto-1"
+              type="button"
+              data-punto="fundacion"
+              aria-label="Conocer sobre los orígenes de Casablanca"
+              data-i18n-attr="aria-label:history.explorer.foundationLabel"
+            >
+              1
+            </button>
+            <button
+              class="punto-historico punto-2"
+              type="button"
+              data-punto="plaza"
+              aria-label="Conocer sobre la Plaza de Armas"
+              data-i18n-attr="aria-label:history.explorer.squareLabel"
+            >
+              2
+            </button>
+            <button
+              class="punto-historico punto-3"
+              type="button"
+              data-punto="museo"
+              aria-label="Conocer sobre el museo"
+              data-i18n-attr="aria-label:history.explorer.museumLabel"
+            >
+              3
+            </button>
+          </div>
+          <article class="ficha-historica" aria-live="polite">
+            <span class="ficha-etiqueta" data-i18n="history.explorer.cardEyebrow">DESCUBRE CASABLANCA</span>
+            <h3 id="historia-titulo" data-i18n="history.explorer.defaultTitle">Un territorio con historia</h3>
+            <p id="historia-descripcion" data-i18n="history.explorer.defaultDescription">
+              Selecciona uno de los puntos de la imagen para descubrir más
+              sobre el patrimonio y la historia de Casablanca.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section id="linea-tiempo" class="section timeline-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow" data-i18n="history.timeline.eyebrow">UNA MIRADA A TRAVÉS DEL TIEMPO</span>
+            <h2 data-i18n="history.timeline.title">Historias por descubrir.</h2>
+          </div>
+          <p data-i18n="history.timeline.description">Selecciona una etapa para conocer una breve introducción.</p>
+        </div>
+        <div
+          class="timeline-tabs"
+          role="tablist"
+          aria-label="Etapas de la historia"
+          data-i18n-attr="aria-label:history.timeline.tabsLabel"
+        >
+          <button
+  class="timeline-tab active"
+  role="tab"
+  aria-selected="true"
+  aria-controls="timeline-panel"
+  data-timeline="0"
+>
+  <span data-i18n="history.timeline.tab0">Primeros habitantes</span>
+</button>
+
+<button
+  class="timeline-tab"
+  role="tab"
+  aria-selected="false"
+  aria-controls="timeline-panel"
+  data-timeline="1"
+>
+  <span data-i18n="history.timeline.tab1">Fundación de Casablanca</span>
+</button>
+
+<button
+  class="timeline-tab"
+  role="tab"
+  aria-selected="false"
+  aria-controls="timeline-panel"
+  data-timeline="2"
+>
+  <span data-i18n="history.timeline.tab2">Patrimonio e identidad</span>
+</button>
+        </div>
+        <article class="timeline-panel" id="timeline-panel" role="tabpanel">
+          <div class="timeline-image-wrap">
+            <img
+              id="timeline-image"
+              src="{% static 'images/historia-prehistoria.jpg' %}"
+              alt="Registro visual relacionado con la historia natural del territorio"
+              data-i18n-attr="alt:history.timeline.initialImageAlt"
+            />
+          </div>
+          <div class="timeline-copy">
+            <span class="eyebrow" id="timeline-kicker" data-i18n="history.timeline.initialKicker">PAISAJE NATURAL</span>
+            <h3 id="timeline-title" data-i18n="history.timeline.initialTitle">Un territorio en transformación</h3>
+            <p id="timeline-description" data-i18n="history.timeline.initialDescription">
+              La historia del paisaje se remonta mucho más allá de la ciudad
+              actual. Los registros naturales y geológicos ayudan a comprender
+              cómo se ha transformado el entorno a través del tiempo.
+            </p>
+            <p class="small-note" data-i18n="history.timeline.note">
+              Los textos e imágenes de esta sección deben validarse con el museo
+              o fuentes patrimoniales antes de su publicación definitiva.
+            </p>
+          </div>
+        </article>
+      </section>
+      <section class="community-section">
+  <div class="community-container">
+
+    <div class="community-heading">
+      <span class="community-eyebrow" data-i18n="history.community.eyebrow">IDENTIDAD · TRADICIONES · PERSONAS</span>
+
+      <h2 data-i18n="history.community.title">La historia también la construye su gente</h2>
+
+      <p data-i18n="history.community.description">
+        Más allá de sus edificios y paisajes, Casablanca conserva una identidad
+        ligada a las personas, sus oficios y las actividades que dan vida al territorio.
+      </p>
+    </div>
+
+    <div class="community-grid">
+
+      <article class="community-card">
+        <div class="community-image">
+          <img
+            src="{% static 'images/historia/vida-campo.jpg' %}"
+            alt="Personas realizando labores agrícolas en un entorno rural"
+            data-i18n-attr="alt:history.community.rural.imageAlt"
+            loading="lazy"
+          >
+          <span class="community-number">01</span>
+        </div>
+
+        <div class="community-card-content">
+          <span class="community-category" data-i18n="history.community.rural.category">TERRITORIO RURAL</span>
+          <h3 data-i18n="history.community.rural.title">La vida del campo</h3>
+          <p data-i18n="history.community.rural.description">
+            El paisaje rural forma parte de la identidad del valle.
+            Sus actividades agrícolas y el trabajo de las comunidades
+            son parte importante de la relación entre las personas y su entorno.
+          </p>
+        </div>
+      </article>
+
+      <article class="community-card">
+        <div class="community-image">
+          <img
+            src="{% static 'images/historia/cultura-vino.jpg' %}"
+            alt="Cosecha de uvas en un viñedo"
+            data-i18n-attr="alt:history.community.wine.imageAlt"
+            loading="lazy"
+          >
+          <span class="community-number">02</span>
+        </div>
+
+        <div class="community-card-content">
+          <span class="community-category" data-i18n="history.community.wine.category">TRADICIÓN VITIVINÍCOLA</span>
+          <h3 data-i18n="history.community.wine.title">La cultura del vino</h3>
+          <p data-i18n="history.community.wine.description">
+            La actividad vitivinícola es uno de los elementos más reconocidos
+            del valle. Detrás de cada cosecha existe el trabajo de personas
+            que participan en el desarrollo de esta tradición.
+          </p>
+        </div>
+      </article>
+
+      <article class="community-card">
+        <div class="community-image">
+          <img
+            src="{% static 'images/historia/tradiciones.jpg' %}"
+            alt="Personas reunidas en una actividad comunitaria"
+            data-i18n-attr="alt:history.community.traditions.imageAlt"
+            loading="lazy"
+          >
+          <span class="community-number">03</span>
+        </div>
+
+        <div class="community-card-content">
+          <span class="community-category" data-i18n="history.community.traditions.category">IDENTIDAD LOCAL</span>
+          <h3 data-i18n="history.community.traditions.title">Tradiciones y encuentros</h3>
+          <p data-i18n="history.community.traditions.description">
+            Las actividades culturales y los encuentros comunitarios
+            permiten compartir experiencias, mantener vínculos y transmitir
+            la identidad de un territorio entre generaciones.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="community-disclaimer">
+      <span aria-hidden="true">ⓘ</span>
+      <span data-i18n="history.community.disclaimer">Las fotografías de esta sección son referenciales y no necesariamente corresponden a registros realizados en Casablanca.</span>
+    </p>
+
+  </div>
+</section>
+      <section class="museum-visit">
+  <div class="museum-visit-image">
+    <img
+      src="{% static 'images/museo.jpg' %}"
+      alt="Museo Arqueológico y Antropológico de Casablanca"
+      data-i18n-attr="alt:history.museum.imageAlt"
+      loading="lazy"
+    />
+  </div>
+
+  <div class="museum-visit-copy">
+    <span class="eyebrow light" data-i18n="history.museum.eyebrow">UNA VISITA PARA PROFUNDIZAR</span>
+
+    <h2>
+      <span data-i18n="history.museum.title">La historia también</span><br />
+      <span data-i18n="history.museum.titleSecond">vive en el museo.</span>
+    </h2>
+
+    <p data-i18n="history.museum.description">
+      El Museo Arqueológico y Antropológico de Casablanca invita
+      a conocer la memoria del territorio a través de colecciones
+      arqueológicas, paleontológicas e históricas. Entre sus piezas
+      se encuentran objetos relacionados con las culturas Bato,
+      Aconcagua e Inca, además de elementos vinculados con la
+      historia rural de la comuna.
+    </p>
+
+    <div class="hours-card">
+      <span class="hours-icon" aria-hidden="true">◷</span>
+
+      <div>
+        <strong data-i18n="history.museum.visitorInfo">Información para visitantes</strong>
+
+        <p data-i18n="history.museum.address">
+          Dirección: Portales 02, Casablanca.
+        </p>
+
+        <p data-i18n="history.museum.hours">
+          Horario registrado: lunes a viernes, de 08:30 a 14:00
+          y de 15:00 a 17:30 horas.
+        </p>
+
+        <p data-i18n="history.museum.admission">
+          Entrada gratuita, según el Registro de Museos de Chile.
+          Se recomienda confirmar previamente los horarios y
+          disponibilidad de atención.
+        </p>
+
+        <p data-i18n="history.museum.phone">
+          Teléfono: +56 32 277 7480.
+        </p>
+
+        <a
+          class="text-link"
+          href="https://www.registromuseoschile.cl/663/w3-article-118500.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span data-i18n="history.museum.link">Consultar ficha del museo</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <a class="button button-light" href="{% url 'como_llegar' %}">
+      <span data-i18n="history.museum.cta">Planificar la visita</span> <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+    </main>
+    <!-- Visor de fotografías históricas -->
+<div
+  class="visor-historico"
+  id="visor-historico"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="visor-titulo"
+  aria-hidden="true"
+  data-i18n-attr="aria-label:history.viewer.label"
+>
+  <div class="visor-contenido">
+    <button
+      type="button"
+      class="visor-cerrar"
+      id="visor-cerrar"
+      aria-label="Cerrar visor"
+      data-i18n-attr="aria-label:history.viewer.close"
+    >
+      &times;
+    </button>
+
+    <div class="visor-imagen-contenedor">
+      <img id="visor-imagen" src="" alt="" />
+    </div>
+
+    <div class="visor-informacion">
+      <span class="eyebrow" id="visor-etiqueta" data-i18n="history.viewer.defaultEyebrow">
+        PATRIMONIO E IDENTIDAD
+      </span>
+
+      <h2 id="visor-titulo" data-i18n="history.viewer.defaultTitle">Fotografía histórica</h2>
+
+      <p id="visor-descripcion" data-i18n="history.viewer.defaultDescription">
+        Descubre más sobre la historia de Casablanca.
+      </p>
+
+      <div class="visor-controles">
+        <button type="button" id="visor-anterior" data-i18n-attr="aria-label:history.viewer.previous">
+          <span data-i18n="history.viewer.previousText">← Anterior</span>
+        </button>
+
+        <span id="visor-contador">1 / 3</span>
+
+        <button type="button" id="visor-siguiente" data-i18n-attr="aria-label:history.viewer.next">
+          <span data-i18n="history.viewer.nextText">Siguiente →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+    <footer class="site-footer">
+      <div class="footer-top">
+        <a class="brand brand-footer" href="{% url 'inicio' %}" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
+          CASABLANCA<span>CHILE</span>
+        </a>
+        <p data-i18n="footer.description">Historias entre el valle y el mar.</p>
+        <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+          {% if user.is_authenticated %}
+            <a href="{% url 'gestion_dashboard' %}"> " Panel municipal</a>
+          {% else%}
+            <a href="{% url 'login' %}"> Acceso municpal</a>
+          {% endif %}
+          <a href="{% url 'vinas' %}" data-i18n="nav.wines">Valle y viñas</a>
+          <a href="{% url 'atractivos' %}" data-i18n="nav.attractions">Atractivos</a>
+          <a href="{% url 'historia' %}" data-i18n="nav.history">Historia</a>
+          <a href="{% url 'quintay' %}" data-i18n="nav.quintay">Quintay</a>
+          <a href="{% url 'como_llegar' %}" data-i18n="nav.directions">Cómo llegar</a>
+          <a href="{% url 'noticias' %}" data-i18n="nav.news">Noticias</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+        <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
+      </div>
+    </footer>
+    <script src="{% static 'js/translations.js' %}"></script>
+    <script src="{% static 'js/i18n.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/historia.js' %}"></script>
+  </body>
+</html>

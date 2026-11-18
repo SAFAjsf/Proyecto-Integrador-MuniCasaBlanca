@@ -1,0 +1,89 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block content %}
+
+<h1>Editar versión {{ version.numero_version }}</h1>
+
+<p>
+    Estado: {{ version.get_estado_display }}
+</p>
+
+{% if version.observaciones %}
+
+<section>
+
+    <h2>Observaciones del administrador</h2>
+
+    <p>{{ version.observaciones|linebreaksbr }}</p>
+
+</section>
+
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <h2>Información general</h2>
+
+    {{ form.as_p }}
+
+    <h2>Fotografías</h2>
+
+    {{ imagenes.management_form }}
+
+    {{ imagenes.non_form_errors }}
+
+    {% for imagen in imagenes %}
+
+        <fieldset>
+
+            {{ imagen.as_p }}
+
+        </fieldset>
+
+    {% endfor %}
+
+    <h2>Secciones informativas</h2>
+
+    {{ secciones.management_form }}
+
+    {{ secciones.non_form_errors }}
+
+    {% for seccion in secciones %}
+
+        <fieldset>
+
+            {{ seccion.as_p }}
+
+        </fieldset>
+
+    {% endfor %}
+
+    <h2>Recomendaciones</h2>
+
+    {{ recomendaciones.management_form }}
+
+    {{ recomendaciones.non_form_errors }}
+
+    {% for recomendacion in recomendaciones %}
+
+        <fieldset>
+
+            {{ recomendacion.as_p }}
+
+        </fieldset>
+
+    {% endfor %}
+
+    <button type="submit">
+        Guardar versión
+    </button>
+
+    <a href="{% url 'version_detalle' version.pk %}">
+        Cancelar
+    </a>
+
+</form>
+
+{% endblock %}

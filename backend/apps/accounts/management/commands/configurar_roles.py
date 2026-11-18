@@ -29,6 +29,16 @@ class Command(BaseCommand):
             "Administradores",
             permisos_admin,
         )
+        
+        grupo_admin = Group.objects.get(name="Administradores")
+        permisos_editoriales = Permission.objects.filter(
+            content_type__app_label="catalog",
+            codename__in=[
+                "aprobar_version",
+                "observar_version",
+            ]
+        )
+        grupo_admin.permissions.add(*permisos_editoriales)
 
         self.stdout.write(
             self.style.SUCCESS(

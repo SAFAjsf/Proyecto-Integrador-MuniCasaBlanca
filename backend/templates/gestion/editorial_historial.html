@@ -1,0 +1,122 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block content %}
+
+<h1>{{ atractivo.nombre }}</h1>
+
+<h2>Historial editorial</h2>
+
+<p>
+    Estado público:
+
+    {% if atractivo.publicado %}
+        Publicado
+    {% else %}
+        No publicado
+    {% endif %}
+</p>
+
+{% if atractivo.version_publicada and atractivo.publicado %}
+
+<p>
+    Versión publicada:
+    {{ atractivo.version_publicada.numero_version }}
+</p>
+
+{% endif %}
+
+<form
+    method="post"
+    action="{% url 'version_crear' atractivo.pk %}"
+>
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Abrir o crear borrador
+    </button>
+
+</form>
+
+{% if es_administrador and atractivo.publicado %}
+
+<form
+    method="post"
+    action="{% url 'atractivo_retirar' atractivo.pk %}"
+>
+
+    {% csrf_token %}
+
+    <button type="submit">
+        Retirar publicación
+    </button>
+
+</form>
+
+{% endif %}
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Versión</th>
+            <th>Estado</th>
+            <th>Autor</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for version in versiones %}
+
+        <tr>
+
+            <td>V{{ version.numero_version }}</td>
+
+            <td>{{ version.get_estado_display }}</td>
+
+            <td>
+                {{ version.creado_por|default:"Importación inicial" }}
+            </td>
+
+            <td>
+                {{ version.fecha_creacion|date:"d/m/Y H:i" }}
+            </td>
+
+            <td>
+                <a href="{% url 'version_detalle' version.pk %}">
+                    Ver
+                </a>
+
+                {% if version.es_editable %}
+
+                <a href="{% url 'version_editar' version.pk %}">
+                    Editar
+                </a>
+
+                {% endif %}
+            </td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+            <td colspan="5">
+                No hay versiones.
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+<a href="{% url 'gestion_atractivos' %}">
+    Volver al catálogo
+</a>
+
+{% endblock %}

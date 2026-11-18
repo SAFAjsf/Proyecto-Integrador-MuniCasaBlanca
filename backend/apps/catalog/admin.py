@@ -1,7 +1,4 @@
-
 from django.contrib import admin
-from django import forms
-from django.forms.models import BaseInlineFormSet
 
 from .models import (
     Categoria,
@@ -11,43 +8,61 @@ from .models import (
     RecomendacionAtractivo,
 )
 
+from .permissions import es_administrador
+
+
+# ==================================================
+# PROTECCIÓN DEL CATÁLOGO PÚBLICO
+# ==================================================
+
+class SoloLecturaMixin:
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+# ==================================================
+# CATEGORÍAS
+# ==================================================
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
+
     list_display = ("nombre", "activa")
+
     list_filter = ("activa",)
-    search_fields = ("nombre",)
+
+    search_fields = ("nombre", "descripcion")
+
+    def has_add_permission(self, request):
+        return es_administrador(request.user)
+
+    def has_change_permission(self, request, obj=None):
+        return es_administrador(request.user)
+
+    def has_delete_permission(self, request, obj=None):
+        return request.user.is_superuser
 
 
-class ImagenAtractivoInlineFormSet(BaseInlineFormSet):
-    def clean(self):
-        super().clean()
+# ==================================================
+# IMÁGENES
+# ==================================================
 
-        if any(self.errors):
-            return
+class ImagenAtractivoInline(
+    SoloLecturaMixin,
+    admin.TabularInline,
+):
 
-        cantidad_portadas = 0
-
-        for formulario in self.forms:
-            datos = getattr(formulario, "cleaned_data", None)
-
-            if not datos or datos.get("DELETE", False):
-                continue
-
-            if datos.get("es_portada", False):
-                cantidad_portadas += 1
-
-        if cantidad_portadas > 1:
-            raise forms.ValidationError(
-                "Un atractivo turístico solo puede tener "
-                "una fotografía de portada."
-            )
-
-
-class ImagenAtractivoInline(admin.TabularInline):
     model = ImagenAtractivo
-    formset = ImagenAtractivoInlineFormSet
-    extra = 1
+
+    extra = 0
+
     fields = (
         "imagen",
         "texto_alternativo",
@@ -56,27 +71,44 @@ class ImagenAtractivoInline(admin.TabularInline):
     )
 
 
-class SeccionAtractivoInline(admin.StackedInline):
+# ==================================================
+# SECCIONES
+# ==================================================
+
+class SeccionAtractivoInline(
+    SoloLecturaMixin,
+    admin.StackedInline,
+):
+
     model = SeccionAtractivo
-    extra = 1
-    fields = (
-        "titulo",
-        "contenido",
-        "orden",
-    )
+
+    extra = 0
 
 
-class RecomendacionAtractivoInline(admin.TabularInline):
+# ==================================================
+# RECOMENDACIONES
+# ==================================================
+
+class RecomendacionAtractivoInline(
+    SoloLecturaMixin,
+    admin.TabularInline,
+):
+
     model = RecomendacionAtractivo
-    extra = 1
-    fields = (
-        "texto",
-        "orden",
-    )
 
+    extra = 0
+
+
+# ==================================================
+# ATRACTIVOS TURÍSTICOS
+# ==================================================
 
 @admin.register(Atractivo)
-class AtractivoAdmin(admin.ModelAdmin):
+class AtractivoAdmin(
+    SoloLecturaMixin,
+    admin.ModelAdmin,
+):
+
     inlines = [
         ImagenAtractivoInline,
         SeccionAtractivoInline,
@@ -86,14 +118,35 @@ class AtractivoAdmin(admin.ModelAdmin):
     list_display = (
         "nombre",
         "categoria",
+        "zona",
         "publicado",
+        "version_publicada",
         "fecha_actualizacion",
     )
 
-    list_filter = ("categoria", "publicado")
-    search_fields = ("nombre", "descripcion", "direccion")
+    list_filter = (
+        "categoria",
+        "zona",
+        "publicado",
+    )
+
+    search_fields = (
+        "nombre",
+        "descripcion",
+        "direccion",
+    )
 
     readonly_fields = (
+        "nombre",
+        "slug",
+        "descripcion",
+        "categoria",
+        "zona",
+        "direccion",
+        "publicado",
+        "version_publicada",
         "fecha_creacion",
         "fecha_actualizacion",
     )
+
+    actions = None

@@ -1,0 +1,86 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block content %}
+
+  <div class="g-page-head">
+    <div>
+      <h1>{{ titulo }}</h1>
+      <p>Completa los datos de la cuenta y define su nivel de acceso.</p>
+    </div>
+
+    <a href="{% url 'gestion_usuarios' %}">← Volver al listado</a>
+  </div>
+
+  <div class="g-card">
+    <form class="g-form" method="post" novalidate>
+      {% csrf_token %}
+
+      {% if form.non_field_errors %}
+        <div class="g-alert g-alert--error">
+          {{ form.non_field_errors }}
+        </div>
+      {% endif %}
+
+      <fieldset class="g-fieldset">
+        <legend>Datos de la cuenta</legend>
+
+        <div class="g-grid-2">
+          {% include "gestion/_campo.html" with campo=form.username %}
+          {% include "gestion/_campo.html" with campo=form.email %}
+          {% include "gestion/_campo.html" with campo=form.first_name %}
+          {% include "gestion/_campo.html" with campo=form.last_name %}
+        </div>
+
+        <div class="g-grid-2">
+          {% include "gestion/_campo.html" with campo=form.password1 %}
+          {% include "gestion/_campo.html" with campo=form.password2 %}
+        </div>
+      </fieldset>
+
+      <fieldset class="g-fieldset">
+        <legend>Rol y acceso</legend>
+
+        <label class="g-check">
+          {{ form.is_active }}
+          <span>
+            <strong>Cuenta activa</strong>
+            <span class="g-help">Si la desmarcas, el usuario no puede iniciar sesión.</span>
+          </span>
+        </label>
+        {% for error in form.is_active.errors %}
+          <span class="g-error">{{ error }}</span>
+        {% endfor %}
+
+        <label class="g-check">
+          {{ form.es_funcionario }}
+          <span>
+            <strong>Funcionario municipal</strong>
+            <span class="g-help">Puede entrar a /gestion/ y administrar atractivos.</span>
+          </span>
+        </label>
+        {% for error in form.es_funcionario.errors %}
+          <span class="g-error">{{ error }}</span>
+        {% endfor %}
+
+        <label class="g-check">
+          {{ form.es_administrador }}
+          <span>
+            <strong>Administrador</strong>
+            <span class="g-help">{{ form.es_administrador.help_text|default:"Accede al admin de Django y gestiona usuarios." }}</span>
+          </span>
+        </label>
+        {% for error in form.es_administrador.errors %}
+          <span class="g-error">{{ error }}</span>
+        {% endfor %}
+      </fieldset>
+
+      <div class="g-actions-bar">
+        <button type="submit" class="button button-dark">Guardar</button>
+        <a href="{% url 'gestion_usuarios' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}

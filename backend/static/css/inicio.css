@@ -1,0 +1,783 @@
+
+/* =========================================
+   PORTADA Y PRESENTACIÓN
+========================================= */
+
+.home-hero {
+  position: relative;
+  min-height: min(820px, 100svh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: #394335;
+  color: white;
+}
+
+/* Presentación de imágenes */
+
+.hero-slideshow,
+.hero-slide {
+  position: absolute;
+  inset: 0;
+}
+
+
+.hero-slideshow {
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.025);
+}
+
+.hero-slide.is-active img {
+  animation: hero-image-drift 7s ease-out both;
+}
+
+@keyframes hero-image-drift {
+  from {
+    transform: scale(1.025);
+  }
+
+  to {
+    transform: scale(1.09);
+  }
+}
+
+/* Capa de contraste */
+
+.hero-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(24, 29, 21, 0.76),
+      rgba(24, 29, 21, 0.2) 85%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(24, 29, 21, 0.42),
+      transparent 65%
+    );
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 145px clamp(24px, 8vw, 120px) 110px;
+  max-width: 950px;
+}
+
+.home-hero h1 {
+  font: 400 clamp(3.8rem, 8.5vw, 7.7rem)/0.96 var(--font-title);
+  letter-spacing: -0.05em;
+  margin: 24px 0;
+}
+
+.home-hero h1 em {
+  font-weight: 400;
+}
+
+.home-hero-content > p {
+  max-width: 550px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #ffffffdc;
+  margin: 0 0 30px;
+}
+
+.hero-side-note {
+  position: absolute;
+  right: 5vw;
+  bottom: 55px;
+  writing-mode: vertical-rl;
+  font-size: 0.63rem;
+  letter-spacing: 0.25em;
+  color: #ffffffb8;
+}
+
+.hero-bottom-note {
+  position: absolute;
+  bottom: 38px;
+  left: clamp(24px, 8vw, 120px);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #fff;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+}
+
+/* =========================================
+   INTRODUCCIÓN: CONOCE CASABLANCA
+========================================= */
+
+.welcome-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, 0.5fr);
+  align-items: end;
+  gap: 50px;
+  padding-top: clamp(65px, 9vw, 115px);
+  padding-bottom: clamp(65px, 9vw, 115px);
+  background: var(--cream);
+}
+
+.welcome-content {
+  background: transparent;
+  max-width: 800px;
+}
+
+.welcome-content .eyebrow {
+  color: var(--earth);
+}
+
+.welcome-content h2 {
+  font: 400 clamp(2.8rem, 5vw, 4.7rem)/1.08 var(--font-title);
+  margin: 20px 0 28px;
+}
+
+.welcome-content h2 em {
+  color: var(--earth);
+  font-weight: 400;
+}
+
+.welcome-content p {
+  max-width: 700px;
+  color: var(--muted);
+  line-height: 1.85;
+  margin: 0 0 16px;
+}
+
+.welcome-content .text-link {
+  margin-top: 15px;
+  color: var(--deep);
+}
+
+.welcome-side {
+  min-height: 180px;
+  border-left: 1px solid #c9c2b4;
+  padding: 0 0 5px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.welcome-side-number {
+  font: 400 2.5rem var(--font-title);
+  color: var(--earth);
+}
+
+.welcome-side-text {
+  font-size: 0.63rem;
+  line-height: 1.8;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+/* =========================================
+   DESTINOS
+========================================= */
+
+.discover-section {
+  padding-top: 100px;
+  padding-bottom: 110px;
+}
+
+.discover-section .section-heading {
+  margin-bottom: 48px;
+}
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.destination-card {
+  position: relative;
+  display: block;
+  min-height: 470px;
+  overflow: hidden;
+  color: white;
+  background: var(--deep);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.destination-card::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(22, 25, 19, 0.84),
+    rgba(22, 25, 19, 0.04) 75%
+  );
+  transition: background-color 0.3s ease;
+}
+
+.destination-card img {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.75s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.07);
+}
+
+.destination-card:hover::after {
+  background-color: rgba(22, 25, 19, 0.12);
+}
+
+.card-number {
+  position: absolute;
+  z-index: 1;
+  top: 24px;
+  left: 24px;
+  font-size: 0.64rem;
+  letter-spacing: 0.17em;
+}
+
+.destination-copy {
+  position: absolute;
+  z-index: 1;
+  left: 25px;
+  right: 25px;
+  bottom: 27px;
+}
+
+.destination-copy h3 {
+  font: 400 clamp(1.65rem, 2.5vw, 2.25rem)/1.1 var(--font-title);
+  margin: 10px 0;
+}
+
+.destination-copy p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #ffffffd1;
+  margin: 0 0 20px;
+}
+
+.destination-copy .text-link {
+  color: white;
+  border-color: #ffffff8c;
+}
+
+/* =========================================
+   PATRIMONIO Y MUSEO
+========================================= */
+
+.museum-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #e7e0d2;
+}
+
+.museum-image {
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.museum-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+.museum-image:hover img {
+  transform: scale(1.035);
+}
+
+.museum-copy {
+  padding: clamp(45px, 7vw, 100px);
+  align-self: center;
+}
+
+.museum-copy h2 {
+  font: 400 clamp(2.6rem, 4vw, 3.8rem)/1.08 var(--font-title);
+  margin: 18px 0;
+}
+
+.museum-copy > p {
+  max-width: 430px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 22px 0 28px;
+}
+
+.museum-copy .text-link {
+  color: var(--deep);
+}
+
+/* =========================================
+   BANNER: PLANIFICA TU VISITA
+========================================= */
+
+.visit-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: clamp(55px, 8vw, 100px) clamp(24px, 8vw, 120px);
+  background: var(--deep);
+  color: white;
+}
+
+.visit-banner .eyebrow {
+  color: #d7dfd2;
+}
+
+.visit-banner h2 {
+  font: 400 clamp(2.6rem, 5vw, 4.5rem)/1.08 var(--font-title);
+  margin: 20px 0;
+}
+
+.visit-banner h2 em {
+  font-weight: 400;
+}
+
+.visit-banner p {
+  max-width: 590px;
+  color: #ffffffd1;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.visit-banner .button {
+  flex-shrink: 0;
+}
+
+/* =========================================
+   ACCESIBILIDAD Y EFECTOS
+========================================= */
+
+.destination-card:focus-visible,
+.text-link:focus-visible {
+  outline: 3px solid var(--earth);
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    transition: none;
+  }
+
+  .hero-slide.is-active img {
+    animation: none;
+  }
+
+  .destination-card img,
+  .museum-image img,
+  .destination-card::after {
+    transition: none;
+  }
+
+  .destination-card:hover img,
+  .museum-image:hover img {
+    transform: none;
+  }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .destination-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .destination-card:last-child {
+    grid-column: 1 / -1;
+    min-height: 390px;
+  }
+
+  .museum-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .museum-image,
+  .museum-image img {
+    min-height: 360px;
+  }
+
+  .museum-copy {
+    padding: 48px 28px 58px;
+  }
+
+  .welcome-section {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .welcome-side {
+    min-height: auto;
+    flex-direction: row;
+    align-items: center;
+    border-left: 0;
+    border-top: 1px solid #c9c2b4;
+    padding: 20px 0 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-hero {
+    min-height: 86svh;
+  }
+
+  .home-hero-content {
+    padding: 125px 24px 100px;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(3.45rem, 16vw, 5rem);
+  }
+
+  .home-hero-content > p {
+    font-size: 0.94rem;
+  }
+
+  .hero-side-note {
+    display: none;
+  }
+
+  .hero-bottom-note {
+    left: 24px;
+    bottom: 25px;
+    font-size: 0.56rem;
+  }
+
+  .welcome-content h2 {
+    font-size: clamp(2.6rem, 12vw, 3.5rem);
+  }
+
+  .destination-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-card,
+  .destination-card:last-child {
+    grid-column: auto;
+    min-height: 420px;
+  }
+
+  .museum-image,
+  .museum-image img {
+    min-height: 300px;
+  }
+
+  .visit-banner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 55px 24px;
+  }
+
+  .visit-banner h2 {
+    font-size: 2.7rem;
+  }
+}
+/* =========================================
+   NOTICIAS EN PORTADA
+========================================= */
+
+.home-news-section {
+  padding-top: 65px;
+}
+
+.home-news-section .section-heading {
+  margin-bottom: 38px;
+}
+
+.home-news-action {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+@media (max-width: 620px) {
+  .home-news-section {
+    padding-top: 45px;
+  }
+}
+
+/* =========================================
+   CARRUSEL: ATRACTIVOS DE CASABLANCA
+========================================= */
+
+.attractions-showcase {
+  padding: clamp(70px, 9vw, 115px) 0 80px;
+  background: #f5f2e9;
+  overflow: hidden;
+}
+
+.attractions-showcase-heading {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: end;
+  gap: 50px;
+  padding: 0 clamp(24px, 8vw, 120px);
+  margin-bottom: 45px;
+}
+
+.attractions-showcase-heading .eyebrow {
+  color: var(--earth);
+}
+
+.attractions-showcase-heading h2 {
+  font: 400 clamp(2.7rem, 5vw, 4.6rem)/1.08 var(--font-title);
+  margin: 18px 0 0;
+}
+
+.attractions-showcase-heading h2 em {
+  color: var(--earth);
+  font-weight: 400;
+}
+
+.attractions-showcase-heading > p {
+  max-width: 480px;
+  color: var(--muted);
+  line-height: 1.85;
+  margin: 0 0 5px;
+}
+
+/* Ventana del carrusel */
+
+.attractions-carousel {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  cursor: grab;
+  overscroll-behavior-x: contain;
+  scroll-behavior: auto;
+}
+
+.attractions-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.attractions-carousel:active {
+  cursor: grabbing;
+}
+
+.attractions-track {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  padding: 8px clamp(24px, 5vw, 75px) 20px;
+}
+
+/* Tarjetas */
+
+.attraction-slide {
+  position: relative;
+  display: block;
+  flex: 0 0 clamp(270px, 31vw, 430px);
+  height: clamp(330px, 38vw, 460px);
+  overflow: hidden;
+  isolation: isolate;
+  color: white;
+  background: var(--deep);
+  text-decoration: none;
+}
+
+.attraction-slide::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(22, 25, 19, 0.88),
+    rgba(22, 25, 19, 0.02) 75%
+  );
+  transition: background-color 0.4s ease;
+}
+
+.attraction-slide img {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.attraction-slide:hover img {
+  transform: scale(1.07);
+}
+
+.attraction-slide:hover::after {
+  background-color: rgba(22, 25, 19, 0.13);
+}
+
+.attraction-slide-number {
+  position: absolute;
+  z-index: 1;
+  top: 23px;
+  left: 24px;
+  font-size: 0.62rem;
+  letter-spacing: 0.17em;
+  color: #ffffffdf;
+}
+
+.attraction-slide-copy {
+  position: absolute;
+  z-index: 1;
+  left: 26px;
+  right: 26px;
+  bottom: 28px;
+}
+
+.attraction-slide-copy h3 {
+  font: 400 clamp(1.8rem, 3vw, 2.5rem)/1.1 var(--font-title);
+  margin: 0 0 12px;
+}
+
+.attraction-slide-copy span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.83rem;
+  color: #ffffffd9;
+}
+
+.attraction-slide-copy b {
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: transform 0.3s ease;
+}
+
+.attraction-slide:hover .attraction-slide-copy b {
+  transform: translate(4px, -4px);
+}
+
+.attraction-slide:focus-visible {
+  outline: 3px solid var(--earth);
+  outline-offset: -5px;
+}
+
+/* Cierre y botón */
+
+.attractions-showcase-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 25px clamp(24px, 8vw, 120px) 0;
+}
+
+.attractions-showcase-footer > span {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .attractions-showcase-heading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .attractions-showcase-heading > p {
+    max-width: 650px;
+  }
+
+  .attraction-slide {
+    flex-basis: 340px;
+    height: 390px;
+  }
+}
+
+@media (max-width: 560px) {
+  .attractions-showcase {
+    padding-top: 65px;
+    padding-bottom: 60px;
+  }
+
+  .attractions-showcase-heading {
+    padding: 0 24px;
+    margin-bottom: 28px;
+  }
+
+  .attractions-showcase-heading h2 {
+    font-size: 2.7rem;
+  }
+
+  .attractions-track {
+    gap: 13px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .attraction-slide {
+    flex-basis: 80vw;
+    height: 390px;
+  }
+
+  .attractions-showcase-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px 24px 0;
+  }
+
+  .attractions-showcase-footer .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attraction-slide img,
+  .attraction-slide-copy b,
+  .attraction-slide::after {
+    transition: none;
+  }
+
+  .attraction-slide:hover img {
+    transform: none;
+  }
+}
+.attractions-track-copy {
+  display: flex;
+  flex: 0 0 auto;
+  gap: inherit;
+}
+/* Integración visual de la introducción */
+.welcome-content {
+  background-color: var(--cream);
+  box-shadow: none;
+}

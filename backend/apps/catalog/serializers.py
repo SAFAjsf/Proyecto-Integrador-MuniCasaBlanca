@@ -79,6 +79,7 @@ class AtractivoSerializer(serializers.ModelSerializer):
             "slug",
             "descripcion",
             "categoria",
+            "zona",
             "direccion",
             "imagenes",
             "secciones",

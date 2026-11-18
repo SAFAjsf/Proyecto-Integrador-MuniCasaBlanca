@@ -1,0 +1,28 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block content %}
+
+<h1>Nuevo atractivo turístico</h1>
+
+<p>
+    El contenido se creará como borrador.
+    No será visible hasta su aprobación.
+</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Crear borrador
+    </button>
+
+    <a href="{% url 'gestion_atractivos' %}">
+        Cancelar
+    </a>
+
+</form>
+
+{% endblock %}
