@@ -1,7 +1,7 @@
 
 /* =========================================
    CLIMA - CASABLANCA CHILE
-   API: Open-Meteo
+   API: WeatherAPI.com mediante Django
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,20 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const locations = {
     casablanca: {
       name: "Casablanca",
-      latitude: -33.318,
-      longitude: -71.408
     },
 
     quintay: {
       name: "Quintay",
-      latitude: -33.190,
-      longitude: -71.699
     }
   };
 
-  const CACHE_DURATION = 15 * 60 * 1000;
-
-  const weatherCache = new Map();
 
   const isHomePage = Boolean(
     document.querySelector("#home-weather")
@@ -250,7 +243,93 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
   };
+  Object.assign(translations.es, {
+  heroEyebrow: "PREPARA TU VISITA",
+  heroTitle: "El tiempo también",
+  heroTitleEmphasis: "forma parte del viaje.",
+  heroDescription: "Consulta las condiciones meteorológicas de Casablanca y Quintay y descubre cómo prepararte para recorrer el territorio.",
+  forecastEyebrow: "INFORMACIÓN METEOROLÓGICA",
+  forecastTitle: "¿Cómo estará el tiempo?",
+  forecastDescription: "Selecciona una localidad para consultar su pronóstico.",
+  nextDaysEyebrow: "PRÓXIMOS DÍAS",
+  nextDaysTitle: "Pronóstico de tres días",
+  tipsEyebrow: "CONSEJOS PARA VIAJAR",
+  tipsTitle: "Recomendaciones para tu visita",
+  tipsDescription: "Consejos basados en las condiciones meteorológicas previstas.",
+  closingEyebrow: "CASABLANCA · VALLE Y MAR",
+  closingTitle: "Cada estación tiene",
+  closingTitleEmphasis: "algo que descubrir.",
+  closingDescription: "Planifica tu visita y conoce los paisajes, la historia y las experiencias que ofrece Casablanca.",
+  backHome: "Volver al inicio",
+  attribution: "Datos meteorológicos:",
+  navigationClimate: "Clima"
+});
 
+Object.assign(translations.en, {
+  heroEyebrow: "PREPARE YOUR VISIT",
+  heroTitle: "Weather is also",
+  heroTitleEmphasis: "part of the journey.",
+  heroDescription: "Check the weather conditions in Casablanca and Quintay and prepare for your visit.",
+  forecastEyebrow: "WEATHER INFORMATION",
+  forecastTitle: "What will the weather be like?",
+  forecastDescription: "Select a location to view its weather forecast.",
+  nextDaysEyebrow: "COMING DAYS",
+  nextDaysTitle: "Three-day forecast",
+  tipsEyebrow: "TRAVEL TIPS",
+  tipsTitle: "Recommendations for your visit",
+  tipsDescription: "Advice based on the expected weather conditions.",
+  closingEyebrow: "CASABLANCA · VALLEY AND SEA",
+  closingTitle: "Every season has",
+  closingTitleEmphasis: "something to discover.",
+  closingDescription: "Plan your visit and discover Casablanca's landscapes, history and experiences.",
+  backHome: "Back to home",
+  attribution: "Weather data:",
+  navigationClimate: "Weather"
+});
+
+Object.assign(translations.pt, {
+  heroEyebrow: "PREPARE SUA VISITA",
+  heroTitle: "O clima também",
+  heroTitleEmphasis: "faz parte da viagem.",
+  heroDescription: "Consulte as condições meteorológicas de Casablanca e Quintay e prepare-se para sua visita.",
+  forecastEyebrow: "INFORMAÇÕES METEOROLÓGICAS",
+  forecastTitle: "Como estará o tempo?",
+  forecastDescription: "Selecione uma localidade para consultar a previsão.",
+  nextDaysEyebrow: "PRÓXIMOS DIAS",
+  nextDaysTitle: "Previsão de três dias",
+  tipsEyebrow: "DICAS DE VIAGEM",
+  tipsTitle: "Recomendações para sua visita",
+  tipsDescription: "Conselhos baseados nas condições meteorológicas previstas.",
+  closingEyebrow: "CASABLANCA · VALE E MAR",
+  closingTitle: "Cada estação tem",
+  closingTitleEmphasis: "algo para descobrir.",
+  closingDescription: "Planeje sua visita e descubra as paisagens, a história e as experiências de Casablanca.",
+  backHome: "Voltar ao início",
+  attribution: "Dados meteorológicos:",
+  navigationClimate: "Clima"
+});
+
+Object.assign(translations.fr, {
+  heroEyebrow: "PRÉPAREZ VOTRE VISITE",
+  heroTitle: "La météo fait aussi",
+  heroTitleEmphasis: "partie du voyage.",
+  heroDescription: "Consultez les conditions météorologiques de Casablanca et Quintay et préparez votre visite.",
+  forecastEyebrow: "INFORMATIONS MÉTÉOROLOGIQUES",
+  forecastTitle: "Quel temps fera-t-il ?",
+  forecastDescription: "Sélectionnez une localité pour consulter les prévisions.",
+  nextDaysEyebrow: "PROCHAINS JOURS",
+  nextDaysTitle: "Prévisions sur trois jours",
+  tipsEyebrow: "CONSEILS DE VOYAGE",
+  tipsTitle: "Recommandations pour votre visite",
+  tipsDescription: "Conseils basés sur les conditions météorologiques prévues.",
+  closingEyebrow: "CASABLANCA · VALLÉE ET MER",
+  closingTitle: "Chaque saison offre",
+  closingTitleEmphasis: "quelque chose à découvrir.",
+  closingDescription: "Planifiez votre visite et découvrez les paysages, l’histoire et les expériences de Casablanca.",
+  backHome: "Retour à l’accueil",
+  attribution: "Données météorologiques :",
+  navigationClimate: "Météo"
+});
   function getLanguage() {
     return window.CasablancaI18n?.getLanguage?.() || "es";
   }
@@ -268,62 +347,63 @@ document.addEventListener("DOMContentLoaded", () => {
   ------------------------------------- */
 
   function getWeatherDescription(code) {
-    if (code === 0) return t("sunny");
-    if (code === 1) return t("mainlySunny");
-    if (code === 2) return t("partlyCloudy");
-    if (code === 3) return t("cloudy");
+  if (code === 1000) return t("sunny");
+  if (code === 1003) return t("partlyCloudy");
 
-    if (code === 45 || code === 48) {
-      return t("fog");
-    }
-
-    if (code >= 51 && code <= 57) {
-      return t("drizzle");
-    }
-
-    if (code >= 61 && code <= 67) {
-      return t("rain");
-    }
-
-    if (code >= 71 && code <= 77) {
-      return t("snow");
-    }
-
-    if (code >= 80 && code <= 82) {
-      return t("showers");
-    }
-
-    if (code >= 85 && code <= 86) {
-      return t("snow");
-    }
-
-    if (code >= 95) {
-      return t("storm");
-    }
-
-    return t("unknown");
+  if ([1006, 1009].includes(code)) {
+    return t("cloudy");
   }
 
-  function getWeatherIcon(code, isDay = true) {
-    if (code === 0) {
-      return isDay ? "☀️" : "🌙";
-    }
-
-    if (code === 1) return isDay ? "🌤️" : "☁️";
-    if (code === 2) return "⛅";
-    if (code === 3) return "☁️";
-
-    if (code === 45 || code === 48) return "🌫️";
-
-    if (code >= 51 && code <= 57) return "🌦️";
-    if (code >= 61 && code <= 67) return "🌧️";
-    if (code >= 71 && code <= 77) return "🌨️";
-    if (code >= 80 && code <= 82) return "🌧️";
-    if (code >= 85 && code <= 86) return "🌨️";
-    if (code >= 95) return "⛈️";
-
-    return "🌤️";
+  if ([1030, 1135, 1147].includes(code)) {
+    return t("fog");
   }
+
+  if ([1072, 1150, 1153, 1168, 1171].includes(code)) {
+    return t("drizzle");
+  }
+
+  if (
+    [1087, 1273, 1276, 1279, 1282].includes(code)
+  ) {
+    return t("storm");
+  }
+
+  if (
+    code === 1063 ||
+    (code >= 1180 && code <= 1201)
+  ) {
+    return t("rain");
+  }
+
+  if ([1240, 1243, 1246].includes(code)) {
+    return t("showers");
+  }
+
+  if (
+    [1066, 1069, 1114, 1117, 1204, 1207, 1237].includes(code) ||
+    (code >= 1210 && code <= 1225) ||
+    (code >= 1249 && code <= 1264)
+  ) {
+    return t("snow");
+  }
+
+  return t("unknown");
+}
+
+
+function renderWeatherIcon(element, url) {
+  if (!element) return;
+
+  const image = document.createElement("img");
+
+  image.src = url;
+  image.alt = "";
+  image.width = 64;
+  image.height = 64;
+  image.decoding = "async";
+
+  element.replaceChildren(image);
+}
 
   /* -------------------------------------
      FORMATO DE FECHAS
@@ -347,69 +427,92 @@ document.addEventListener("DOMContentLoaded", () => {
      CONSULTA API
   ------------------------------------- */
 
-  async function fetchWeather(locationId) {
-    const cached = weatherCache.get(locationId);
+async function fetchWeather(locationId) {
+  const parameters = new URLSearchParams({
+    ubicacion: locationId
+  });
 
-    if (
-      cached &&
-      Date.now() - cached.timestamp < CACHE_DURATION
-    ) {
-      return cached.data;
+  const response = await fetch(
+    `/api/clima/?${parameters}`,
+    {
+      headers: {
+        Accept: "application/json"
+      }
     }
+  );
 
-    const location = locations[locationId];
-
-    const parameters = new URLSearchParams({
-      latitude: location.latitude,
-      longitude: location.longitude,
-
-      current: [
-        "temperature_2m",
-        "relative_humidity_2m",
-        "apparent_temperature",
-        "is_day",
-        "precipitation",
-        "weather_code",
-        "wind_speed_10m"
-      ].join(","),
-
-      daily: [
-        "weather_code",
-        "temperature_2m_max",
-        "temperature_2m_min",
-        "precipitation_probability_max",
-        "uv_index_max",
-        "wind_speed_10m_max"
-      ].join(","),
-
-      timezone: "America/Santiago",
-      forecast_days: "6",
-      temperature_unit: "celsius",
-      wind_speed_unit: "kmh"
-    });
-
-    const url =
-      `https://api.open-meteo.com/v1/forecast?${parameters}`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`Error meteorológico: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (!data.current || !data.daily) {
-      throw new Error("La API devolvió información incompleta.");
-    }
-
-    weatherCache.set(locationId, {
-      timestamp: Date.now(),
-      data
-    });
-
-    return data;
+  if (!response.ok) {
+    throw new Error(
+      `Error meteorológico: ${response.status}`
+    );
   }
+
+  const data = await response.json();
+
+  if (
+    !data.actual ||
+    !Array.isArray(data.pronostico) ||
+    data.pronostico.length !== 3
+  ) {
+    throw new Error(
+      "El servicio devolvió información incompleta."
+    );
+  }
+
+  const actual = data.actual;
+  const pronostico = data.pronostico;
+
+  // Adaptador para mantener compatible
+  // la interfaz meteorológica existente.
+
+  return {
+    current: {
+      temperature_2m: actual.temperatura_c,
+      relative_humidity_2m: actual.humedad_pct,
+      apparent_temperature: actual.sensacion_termica_c,
+      is_day: actual.es_dia ? 1 : 0,
+      precipitation: actual.precipitacion_mm,
+      weather_code: actual.condicion.codigo,
+      weather_icon: actual.condicion.icono,
+      wind_speed_10m: actual.viento_kmh,
+      time: data.actualizado
+    },
+
+    daily: {
+      time: pronostico.map(
+        dia => dia.fecha
+      ),
+
+      weather_code: pronostico.map(
+        dia => dia.condicion.codigo
+      ),
+
+      weather_icon: pronostico.map(
+        dia => dia.condicion.icono
+      ),
+
+      temperature_2m_max: pronostico.map(
+        dia => dia.maxima_c
+      ),
+
+      temperature_2m_min: pronostico.map(
+        dia => dia.minima_c
+      ),
+
+      precipitation_probability_max: pronostico.map(
+        dia => dia.probabilidad_lluvia_pct
+      ),
+
+      uv_index_max: pronostico.map(
+        dia => dia.uv
+      ),
+
+      wind_speed_10m_max: pronostico.map(
+        dia => dia.viento_maximo_kmh
+      )
+    }
+  };
+}
 
   /* -------------------------------------
      RECOMENDACIONES AUTOMÁTICAS
@@ -544,7 +647,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const icon = document.createElement("span");
       icon.className = "weather-day-icon";
-      icon.textContent = getWeatherIcon(daily.weather_code[index]);
+      renderWeatherIcon(icon,daily.weather_icon[index]);
 
       icon.setAttribute("aria-hidden", "true");
 
@@ -645,10 +748,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (icon) {
-      icon.textContent = getWeatherIcon(
-        current.weather_code,
-        current.is_day === 1
-      );
+      renderWeatherIcon(icon,current.weather_icon);
     }
 
     if (minimum) {
@@ -691,7 +791,8 @@ document.addEventListener("DOMContentLoaded", () => {
         getLanguage(),
         {
           hour: "2-digit",
-          minute: "2-digit"
+          minute: "2-digit",
+          timeZone: "America/Santiago"
         }
       ).format(new Date(current.time))}`
     );
@@ -755,10 +856,9 @@ document.addEventListener("DOMContentLoaded", () => {
       formatTemperature(daily.temperature_2m_max[0])
     );
 
-    setText(
-      "#home-weather-icon",
-      getWeatherIcon(current.weather_code, current.is_day === 1)
-    );
+    renderWeatherIcon(
+      document.querySelector("#home-weather-icon"),
+      current.weather_icon);
 
     const recommendations = generateRecommendations(data);
 
@@ -778,7 +878,8 @@ document.addEventListener("DOMContentLoaded", () => {
         getLanguage(),
         {
           hour: "2-digit",
-          minute: "2-digit"
+          minute: "2-digit",
+          timeZone: "America/Santiago"
         }
       ).format(new Date(current.time))}`
     );
@@ -941,7 +1042,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (retryButton) {
     retryButton.addEventListener("click", () => {
-      weatherCache.delete(selectedLocation);
       loadLocation(selectedLocation);
     });
   }

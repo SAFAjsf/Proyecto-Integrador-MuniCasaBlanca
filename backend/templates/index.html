@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 
 <!doctype html>
 <html lang="es">
@@ -60,6 +60,7 @@
             <option value="es" data-i18n="language.spanish">Español</option>
             <option value="en" data-i18n="language.english">English</option>
             <option value="pt" data-i18n="language.portuguese">Português</option>
+            <option value="fr" data-i18n="language.french">Français</option>
           </select>
         </div>
       </nav>
@@ -546,7 +547,7 @@
       </div>
     </footer>
 
-    <script src="{% static 'js/translations.js' %}"></script>
+    <script src="{% static 'js/translations.js' %}?v=2"></script>
     <script src="{% static 'js/i18n.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/inicio.js' %}"></script>
@@ -554,3 +555,4 @@
     <script src="{% static 'js/noticias.js' %}?v=2"></script>
   </body>
 </html>
+

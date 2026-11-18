@@ -261,7 +261,7 @@
 
 .weather-forecast-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -687,4 +687,13 @@
   .home-weather-link {
     transition: none;
   }
+}
+
+.weather-current-icon img,
+.weather-day-icon img,
+.home-weather-icon img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
 }
