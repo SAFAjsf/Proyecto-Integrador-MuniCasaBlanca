@@ -73,7 +73,7 @@ protegiendo las credenciales y aplicando una caché de 15 minutos.
 
 ```text
 Proyecto-Integrador-MuniCasaBlanca/
-├── backend/
+├── src/
 │   ├── apps/
 │   │   ├── accounts/
 │   │   ├── audit/
@@ -105,7 +105,7 @@ Proyecto-Integrador-MuniCasaBlanca/
 ```powershell
 git clone https://github.com/SAFAjsf/Proyecto-Integrador-MuniCasaBlanca.git
 cd Proyecto-Integrador-MuniCasaBlanca
-cd backend
+cd src
 ```
 
 ### 2. Crear el entorno virtual

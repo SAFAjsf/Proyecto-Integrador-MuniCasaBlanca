@@ -11,6 +11,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+.venv-respaldo/
 
 #Archivos locales
 db.sqlite3
