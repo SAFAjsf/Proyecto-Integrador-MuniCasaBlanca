@@ -1,0 +1,15 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block content %}
+  <h1>Eliminar atractivo</h1>
+
+  <p>
+    ¿Seguro que quieres eliminar <strong>{{ atractivo.nombre }}</strong>?
+  </p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'gestion_atractivos' %}">Cancelar</a>
+  </form>
+{% endblock %}

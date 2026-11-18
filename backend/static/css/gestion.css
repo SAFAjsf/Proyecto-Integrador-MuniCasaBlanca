@@ -1,0 +1,391 @@
+/* =====================================
+   PANEL MUNICIPAL
+===================================== */
+
+.g-body {
+  background: #f6f3ec;
+}
+
+.g-main {
+  width: min(var(--content), 100%);
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 5rem;
+}
+
+/* Barra superior */
+
+.g-topbar {
+  gap: 1.5rem;
+}
+
+.g-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  margin-left: auto;
+}
+
+.g-nav a {
+  padding: 0.35rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.g-nav a:hover,
+.g-nav a[aria-current="page"] {
+  color: var(--deep);
+  border-bottom-color: var(--olive);
+}
+
+.g-session {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.g-logout {
+  padding: 0;
+  color: var(--deep);
+  background: none;
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Encabezado de página */
+
+.g-page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.g-page-head h1 {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-title);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--deep);
+}
+
+.g-page-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.g-page-head > a {
+  color: var(--olive);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+/* Avisos */
+
+.g-alert {
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 0.92rem;
+}
+
+.g-alert--success {
+  background: #e7efe4;
+  border-color: #c3d6bd;
+  color: #2f4a28;
+}
+
+.g-alert--error {
+  background: #f7e6e4;
+  border-color: #e3bdb8;
+  color: #7a2f26;
+}
+
+/* Tarjeta */
+
+.g-card {
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid #e4ded1;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(41, 41, 36, 0.06);
+}
+
+/* Buscador */
+
+.g-toolbar {
+  margin-bottom: 1rem;
+}
+
+.g-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.g-search input {
+  min-width: 280px;
+  padding: 0.65rem 0.85rem;
+  font: inherit;
+  background: var(--white);
+  border: 1px solid #d8d2c4;
+  border-radius: 6px;
+}
+
+.g-search input:focus {
+  border-color: var(--gold);
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.g-search a {
+  color: var(--olive);
+  font-size: 0.85rem;
+}
+
+/* Tabla */
+
+.g-table-wrap {
+  overflow-x: auto;
+}
+
+.g-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.g-table th {
+  padding: 0.85rem 1rem;
+  background: #f0ece2;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.g-table td {
+  padding: 0.9rem 1rem;
+  border-top: 1px solid #eee8dc;
+  vertical-align: middle;
+}
+
+.g-table tbody tr:hover td {
+  background: #faf8f3;
+}
+
+/* Celda de usuario */
+
+.g-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.g-avatar {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: var(--white);
+  background: var(--olive);
+  border-radius: 50%;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.g-user-name {
+  color: var(--charcoal);
+  font-weight: 600;
+}
+
+.g-user-handle {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* Etiquetas */
+
+.g-badge {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.g-badge--admin { background: #e8e2f0; color: #4a3a63; }
+.g-badge--func  { background: #e5eee1; color: #33502a; }
+.g-badge--none  { background: #f0e6d8; color: #6d5330; }
+.g-badge--on    { background: #e5eee1; color: #33502a; }
+.g-badge--off   { background: #f3e2e0; color: #7a2f26; }
+.g-badge--you   { margin-left: 0.35rem; background: var(--deep); color: var(--white); }
+
+/* Acciones de fila */
+
+.g-actions {
+  display: flex;
+  gap: 0.9rem;
+  white-space: nowrap;
+}
+
+.g-actions a {
+  color: var(--olive);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.g-actions a:hover {
+  text-decoration: underline;
+}
+
+.g-actions .g-danger {
+  color: #9a3b2f;
+}
+
+/* Estado vacío */
+
+.g-empty {
+  padding: 3rem 1.5rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.g-empty p {
+  margin-bottom: 1rem;
+}
+
+/* Formulario */
+
+.g-form {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.75rem;
+}
+
+.g-fieldset {
+  display: grid;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.g-fieldset legend {
+  margin-bottom: 0.25rem;
+  color: var(--deep);
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+}
+
+.g-grid-2 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.g-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.g-field label {
+  color: var(--charcoal);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.g-field input[type="text"],
+.g-field input[type="email"],
+.g-field input[type="password"] {
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  background: var(--white);
+  border: 1px solid #d8d2c4;
+  border-radius: 6px;
+}
+
+.g-field input:focus {
+  border-color: var(--gold);
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.g-help {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.g-error {
+  color: #9a3b2f;
+  font-size: 0.82rem;
+}
+
+/* Casillas con descripción */
+
+.g-check {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.85rem 0.95rem;
+  background: #fbf9f4;
+  border: 1px solid #e4ded1;
+  border-radius: 8px;
+}
+
+.g-check input {
+  margin-top: 0.2rem;
+}
+
+.g-check strong {
+  display: block;
+  color: var(--charcoal);
+  font-size: 0.9rem;
+}
+
+/* Barra de acciones */
+
+.g-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #eee8dc;
+}
+
+.g-actions-bar a {
+  color: var(--olive);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .g-nav {
+    gap: 0.9rem;
+  }
+
+  .g-table th:nth-child(2),
+  .g-table td:nth-child(2) {
+    display: none;
+  }
+
+  .g-search input {
+    min-width: 0;
+    flex: 1;
+  }
+}

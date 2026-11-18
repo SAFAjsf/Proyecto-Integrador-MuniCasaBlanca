@@ -1,0 +1,841 @@
+
+/* =====================================
+   IDENTIDAD VISUAL COSTERA
+===================================== */
+
+:root {
+  --coast: #246777;
+  --coast-light: #dce9e7;
+  --coast-dark: #173f49;
+  --coast-sand: #f2eee4;
+}
+
+/* =====================================
+   HERO
+===================================== */
+
+.quintay-hero .inner-hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 43, 49, 0.72),
+      rgba(15, 43, 49, 0.08) 85%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(15, 43, 49, 0.58),
+      transparent 65%
+    );
+}
+
+/* =====================================
+   INTRODUCCIÓN
+===================================== */
+
+.quintay-intro {
+  text-align: center;
+  max-width: 900px;
+}
+
+.quintay-intro .eyebrow {
+  color: var(--coast);
+}
+
+.quintay-intro > p {
+  max-width: 720px;
+  margin: 25px auto 0;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.quintay-intro > p + p {
+  margin-top: 15px;
+}
+
+/* =====================================
+   IDENTIDAD COSTERA
+===================================== */
+
+.coast-identity {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--coast-light);
+  overflow: hidden;
+}
+
+.coast-identity-image {
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.coast-identity-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.coast-identity:hover .coast-identity-image img {
+  transform: scale(1.035);
+}
+
+.coast-identity-content {
+  align-self: center;
+  padding: clamp(40px, 7vw, 95px);
+}
+
+.coast-identity-content .eyebrow {
+  color: var(--coast);
+}
+
+.coast-identity-content h2 {
+  font: 400 clamp(2.5rem, 5vw, 4rem)/1.08 var(--font-title);
+  margin: 18px 0 25px;
+}
+
+.coast-identity-content p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.coast-identity-content p + p {
+  margin-top: 16px;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 27px;
+  color: var(--coast-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--coast);
+  padding-bottom: 7px;
+  transition: gap 0.25s ease;
+}
+
+.text-link:hover {
+  gap: 19px;
+}
+
+/* =====================================
+   LUGARES DE INTERÉS
+===================================== */
+
+.coast-places {
+  background: var(--coast-light);
+  padding: 75px clamp(18px, 5vw, 75px) 90px;
+}
+
+.coast-section-heading {
+  max-width: 1180px;
+  margin: 0 auto 55px;
+}
+
+.coast-section-heading .eyebrow {
+  color: var(--coast);
+}
+
+.coast-section-heading h2,
+.coast-experiences .section-heading h2 {
+  font: 400 clamp(2.6rem, 5vw, 4.2rem)/1.08 var(--font-title);
+  margin: 18px 0;
+}
+
+.coast-section-heading p,
+.coast-experiences .section-heading p {
+  max-width: 650px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.coast-place {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1180px;
+  margin: 35px auto;
+  background: #f5f2e9;
+  overflow: hidden;
+}
+
+.coast-place-image {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+}
+
+.coast-place-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.coast-place:hover .coast-place-image img {
+  transform: scale(1.045);
+}
+
+.coast-image-number {
+  position: absolute;
+  left: 25px;
+  bottom: 25px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  background: rgba(23, 63, 73, 0.78);
+  color: white;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.coast-place.reverse .coast-place-image {
+  order: 2;
+}
+
+.coast-place-copy {
+  align-self: center;
+  padding: clamp(32px, 5vw, 75px);
+}
+
+.coast-place-copy .eyebrow {
+  color: var(--coast);
+}
+
+.coast-place-copy h2 {
+  font: 400 clamp(2.2rem, 4vw, 3.6rem)/1.08 var(--font-title);
+  margin: 17px 0 22px;
+}
+
+.coast-place-copy p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.coast-place-copy p + p {
+  margin-top: 15px;
+}
+
+.coast-place-tag {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 8px 13px;
+  border: 1px solid #b8c9c5;
+  border-radius: 30px;
+  color: var(--coast-dark);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+/* =====================================
+   EXPERIENCIAS
+===================================== */
+
+.coast-experiences {
+  padding: clamp(65px, 9vw, 110px) clamp(24px, 7vw, 100px);
+  background: #f8f7f3;
+}
+
+.coast-experiences .section-heading {
+  max-width: 1180px;
+  margin: 0 auto 45px;
+}
+
+.coast-experiences .section-heading .eyebrow {
+  color: var(--coast);
+}
+
+.coast-experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1180px;
+  margin: 0 auto;
+  border-top: 1px solid #cbd6d2;
+  border-bottom: 1px solid #cbd6d2;
+}
+
+.coast-experience-card {
+  position: relative;
+  padding: 35px 30px 40px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.coast-experience-card + .coast-experience-card {
+  border-left: 1px solid #cbd6d2;
+}
+
+.coast-experience-card:hover {
+  background: #edf3f0;
+  transform: translateY(-4px);
+}
+
+.experience-number {
+  color: var(--coast);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.experience-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-top: 25px;
+  border: 1px solid #a9c3bf;
+  border-radius: 50%;
+  color: var(--coast);
+  font-size: 1.7rem;
+}
+
+.coast-experience-card h3 {
+  font: 400 1.65rem/1.2 var(--font-title);
+  margin: 23px 0 12px;
+}
+
+.coast-experience-card p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.8;
+}
+
+/* =====================================
+   VISITA RESPONSABLE
+===================================== */
+
+.coast-practical {
+  padding: clamp(65px, 8vw, 105px) clamp(24px, 8vw, 120px);
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 35px 85px;
+  align-items: start;
+  background: var(--coast-sand);
+}
+
+.coast-practical-heading .eyebrow {
+  color: var(--coast);
+}
+
+.coast-practical-heading h2 {
+  font: 400 clamp(2.6rem, 5vw, 4rem)/1.08 var(--font-title);
+  margin: 18px 0;
+}
+
+.coast-practical-heading p {
+  max-width: 400px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.coast-practical-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.coast-tip {
+  display: flex;
+  gap: 22px;
+  padding: 21px 0;
+  border-bottom: 1px solid #d0c9b9;
+}
+
+.coast-tip:first-child {
+  border-top: 1px solid #d0c9b9;
+}
+
+.coast-tip > span {
+  color: var(--coast);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding-top: 4px;
+}
+
+.coast-tip h3 {
+  font: 400 1.3rem var(--font-title);
+  margin-bottom: 7px;
+}
+
+.coast-tip p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.coast-practical > .button {
+  grid-column: 2;
+  justify-self: start;
+}
+
+/* =====================================
+   CIERRE
+===================================== */
+
+.quintay-closing {
+  position: relative;
+  min-height: 510px;
+  display: flex;
+  align-items: center;
+  padding: clamp(65px, 9vw, 110px) clamp(24px, 9vw, 140px);
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 43, 49, 0.92),
+      rgba(15, 43, 49, 0.48)
+    ),
+    url("../images/quintay.jpg") center 55% / cover no-repeat;
+  color: white;
+}
+
+.quintay-closing-content {
+  position: relative;
+  z-index: 1;
+  max-width: 750px;
+}
+
+.quintay-closing-content h2 {
+  font: 400 clamp(2.8rem, 6vw, 5rem)/1.05 var(--font-title);
+  margin: 20px 0;
+}
+
+.quintay-closing-content > p {
+  max-width: 520px;
+  color: #ffffffd0;
+  line-height: 1.8;
+}
+
+.quintay-closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.quintay-secondary-link {
+  color: white;
+  font-size: 0.82rem;
+  text-decoration: none;
+  border-bottom: 1px solid #ffffff85;
+  padding-bottom: 5px;
+  transition: border-color 0.2s ease;
+}
+
+.quintay-secondary-link:hover {
+  border-color: white;
+}
+
+/* =====================================
+   RESPONSIVE: TABLETS
+===================================== */
+
+@media (max-width: 1000px) {
+  .coast-practical {
+    gap: 30px 45px;
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+
+  .coast-place-image,
+  .coast-place-image img {
+    min-height: 380px;
+  }
+
+  .coast-place-copy {
+    padding: 35px;
+  }
+}
+
+/* =====================================
+   RESPONSIVE: MÓVILES
+===================================== */
+
+@media (max-width: 760px) {
+
+  .coast-identity {
+    grid-template-columns: 1fr;
+  }
+
+  .coast-identity-image,
+  .coast-identity-image img {
+    min-height: 330px;
+  }
+
+  .coast-identity-content {
+    padding: 40px 24px 50px;
+  }
+
+  .coast-places {
+    padding: 55px 18px 65px;
+  }
+
+  .coast-section-heading {
+    margin-bottom: 35px;
+  }
+
+  .coast-place {
+    grid-template-columns: 1fr;
+    margin: 25px auto;
+  }
+
+  .coast-place.reverse .coast-place-image {
+    order: 0;
+  }
+
+  .coast-place-image,
+  .coast-place-image img {
+    min-height: 300px;
+  }
+
+  .coast-place-copy {
+    padding: 32px 24px 38px;
+  }
+
+  .coast-experiences {
+    padding: 60px 24px;
+  }
+
+  .coast-experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coast-experience-card {
+    padding: 28px 10px 32px;
+  }
+
+  .coast-experience-card + .coast-experience-card {
+    border-left: 0;
+    border-top: 1px solid #cbd6d2;
+  }
+
+  .coast-practical {
+    grid-template-columns: 1fr;
+    padding: 55px 24px;
+    gap: 30px;
+  }
+
+  .coast-practical > .button {
+    grid-column: 1;
+  }
+
+  .quintay-closing {
+    min-height: 460px;
+    padding: 65px 24px;
+    background-position: center;
+  }
+
+  .quintay-closing-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+}
+
+/* =====================================
+   PANTALLAS PEQUEÑAS
+===================================== */
+
+@media (max-width: 420px) {
+
+  .coast-place-image,
+  .coast-place-image img {
+    min-height: 250px;
+  }
+
+  .coast-image-number {
+    left: 17px;
+    bottom: 17px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .coast-place-copy {
+    padding: 28px 20px 32px;
+  }
+
+  .coast-tip {
+    gap: 15px;
+  }
+
+  .quintay-closing-content h2 {
+    font-size: 2.7rem;
+  }
+
+}
+
+/* =====================================
+   ACCESIBILIDAD
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .coast-identity-image img,
+  .coast-place-image img,
+  .coast-experience-card,
+  .text-link,
+  .quintay-secondary-link {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+}
+
+/* =====================================
+   EXPLORADOR INTERACTIVO DE QUINTAY
+===================================== */
+
+.coast-explorer-layout {
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 35px;
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* SELECTOR */
+
+.coast-explorer-options {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #cbd6d2;
+}
+
+.coast-explorer-option {
+  display: grid;
+  grid-template-columns: 38px 1fr 20px;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding: 25px 15px;
+  border: 0;
+  border-bottom: 1px solid #cbd6d2;
+  background: transparent;
+  color: var(--coast-dark);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    padding 0.25s ease;
+}
+
+.coast-explorer-option:hover {
+  background: #edf3f0;
+  padding-left: 22px;
+}
+
+.coast-explorer-option.active {
+  background: #e5efeb;
+  border-left: 3px solid var(--coast);
+  padding-left: 18px;
+}
+
+.explorer-option-number {
+  color: var(--coast);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.explorer-option-content {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.explorer-option-content strong {
+  font: 400 1.25rem/1.25 var(--font-title);
+}
+
+.explorer-option-content small {
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.explorer-option-arrow {
+  color: var(--coast);
+  font-size: 1.2rem;
+  transition: transform 0.25s ease;
+}
+
+.coast-explorer-option.active .explorer-option-arrow {
+  transform: translateX(5px);
+}
+
+/* PANEL DE CONTENIDO */
+
+.coast-explorer-detail {
+  min-width: 0;
+  background: #f5f2e9;
+  overflow: hidden;
+}
+
+.coast-explorer-image {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  background: #dce9e7;
+}
+
+.coast-explorer-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    opacity 0.25s ease,
+    transform 0.7s ease;
+}
+
+.coast-explorer-detail:hover .coast-explorer-image img {
+  transform: scale(1.035);
+}
+
+.coast-explorer-copy {
+  padding: clamp(28px, 4vw, 48px);
+}
+
+.coast-explorer-copy .eyebrow {
+  color: var(--coast);
+}
+
+.coast-explorer-copy h3 {
+  font: 400 clamp(2rem, 3.5vw, 3rem)/1.1 var(--font-title);
+  margin: 17px 0 20px;
+}
+
+.coast-explorer-copy p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.coast-explorer-copy p + p {
+  margin-top: 14px;
+}
+
+.coast-explorer-copy .coast-place-tag {
+  margin-top: 22px;
+}
+
+.coast-explorer-note {
+  max-width: 1180px;
+  margin: 25px auto 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.coast-explorer-note span {
+  color: var(--coast);
+  margin-right: 6px;
+}
+
+/* TRANSICIÓN DE CONTENIDO */
+
+.coast-explorer-image img.changing {
+  opacity: 0.35;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .coast-explorer-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .coast-explorer-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 0;
+    gap: 8px;
+  }
+
+  .coast-explorer-option {
+    grid-template-columns: 1fr 20px;
+    gap: 8px;
+    padding: 18px 13px;
+    border: 1px solid #cbd6d2;
+  }
+
+  .coast-explorer-option:hover,
+  .coast-explorer-option.active {
+    padding: 18px 13px;
+  }
+
+  .explorer-option-number {
+    grid-column: 1 / -1;
+  }
+
+  .explorer-option-content strong {
+    font-size: 1.05rem;
+  }
+
+  .explorer-option-arrow {
+    align-self: center;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .coast-explorer-options {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .coast-explorer-option {
+    grid-template-columns: 32px 1fr 20px;
+    padding: 18px 14px;
+  }
+
+  .explorer-option-number {
+    grid-column: auto;
+  }
+
+  .coast-explorer-option:hover,
+  .coast-explorer-option.active {
+    padding: 18px 14px;
+  }
+
+  .coast-explorer-image {
+    height: 260px;
+  }
+
+  .coast-explorer-copy {
+    padding: 28px 23px 32px;
+  }
+
+}
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .coast-explorer-option,
+  .explorer-option-arrow,
+  .coast-explorer-image img {
+    transition: none !important;
+  }
+
+  .coast-explorer-detail:hover .coast-explorer-image img {
+    transform: none;
+  }
+
+}
+

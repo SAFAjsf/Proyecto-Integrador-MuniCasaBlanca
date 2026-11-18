@@ -1,0 +1,684 @@
+﻿{% load static %}
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta
+    name="description"
+    content="Consulta el pronóstico del tiempo en Casablanca y Quintay y prepara tu próxima visita."
+  />
+
+  <meta name="theme-color" content="#303a2c" />
+
+  <title>Clima | Casablanca Chile</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/clima.css' %}?v=3" />
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="{% url 'inicio' %}"
+      aria-label="Casablanca, inicio"
+    >
+      CASABLANCA<span>CHILE</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Abrir menú"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      id="main-nav"
+      class="main-nav"
+      aria-label="Navegación principal"
+    >
+
+      <a
+        href="{% url 'vinas' %}"
+        data-i18n="nav.wines"
+      >
+        Valle y viñas
+      </a>
+
+      <a
+        href="{% url 'atractivos' %}"
+        data-i18n="nav.attractions"
+      >
+        Atractivos
+      </a>
+
+      <a
+        href="{% url 'historia' %}"
+        data-i18n="nav.history"
+      >
+        Historia
+      </a>
+
+      <a
+        href="{% url 'quintay' %}"
+        data-i18n="nav.quintay"
+      >
+        Quintay
+      </a>
+
+      <a
+        href="{% url 'como_llegar' %}"
+        data-i18n="nav.directions"
+      >
+        Cómo llegar
+      </a>
+
+      <a
+        href="{% url 'noticias' %}"
+        data-i18n="nav.news"
+      >
+        Noticias
+      </a>
+
+      <a
+        href="{% url 'clima' %}"
+        data-clima="navigationClimate"
+        aria-current="page"
+      >
+        Clima
+      </a>
+
+      <!-- SELECTOR DE IDIOMA -->
+
+      <div class="language-control">
+
+        <label
+          for="language-switcher"
+          data-i18n="language.label"
+        >
+          Idioma
+        </label>
+
+        <select
+          id="language-switcher"
+          data-language-switcher
+          aria-label="Seleccionar idioma"
+        >
+
+          <option
+            value="es"
+            data-i18n="language.spanish"
+          >
+            Español
+          </option>
+
+          <option
+            value="en"
+            data-i18n="language.english"
+          >
+            English
+          </option>
+
+          <option
+            value="pt"
+            data-i18n="language.portuguese"
+          >
+            Português
+          </option>
+
+          <option
+            value="fr"
+            data-i18n="language.french"
+          >
+            Français
+          </option>
+
+        </select>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+
+  <main class="weather-page">
+
+    <!-- PORTADA -->
+
+    <section class="weather-hero">
+
+      <div class="weather-hero-content">
+
+        <span
+          class="eyebrow light"
+          data-clima="heroEyebrow"
+        >
+          PREPARA TU VISITA
+        </span>
+
+        <h1>
+          <span data-clima="heroTitle">
+            El tiempo también
+          </span>
+
+          <em data-clima="heroTitleEmphasis">
+            forma parte del viaje.
+          </em>
+        </h1>
+
+        <p data-clima="heroDescription">
+          Consulta las condiciones meteorológicas de Casablanca y Quintay
+          y descubre cómo prepararte para recorrer el territorio.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- PRONÓSTICO PRINCIPAL -->
+
+    <section class="weather-main-section">
+
+      <div class="weather-section-heading">
+
+        <span
+          class="eyebrow"
+          data-clima="forecastEyebrow"
+        >
+          INFORMACIÓN METEOROLÓGICA
+        </span>
+
+        <h2 data-clima="forecastTitle">
+          ¿Cómo estará el tiempo?
+        </h2>
+
+        <p data-clima="forecastDescription">
+          Selecciona una localidad para consultar su pronóstico.
+        </p>
+
+      </div>
+
+      <!-- SELECTOR DE LOCALIDAD -->
+
+      <div class="weather-location-selector">
+
+        <button
+          class="weather-location-button is-active"
+          type="button"
+          data-weather-location="casablanca"
+          aria-pressed="true"
+        >
+          <span aria-hidden="true">🌿</span>
+          Casablanca
+        </button>
+
+        <button
+          class="weather-location-button"
+          type="button"
+          data-weather-location="quintay"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">🌊</span>
+          Quintay
+        </button>
+
+      </div>
+
+      <!-- ESTADO DE CARGA -->
+
+      <div
+        class="weather-status"
+        id="weather-status"
+        role="status"
+        aria-live="polite"
+        data-clima="loading"
+      >
+        Consultando información meteorológica...
+      </div>
+
+      <!-- CONTENIDO DEL CLIMA -->
+
+      <div id="weather-content" hidden>
+
+        <!-- CONDICIONES ACTUALES -->
+
+        <div class="weather-current-card">
+
+          <div class="weather-current-main">
+
+            <div>
+
+              <span
+                class="weather-current-location"
+                id="weather-location-name"
+              >
+                Casablanca
+              </span>
+
+              <span
+                class="weather-current-date"
+                id="weather-current-date"
+              ></span>
+
+            </div>
+
+            <div class="weather-current-condition">
+
+              <span
+                class="weather-current-icon"
+                id="weather-current-icon"
+                aria-hidden="true"
+              >
+                ☀️
+              </span>
+
+              <div>
+
+                <strong id="weather-current-temperature">
+                  --°
+                </strong>
+
+                <span id="weather-current-description">
+                  Cargando...
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- TEMPERATURAS -->
+
+          <div class="weather-current-temperatures">
+
+            <span>
+
+              <span data-clima="minimum">
+                Mínima
+              </span>
+
+              <strong id="weather-current-min">
+                --°
+              </strong>
+
+            </span>
+
+            <span>
+
+              <span data-clima="maximum">
+                Máxima
+              </span>
+
+              <strong id="weather-current-max">
+                --°
+              </strong>
+
+            </span>
+
+            <span>
+
+              <span data-clima="feelsLike">
+                Sensación térmica
+              </span>
+
+              <strong id="weather-feels-like">
+                --°
+              </strong>
+
+            </span>
+
+          </div>
+
+        </div>
+
+        <!-- INDICADORES METEOROLÓGICOS -->
+
+        <div class="weather-metrics">
+
+          <article class="weather-metric">
+
+            <span class="weather-metric-icon">
+              💧
+            </span>
+
+            <span data-clima="rainChance">
+              Probabilidad de lluvia
+            </span>
+
+            <strong id="weather-rain">
+              --%
+            </strong>
+
+          </article>
+
+          <article class="weather-metric">
+
+            <span class="weather-metric-icon">
+              ☀️
+            </span>
+
+            <span data-clima="uvIndex">
+              Índice UV del día
+            </span>
+
+            <strong id="weather-uv">
+              --
+            </strong>
+
+          </article>
+
+          <article class="weather-metric">
+
+            <span class="weather-metric-icon">
+              🌬️
+            </span>
+
+            <span data-clima="wind">
+              Viento actual
+            </span>
+
+            <strong id="weather-wind">
+              -- km/h
+            </strong>
+
+          </article>
+
+          <article class="weather-metric">
+
+            <span class="weather-metric-icon">
+              💦
+            </span>
+
+            <span data-clima="humidity">
+              Humedad
+            </span>
+
+            <strong id="weather-humidity">
+              --%
+            </strong>
+
+          </article>
+
+        </div>
+
+        <!-- PRONÓSTICO DE TRES DÍAS -->
+
+        <section class="weather-forecast-section">
+
+          <div class="weather-subheading">
+
+            <div>
+
+              <span
+                class="eyebrow"
+                data-clima="nextDaysEyebrow"
+              >
+                PRÓXIMOS DÍAS
+              </span>
+
+              <h3 data-clima="nextDaysTitle">
+                Pronóstico de tres días
+              </h3>
+
+            </div>
+
+          </div>
+
+          <div
+            class="weather-forecast-grid"
+            id="weather-forecast"
+          ></div>
+
+        </section>
+
+        <!-- RECOMENDACIONES TURÍSTICAS -->
+
+        <section class="weather-recommendations">
+
+          <div class="weather-recommendations-heading">
+
+            <span
+              class="eyebrow"
+              data-clima="tipsEyebrow"
+            >
+              CONSEJOS PARA VIAJAR
+            </span>
+
+            <h3 data-clima="tipsTitle">
+              Recomendaciones para tu visita
+            </h3>
+
+            <p data-clima="tipsDescription">
+              Consejos basados en las condiciones meteorológicas previstas.
+            </p>
+
+          </div>
+
+          <div
+            class="weather-tips-grid"
+            id="weather-tips"
+          ></div>
+
+        </section>
+
+      </div>
+
+      <!-- ESTADO DE ERROR -->
+
+      <div
+        class="weather-error"
+        id="weather-error"
+        hidden
+        role="alert"
+      >
+
+        <span aria-hidden="true">
+          ⚠️
+        </span>
+
+        <p data-clima="error">
+          No fue posible obtener el pronóstico meteorológico.
+          Intenta nuevamente más tarde.
+        </p>
+
+        <button
+          type="button"
+          id="weather-retry"
+          class="weather-retry-button"
+          data-clima="retry"
+        >
+          Intentar nuevamente
+        </button>
+
+      </div>
+
+      <!-- ACTUALIZACIÓN Y ATRIBUCIÓN -->
+
+      <div class="weather-update-info">
+
+        <span id="weather-updated"></span>
+
+        <span>
+
+          <span data-clima="attribution">
+            Datos meteorológicos:
+          </span>
+
+          <a
+            href="https://www.weatherapi.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WeatherAPI.com
+          </a>
+
+        </span>
+
+      </div>
+
+    </section>
+
+    <!-- SECCIÓN DE CIERRE -->
+
+    <section class="weather-closing">
+
+      <span
+        class="eyebrow light"
+        data-clima="closingEyebrow"
+      >
+        CASABLANCA · VALLE Y MAR
+      </span>
+
+      <h2>
+
+        <span data-clima="closingTitle">
+          Cada estación tiene
+        </span>
+
+        <em data-clima="closingTitleEmphasis">
+          algo que descubrir.
+        </em>
+
+      </h2>
+
+      <p data-clima="closingDescription">
+        Planifica tu visita y conoce los paisajes, la historia y las
+        experiencias que ofrece Casablanca.
+      </p>
+
+      <a
+        class="button button-light"
+        href="{% url 'inicio' %}"
+      >
+
+        <span data-clima="backHome">
+          Volver al inicio
+        </span>
+
+        <span aria-hidden="true">
+          →
+        </span>
+
+      </a>
+
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+
+  <footer class="site-footer">
+
+    <div class="footer-top">
+
+      <a
+        class="brand brand-footer"
+        href="{% url 'inicio' %}"
+      >
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <p data-i18n="footer.description">
+        Historias entre el valle y el mar.
+      </p>
+
+      <nav aria-label="Navegación del pie">
+
+        <a
+          href="{% url 'vinas' %}"
+          data-i18n="nav.wines"
+        >
+          Valle y viñas
+        </a>
+
+        <a
+          href="{% url 'atractivos' %}"
+          data-i18n="nav.attractions"
+        >
+          Atractivos
+        </a>
+
+        <a
+          href="{% url 'historia' %}"
+          data-i18n="nav.history"
+        >
+          Historia
+        </a>
+
+        <a
+          href="{% url 'quintay' %}"
+          data-i18n="nav.quintay"
+        >
+          Quintay
+        </a>
+
+        <a
+          href="{% url 'como_llegar' %}"
+          data-i18n="nav.directions"
+        >
+          Cómo llegar
+        </a>
+
+        <a
+          href="{% url 'noticias' %}"
+          data-i18n="nav.news"
+        >
+          Noticias
+        </a>
+
+        <a
+          href="{% url 'clima' %}"
+          data-clima="navigationClimate"
+        >
+          Clima
+        </a>
+
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span data-i18n="footer.platform">
+        Plataforma turística de Casablanca
+      </span>
+
+      <span data-i18n="footer.notice">
+        Contenido informativo sujeto a actualización.
+      </span>
+
+    </div>
+
+  </footer>
+
+  <!-- SCRIPTS -->
+
+  <script src="{% static 'js/translations.js' %}?v=2"></script>
+  <script src="{% static 'js/i18n.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/clima.js' %}?v=3"></script>
+
+</body>
+</html>

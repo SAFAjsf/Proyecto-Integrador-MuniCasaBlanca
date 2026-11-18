@@ -1,0 +1,75 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Panel municipal{% endblock %} | Casablanca</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/gestion.css' %}">
+</head>
+
+<body class="g-body">
+
+  <header class="site-header g-topbar">
+
+    <a class="brand" href="{% url 'gestion_dashboard' %}">
+      CASABLANCA<span>CHILE</span>
+    </a>
+
+    {% with actual=request.resolver_match.url_name %}
+      <nav class="g-nav" aria-label="Panel municipal">
+
+        <a href="{% url 'gestion_dashboard' %}"
+           {% if actual == 'gestion_dashboard' %}aria-current="page"{% endif %}>
+          Resumen
+        </a>
+
+        <a href="{% url 'gestion_atractivos' %}"
+           {% if actual == 'gestion_atractivos' or actual == 'atractivo_crear' or actual == 'atractivo_editar' or actual == 'atractivo_eliminar' %}aria-current="page"{% endif %}>
+          Atractivos
+        </a>
+
+        {% if user.is_superuser %}
+          <a href="{% url 'gestion_usuarios' %}"
+             {% if actual == 'gestion_usuarios' or actual == 'usuario_crear' or actual == 'usuario_editar' or actual == 'usuario_eliminar' %}aria-current="page"{% endif %}>
+            Usuarios
+          </a>
+        {% endif %}
+
+        <a href="{% url 'inicio' %}">Ver sitio</a>
+
+      </nav>
+    {% endwith %}
+
+    <div class="g-session">
+      <span>{{ user.get_full_name|default:user.username }}</span>
+
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="g-logout">Salir</button>
+      </form>
+    </div>
+
+  </header>
+
+  <main class="g-main">
+
+    {% for message in messages %}
+      <div class="g-alert g-alert--{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+
+  </main>
+
+</body>
+</html>

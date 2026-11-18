@@ -17,8 +17,8 @@ turísticos mediante un flujo editorial controlado.
 ## Equipo de desarrollo
 
 - Javier Ignacio Sepúlveda Flores.
-- Thomas Olivares.
-- Mauricio Garrido.
+- Thomas Olivares Cardenas.
+- Mauricio Garrido Contreras.
 
 ## Funcionalidades
 
@@ -105,7 +105,6 @@ Proyecto-Integrador-MuniCasaBlanca/
 ```powershell
 git clone https://github.com/SAFAjsf/Proyecto-Integrador-MuniCasaBlanca.git
 cd Proyecto-Integrador-MuniCasaBlanca
-git switch integracion-final
 cd backend
 ```
 

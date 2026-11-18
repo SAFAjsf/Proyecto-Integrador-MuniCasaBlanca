@@ -1,0 +1,10 @@
+{% extends "gestion/base_gestion.html" %}
+{% block content %}
+  <h1>Dashboard</h1>
+  <p>Total de atractivos: {{ total }}</p>
+  <p>Atractivos publicados: {{ publicados }}</p>
+
+  <a class="button button-dark" href="{% url 'gestion_atractivos' %}">
+    Gestionar atractivos
+  </a>
+{% endblock %}

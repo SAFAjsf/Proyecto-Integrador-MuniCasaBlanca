@@ -1,0 +1,71 @@
+<dialog
+  id="atractivo-{{ atractivo.pk }}"
+  class="attraction-dialog"
+  aria-labelledby="atractivo-{{ atractivo.pk }}-titulo"
+>
+  <div class="attraction-dialog-content">
+
+    <button
+      type="button"
+      class="attraction-dialog-close"
+      data-dialog-close
+      aria-label="Cerrar"
+    >×</button>
+
+    <div class="attraction-dialog-image">
+      {% with portada=atractivo.imagen_portada %}
+        {% if portada %}
+          <img
+            src="{{ portada.imagen.url }}"
+            alt="{{ portada.texto_alternativo|default:atractivo.nombre }}"
+          />
+        {% endif %}
+      {% endwith %}
+
+      <span class="attraction-dialog-number">{{ forloop.counter|stringformat:"02d" }}</span>
+    </div>
+
+    <div class="attraction-dialog-body">
+
+      <span class="eyebrow">{{ atractivo.categoria.nombre|upper }}</span>
+
+      <h2 id="atractivo-{{ atractivo.pk }}-titulo">{{ atractivo.nombre }}</h2>
+
+      <p class="attraction-dialog-intro">{{ atractivo.descripcion }}</p>
+
+      {% if atractivo.secciones.all %}
+        <div class="attraction-dialog-details">
+          {% for seccion in atractivo.secciones.all %}
+            <section>
+              <h3>{{ seccion.titulo }}</h3>
+              <p>{{ seccion.contenido|linebreaksbr }}</p>
+            </section>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if atractivo.recomendaciones.all %}
+        <div class="attraction-dialog-rules">
+          <h3>Recomendaciones</h3>
+          <ol>
+            {% for recomendacion in atractivo.recomendaciones.all %}
+              <li>{{ recomendacion.texto }}</li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% endif %}
+
+      {% if atractivo.direccion %}
+        <div class="attraction-dialog-links">
+          <a
+            class="secondary"
+            href="https://www.google.com/maps/search/?api=1&query={{ atractivo.direccion|urlencode }}"
+            target="_blank"
+            rel="noopener"
+          >Cómo llegar</a>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</dialog>

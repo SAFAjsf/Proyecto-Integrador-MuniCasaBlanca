@@ -1,0 +1,76 @@
+{% extends "gestion/base_gestion.html" %}
+
+{% block content %}
+
+<h1>Gestión de atractivos turísticos</h1>
+
+<p>
+    Administra el contenido y sus versiones editoriales.
+</p>
+
+<a href="{% url 'atractivo_crear' %}">
+    + Nuevo atractivo
+</a>
+
+<form method="get">
+    <input
+        type="search"
+        name="q"
+        value="{{ busqueda }}"
+        placeholder="Buscar atractivo"
+    >
+
+    <button type="submit">Buscar</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Zona</th>
+            <th>Publicación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for atractivo in atractivos %}
+
+        <tr>
+            <td>{{ atractivo.nombre }}</td>
+
+            <td>{{ atractivo.categoria.nombre }}</td>
+
+            <td>{{ atractivo.get_zona_display }}</td>
+
+            <td>
+                {% if atractivo.publicado %}
+                    Publicado
+                {% else %}
+                    No publicado
+                {% endif %}
+            </td>
+
+            <td>
+                <a href="{% url 'atractivo_editar' atractivo.pk %}">
+                    Gestionar versiones
+                </a>
+            </td>
+        </tr>
+
+        {% empty %}
+
+        <tr>
+            <td colspan="5">
+                No hay atractivos registrados.
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}
