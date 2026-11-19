@@ -1,12 +1,22 @@
-<div class="g-field">
-  {{ campo.label_tag }}
-  {{ campo }}
+{% load formularios %}
+<div class="g-field{% if campo.errors %} g-field--error{% endif %}">
 
-  {% if campo.help_text %}
-    <span class="g-help">{{ campo.help_text }}</span>
+  <label class="g-label" for="{{ campo.id_for_label }}">
+    {{ campo.label }}{% if campo.field.required %}<span class="g-req" aria-hidden="true"> *</span>{% endif %}
+  </label>
+
+  {% widget_accesible campo %}
+
+  {% if ayuda or campo.help_text %}
+    <p class="g-help" id="ayuda-{{ campo.auto_id }}">{% if ayuda %}{{ ayuda }}{% else %}{{ campo.help_text|safe }}{% endif %}</p>
   {% endif %}
 
-  {% for error in campo.errors %}
-    <span class="g-error">{{ error }}</span>
-  {% endfor %}
+  {% if campo.errors %}
+    <div class="g-errors" id="error-{{ campo.auto_id }}">
+      {% for error in campo.errors %}
+        <p class="g-error">{{ error }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
 </div>

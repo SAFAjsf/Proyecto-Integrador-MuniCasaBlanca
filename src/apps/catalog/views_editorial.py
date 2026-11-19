@@ -301,12 +301,13 @@ def version_detalle(request, version_id):
         pk=version_id,
     )
 
+    # Administradores y superusuarios pueden publicar directamente,
+    # incluida su propia versión. Los editores no tienen este permiso.
     puede_aprobar = (
         es_administrador(request.user)
         and request.user.has_perm(
             "catalog.aprobar_version"
         )
-        and version.creado_por_id != request.user.pk
     )
 
     puede_observar = (

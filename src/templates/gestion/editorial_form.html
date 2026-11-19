@@ -1,89 +1,266 @@
 {% extends "gestion/base_gestion.html" %}
+{% load formularios %}
+
+{% block titulo %}Editar contenido{% endblock %}
 
 {% block content %}
 
-<h1>Editar versión {{ version.numero_version }}</h1>
+  <nav class="g-breadcrumb" aria-label="Ruta de navegación">
+    <a href="{% url 'gestion_atractivos' %}">Atractivos</a>
+    <span aria-hidden="true">/</span>
+    <a href="{% url 'atractivo_editar' version.atractivo_id %}">Historial</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Editar versión</span>
+  </nav>
 
-<p>
-    Estado: {{ version.get_estado_display }}
-</p>
+  <div class="g-page-head">
+    <div>
+      <div class="g-title-row">
+        <h1>Editar contenido</h1>
+        <span class="g-badge g-badge--{{ version.estado }}">{{ version.get_estado_display }}</span>
+      </div>
+      <p>{{ version.nombre }} · Versión {{ version.numero_version }}</p>
+    </div>
 
-{% if version.observaciones %}
+    <a href="{% url 'version_detalle' version.pk %}">Ver ficha de la versión</a>
+  </div>
 
-<section>
+  <ol class="g-steps" aria-label="Pasos para publicar un atractivo">
+    <li class="g-step is-done">
+      <span class="g-step-num" aria-hidden="true">✓</span>
+      Datos generales
+    </li>
+    <li class="g-step is-current" aria-current="step">
+      <span class="g-step-num" aria-hidden="true">2</span>
+      Contenido y fotografías
+    </li>
+    <li class="g-step">
+      <span class="g-step-num" aria-hidden="true">3</span>
+      Revisión y publicación
+    </li>
+  </ol>
 
-    <h2>Observaciones del administrador</h2>
+  {% if version.observaciones %}
+    <div class="g-note g-note--warning">
+      <div>
+        <strong>Correcciones solicitadas por el administrador</strong>
+        {{ version.observaciones|linebreaksbr }}
+      </div>
+    </div>
+  {% endif %}
 
-    <p>{{ version.observaciones|linebreaksbr }}</p>
+  {% resumen_errores form imagenes secciones recomendaciones %}
 
-</section>
-
-{% endif %}
-
-<form method="post" enctype="multipart/form-data">
-
+  <form method="post" enctype="multipart/form-data" class="g-form-stack">
     {% csrf_token %}
 
-    <h2>Información general</h2>
+    <div class="g-card">
 
-    {{ form.as_p }}
+      <!-- ============================== DATOS ============================== -->
 
-    <h2>Fotografías</h2>
+      <section class="g-section" aria-labelledby="sec-datos">
 
-    {{ imagenes.management_form }}
+        <div class="g-section-head">
+          <h2 id="sec-datos">Datos del atractivo</h2>
+          <p>Es lo que verá el visitante en la tarjeta y en la ficha.</p>
+        </div>
 
-    {{ imagenes.non_form_errors }}
+        <div class="g-section-body">
 
-    {% for imagen in imagenes %}
+          <div class="g-grid-2">
+            {% include "gestion/_campo.html" with campo=form.nombre %}
+            {% include "gestion/_campo.html" with campo=form.categoria %}
+          </div>
 
-        <fieldset>
+          <div class="g-grid-2">
+            {% include "gestion/_campo.html" with campo=form.zona ayuda="Define si aparece en la grilla de Casablanca o en la de Quintay." %}
+            {% include "gestion/_campo.html" with campo=form.direccion ayuda="Opcional. Si la completas, la ficha mostrará el botón «Cómo llegar»." %}
+          </div>
 
-            {{ imagen.as_p }}
+          {% include "gestion/_campo.html" with campo=form.descripcion ayuda="Dos o tres frases claras: qué es, por qué visitarlo y qué se puede hacer." %}
 
-        </fieldset>
+        </div>
+      </section>
 
-    {% endfor %}
+      <!-- ============================ FOTOGRAFÍAS ============================ -->
 
-    <h2>Secciones informativas</h2>
+      <section class="g-section" aria-labelledby="sec-fotografias">
 
-    {{ secciones.management_form }}
+        <div class="g-section-head">
+          <h2 id="sec-fotografias">Fotografías</h2>
+          <p>Marca una sola como portada. Si no marcas ninguna, se usará la de menor orden. Las filas vacías se ignoran; para agregar más fotografías, guarda y vuelve a editar.</p>
+        </div>
 
-    {{ secciones.non_form_errors }}
+        <div class="g-section-body">
 
-    {% for seccion in secciones %}
+          {{ imagenes.management_form }}
 
-        <fieldset>
+          {% if imagenes.non_form_errors %}
+            <div class="g-alert g-alert--error">{{ imagenes.non_form_errors }}</div>
+          {% endif %}
 
-            {{ seccion.as_p }}
+          {% for imagen in imagenes %}
 
-        </fieldset>
+            <div class="g-item{% if imagen.errors %} g-item--error{% endif %}">
 
-    {% endfor %}
+              <div class="g-item-head">
+                <h3>Fotografía {{ forloop.counter }}</h3>
 
-    <h2>Recomendaciones</h2>
+                {% if imagen.instance.pk %}
+                  <span class="g-badge g-badge--aprobada">Guardada</span>
+                {% else %}
+                  <span class="g-badge g-badge--borrador">Nueva</span>
+                {% endif %}
+              </div>
 
-    {{ recomendaciones.management_form }}
+              <div class="g-item-body">
 
-    {{ recomendaciones.non_form_errors }}
+                {{ imagen.id }}
 
-    {% for recomendacion in recomendaciones %}
+                {% if imagen.instance.pk and imagen.instance.imagen %}
+                  <figure class="g-thumb">
+                    <img
+                      src="{{ imagen.instance.imagen.url }}"
+                      alt="{{ imagen.instance.texto_alternativo|default:'Vista previa de la fotografía' }}"
+                    >
+                    <figcaption>{{ imagen.instance.imagen.name }}</figcaption>
+                  </figure>
+                {% endif %}
 
-        <fieldset>
+                <div class="g-grid-2">
+                  {% include "gestion/_campo.html" with campo=imagen.imagen %}
+                  {% include "gestion/_campo.html" with campo=imagen.texto_alternativo ayuda="Describe la imagen para quienes usan lector de pantalla." %}
+                </div>
 
-            {{ recomendacion.as_p }}
+                <div class="g-item-flags">
+                  {% include "gestion/_campo.html" with campo=imagen.orden ayuda="Menor número, primero." %}
+                  {% include "gestion/_casilla.html" with campo=imagen.es_portada etiqueta="Usar como portada" ayuda="Imagen principal de la tarjeta y de la ficha." %}
+                  {% include "gestion/_casilla.html" with campo=imagen.DELETE etiqueta="Eliminar esta fotografía" peligro=True %}
+                </div>
 
-        </fieldset>
+              </div>
+            </div>
 
-    {% endfor %}
+          {% endfor %}
 
-    <button type="submit">
-        Guardar versión
-    </button>
+        </div>
+      </section>
 
-    <a href="{% url 'version_detalle' version.pk %}">
-        Cancelar
-    </a>
+      <!-- ============================= SECCIONES ============================= -->
 
-</form>
+      <section class="g-section" aria-labelledby="sec-secciones">
+
+        <div class="g-section-head">
+          <h2 id="sec-secciones">Secciones informativas</h2>
+          <p>Bloques con subtítulo y texto dentro de la ficha, por ejemplo «Historia» o «Qué encontrarás». Las filas vacías se ignoran.</p>
+        </div>
+
+        <div class="g-section-body">
+
+          {{ secciones.management_form }}
+
+          {% if secciones.non_form_errors %}
+            <div class="g-alert g-alert--error">{{ secciones.non_form_errors }}</div>
+          {% endif %}
+
+          {% for seccion in secciones %}
+
+            <div class="g-item{% if seccion.errors %} g-item--error{% endif %}">
+
+              <div class="g-item-head">
+                <h3>Sección {{ forloop.counter }}</h3>
+
+                {% if seccion.instance.pk %}
+                  <span class="g-badge g-badge--aprobada">Guardada</span>
+                {% else %}
+                  <span class="g-badge g-badge--borrador">Nueva</span>
+                {% endif %}
+              </div>
+
+              <div class="g-item-body">
+
+                {{ seccion.id }}
+
+                <div class="g-grid-2">
+                  {% include "gestion/_campo.html" with campo=seccion.titulo %}
+                  {% include "gestion/_campo.html" with campo=seccion.orden ayuda="Menor número, primero." %}
+                </div>
+
+                {% include "gestion/_campo.html" with campo=seccion.contenido %}
+
+                <div class="g-item-flags">
+                  {% include "gestion/_casilla.html" with campo=seccion.DELETE etiqueta="Eliminar esta sección" peligro=True %}
+                </div>
+
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </section>
+
+      <!-- =========================== RECOMENDACIONES =========================== -->
+
+      <section class="g-section" aria-labelledby="sec-recomendaciones">
+
+        <div class="g-section-head">
+          <h2 id="sec-recomendaciones">Recomendaciones</h2>
+          <p>Consejos breves que se muestran como lista numerada: qué llevar, cuándo ir, qué evitar. Las filas vacías se ignoran.</p>
+        </div>
+
+        <div class="g-section-body">
+
+          {{ recomendaciones.management_form }}
+
+          {% if recomendaciones.non_form_errors %}
+            <div class="g-alert g-alert--error">{{ recomendaciones.non_form_errors }}</div>
+          {% endif %}
+
+          {% for recomendacion in recomendaciones %}
+
+            <div class="g-item{% if recomendacion.errors %} g-item--error{% endif %}">
+
+              <div class="g-item-head">
+                <h3>Recomendación {{ forloop.counter }}</h3>
+
+                {% if recomendacion.instance.pk %}
+                  <span class="g-badge g-badge--aprobada">Guardada</span>
+                {% else %}
+                  <span class="g-badge g-badge--borrador">Nueva</span>
+                {% endif %}
+              </div>
+
+              <div class="g-item-body">
+
+                {{ recomendacion.id }}
+
+                {% include "gestion/_campo.html" with campo=recomendacion.texto ayuda="Una sola idea por recomendación." %}
+
+                <div class="g-item-flags">
+                  {% include "gestion/_campo.html" with campo=recomendacion.orden ayuda="Menor número, primero." %}
+                  {% include "gestion/_casilla.html" with campo=recomendacion.DELETE etiqueta="Eliminar esta recomendación" peligro=True %}
+                </div>
+
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </section>
+
+    </div>
+
+    <div class="g-actions-bar">
+      <button type="submit" class="button button-dark">Guardar cambios</button>
+      <a class="g-link" href="{% url 'version_detalle' version.pk %}">Cancelar</a>
+      <p class="g-hint">
+        Los cambios se guardan como borrador. Los administradores pueden publicarla directamente desde la ficha;
+        el resto del equipo debe enviarla a revisión.
+      </p>
+    </div>
+
+  </form>
 
 {% endblock %}

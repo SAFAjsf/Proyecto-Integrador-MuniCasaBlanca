@@ -1,0 +1,24 @@
+{% load formularios %}
+<div class="g-check{% if peligro %} g-check--danger{% endif %}{% if campo.errors %} g-check--error{% endif %}">
+
+  <span class="g-check-control">
+    {% widget_accesible campo %}
+  </span>
+
+  <span class="g-check-text">
+
+    <label class="g-check-label" for="{{ campo.id_for_label }}">
+      {{ etiqueta|default:campo.label }}
+    </label>
+
+    {% if ayuda or campo.help_text %}
+      <span class="g-help" id="ayuda-{{ campo.auto_id }}">{% if ayuda %}{{ ayuda }}{% else %}{{ campo.help_text|safe }}{% endif %}</span>
+    {% endif %}
+
+    {% for error in campo.errors %}
+      <span class="g-error">{{ error }}</span>
+    {% endfor %}
+
+  </span>
+
+</div>

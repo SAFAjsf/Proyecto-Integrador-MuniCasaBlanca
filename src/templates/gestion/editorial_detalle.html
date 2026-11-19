@@ -1,163 +1,341 @@
 {% extends "gestion/base_gestion.html" %}
+{% load formularios %}
+
+{% block titulo %}{{ version.nombre }}{% endblock %}
 
 {% block content %}
 
-<h1>{{ version.nombre }}</h1>
+  <nav class="g-breadcrumb" aria-label="Ruta de navegación">
+    <a href="{% url 'gestion_atractivos' %}">Atractivos</a>
+    <span aria-hidden="true">/</span>
+    <a href="{% url 'atractivo_editar' version.atractivo_id %}">{{ version.atractivo.nombre }}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Versión {{ version.numero_version }}</span>
+  </nav>
 
-<p>
-    Versión {{ version.numero_version }}
-    | {{ version.get_estado_display }}
-</p>
+  <div class="g-page-head">
+    <div>
+      <div class="g-title-row">
+        <h1>{{ version.nombre }}</h1>
 
-{% if version.es_version_publicada %}
+        <span class="g-badge g-badge--{{ version.estado }}">{{ version.get_estado_display }}</span>
 
-<p>Esta es la versión pública actual.</p>
+        {% if version.es_version_publicada %}
+          <span class="g-badge g-badge--on">En el sitio</span>
+        {% endif %}
+      </div>
 
-{% endif %}
+      <p>Versión {{ version.numero_version }} de «{{ version.atractivo.nombre }}».</p>
+    </div>
 
-<p>Categoría: {{ version.categoria.nombre }}</p>
+    <a href="{% url 'atractivo_editar' version.atractivo_id %}">← Volver al historial</a>
+  </div>
 
-<p>Zona: {{ version.get_zona_display }}</p>
+  {% if version.es_version_publicada %}
+    <div class="g-note g-note--info">
+      <div>
+        <strong>Esta es la versión pública actual</strong>
+        Es la que se muestra hoy en el sitio público.
+      </div>
+    </div>
+  {% endif %}
 
-<p>Dirección: {{ version.direccion }}</p>
+  <!-- ============================== DATOS ============================== -->
 
-<p>{{ version.descripcion|linebreaksbr }}</p>
+  <div class="g-card g-dash-block">
 
-<h2>Fotografías</h2>
+    <div class="g-section-head">
+      <h2>Datos de la versión</h2>
+      <p>Así se verá la ficha si se aprueba y publica.</p>
+    </div>
 
-{% for imagen in version.imagenes.all %}
+    <div class="g-facts">
 
-<img
-    src="{{ imagen.imagen.url }}"
-    alt="{{ imagen.texto_alternativo }}"
-    width="250"
->
+      <div class="g-fact">
+        <span class="g-fact-label">Categoría</span>
+        <span class="g-fact-value">{{ version.categoria.nombre }}</span>
+      </div>
 
-{% endfor %}
+      <div class="g-fact">
+        <span class="g-fact-label">Zona</span>
+        <span class="g-fact-value">{{ version.get_zona_display }}</span>
+      </div>
 
-<h2>Secciones</h2>
+      <div class="g-fact">
+        <span class="g-fact-label">Dirección</span>
+        <span class="g-fact-value">{{ version.direccion|default:"—" }}</span>
+      </div>
 
-{% for seccion in version.secciones.all %}
+      <div class="g-fact">
+        <span class="g-fact-label">Creada por</span>
+        <span class="g-fact-value">{{ version.creado_por|default:"Importación inicial" }}</span>
+      </div>
 
-<h3>{{ seccion.titulo }}</h3>
+      <div class="g-fact">
+        <span class="g-fact-label">Fecha de creación</span>
+        <span class="g-fact-value">{{ version.fecha_creacion|date:"d/m/Y H:i" }}</span>
+      </div>
 
-<p>{{ seccion.contenido|linebreaksbr }}</p>
+      {% if version.revisado_por %}
+        <div class="g-fact">
+          <span class="g-fact-label">Revisada por</span>
+          <span class="g-fact-value">
+            {{ version.revisado_por.get_full_name|default:version.revisado_por.username }}
+            {% if version.fecha_revision %}
+              <span class="g-fact-sub">{{ version.fecha_revision|date:"d/m/Y H:i" }}</span>
+            {% endif %}
+          </span>
+        </div>
+      {% endif %}
 
-{% endfor %}
+    </div>
 
-<h2>Recomendaciones</h2>
+    <div class="g-section-body">
+      <p class="g-body-text">{{ version.descripcion|linebreaksbr }}</p>
+    </div>
 
-<ul>
+  </div>
 
-    {% for recomendacion in version.recomendaciones.all %}
+  <!-- ============================ FOTOGRAFÍAS ============================ -->
 
-    <li>{{ recomendacion.texto }}</li>
+  <div class="g-card g-dash-block">
 
-    {% endfor %}
+    <div class="g-section-head">
+      <h2>Fotografías</h2>
+      <p>{{ version.imagenes.count }} imagen{{ version.imagenes.count|pluralize:"es" }} en esta versión.</p>
+    </div>
 
-</ul>
+    {% if version.imagenes.all %}
 
-{% if version.observaciones %}
+      <div class="g-photo-grid">
 
-<h2>Observaciones</h2>
+        {% for imagen in version.imagenes.all %}
 
-<p>{{ version.observaciones|linebreaksbr }}</p>
+          <figure class="g-photo">
+            <img
+              src="{{ imagen.imagen.url }}"
+              alt="{{ imagen.texto_alternativo|default:version.nombre }}"
+            >
+            <figcaption>
+              {% if imagen.es_portada %}<span class="g-badge g-badge--on">Portada</span>{% endif %}
+              {{ imagen.texto_alternativo|default:"Sin descripción" }}
+            </figcaption>
+          </figure>
 
-{% endif %}
+        {% endfor %}
 
+      </div>
 
-{% if version.es_editable %}
+    {% else %}
 
-<a href="{% url 'version_editar' version.pk %}">
-    Editar versión
-</a>
-
-<form
-    method="post"
-    action="{% url 'version_enviar' version.pk %}"
->
-
-    {% csrf_token %}
-
-    <button type="submit">
-        Enviar a revisión
-    </button>
-
-</form>
-
-{% endif %}
-
-
-{% if version.estado == "pendiente" %}
-
-    {% if puede_aprobar %}
-
-    <form
-        method="post"
-        action="{% url 'version_aprobar' version.pk %}"
-    >
-
-        {% csrf_token %}
-
-        <button type="submit">
-            Aprobar y publicar
-        </button>
-
-    </form>
+      <div class="g-empty">
+        <p>Esta versión no tiene fotografías.</p>
+      </div>
 
     {% endif %}
 
+  </div>
 
-    {% if puede_observar %}
+  <!-- ============================= SECCIONES ============================= -->
 
-    <form
-        method="post"
-        action="{% url 'version_observar' version.pk %}"
-    >
+  <div class="g-card g-dash-block">
 
-        {% csrf_token %}
+    <div class="g-section-head">
+      <h2>Secciones informativas</h2>
+      <p>Bloques con subtítulo y texto que se muestran dentro de la ficha.</p>
+    </div>
 
-        {{ observacion_form.as_p }}
+    {% if version.secciones.all %}
 
-        <button type="submit">
-            Solicitar correcciones
-        </button>
+      <div class="g-content-blocks">
 
-    </form>
+        {% for seccion in version.secciones.all %}
+
+          <article class="g-content-block">
+            <h3>{{ seccion.titulo }}</h3>
+            <p>{{ seccion.contenido|linebreaksbr }}</p>
+          </article>
+
+        {% endfor %}
+
+      </div>
+
+    {% else %}
+
+      <div class="g-empty">
+        <p>Esta versión no tiene secciones informativas.</p>
+      </div>
 
     {% endif %}
 
-{% endif %}
+  </div>
 
+  <!-- =========================== RECOMENDACIONES =========================== -->
 
-<h2>Historial de acciones</h2>
+  <div class="g-card g-dash-block">
 
-<ul>
+    <div class="g-section-head">
+      <h2>Recomendaciones</h2>
+      <p>Consejos que se muestran como lista numerada en la ficha.</p>
+    </div>
 
-    {% for evento in version.eventos_editoriales.all %}
+    {% if version.recomendaciones.all %}
 
-    <li>
+      <ol class="g-reco-list">
 
-        {{ evento.fecha|date:"d/m/Y H:i" }}
+        {% for recomendacion in version.recomendaciones.all %}
 
-        — {{ evento.get_accion_display }}
+          <li>{{ recomendacion.texto }}</li>
 
-        — {{ evento.usuario|default:"Sistema" }}
+        {% endfor %}
 
-        — {{ evento.descripcion }}
+      </ol>
 
-    </li>
+    {% else %}
 
-    {% empty %}
+      <div class="g-empty">
+        <p>Esta versión no tiene recomendaciones.</p>
+      </div>
 
-    <li>No existen eventos registrados.</li>
+    {% endif %}
 
-    {% endfor %}
+  </div>
 
-</ul>
+  <!-- ============================ OBSERVACIONES ============================ -->
 
-<a href="{% url 'atractivo_editar' version.atractivo_id %}">
-    Volver al historial
-</a>
+  {% if version.observaciones %}
+
+    <div class="g-note g-note--warning">
+      <div>
+        <strong>Correcciones solicitadas por el administrador</strong>
+        {{ version.observaciones|linebreaksbr }}
+      </div>
+    </div>
+
+  {% endif %}
+
+  <!-- ============================== ACCIONES ============================== -->
+
+  <div class="g-card g-dash-block">
+
+    <div class="g-section-head">
+      <h2>Acciones de la versión</h2>
+      <p>Lo que puedes hacer con esta versión según tu rol y su estado.</p>
+    </div>
+
+    <div class="g-action-row">
+
+      <div class="g-action-buttons">
+
+        {% if version.es_editable %}
+
+          <a class="button button-dark" href="{% url 'version_editar' version.pk %}">Editar versión</a>
+
+        {% endif %}
+
+        {% if puede_aprobar %}
+
+          {% if version.es_editable or version.estado == "pendiente" %}
+
+            <form method="post" action="{% url 'version_aprobar' version.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="button button-dark">Aprobar y publicar</button>
+            </form>
+
+          {% endif %}
+
+        {% elif version.es_editable %}
+
+          <form method="post" action="{% url 'version_enviar' version.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="button button-dark">Enviar a revisión</button>
+          </form>
+
+        {% endif %}
+
+        {% if version.estado == "pendiente" and puede_observar %}
+
+          <form method="post" action="{% url 'version_observar' version.pk %}" class="g-obs-form">
+            {% csrf_token %}
+
+            {% include "gestion/_campo.html" with campo=observacion_form.observaciones ayuda="Explica qué debe corregir el equipo editorial. Máximo 3000 caracteres." %}
+
+            <button type="submit" class="button button-light g-btn-danger">Solicitar correcciones</button>
+          </form>
+
+        {% endif %}
+
+      </div>
+
+      {% if not version.es_editable and version.estado != "pendiente" %}
+
+        <p class="g-hint">
+          Esta versión ya no admite modificaciones.
+        </p>
+
+      {% elif puede_aprobar %}
+
+        <p class="g-hint">
+          Como administrador puedes publicar directamente; no necesitas enviarla a revisión.
+          Solicitar correcciones sigue disponible para devolverla al equipo editorial.
+        </p>
+
+      {% elif version.estado == "pendiente" %}
+
+        <p class="g-hint">
+          Versión pendiente de revisión por un administrador.
+        </p>
+
+      {% else %}
+
+        <p class="g-hint">
+          Guarda los cambios y envía la versión a revisión cuando esté lista.
+        </p>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+  <!-- ======================= HISTORIAL DE ACCIONES ======================= -->
+
+  <div class="g-card g-dash-block">
+
+    <div class="g-section-head">
+      <h2>Historial de acciones</h2>
+      <p>Registro de lo que ha ocurrido con esta versión.</p>
+    </div>
+
+    {% if version.eventos_editoriales.all %}
+
+      <ul class="g-history">
+
+        {% for evento in version.eventos_editoriales.all %}
+
+          <li class="g-history-item">
+            <span class="g-history-date">{{ evento.fecha|date:"d/m/Y H:i" }}</span>
+            <span class="g-history-action">{{ evento.get_accion_display }}</span>
+            <span class="g-history-user">{{ evento.usuario|default:"Sistema" }}</span>
+            <p class="g-history-desc">{{ evento.descripcion }}</p>
+          </li>
+
+        {% endfor %}
+
+      </ul>
+
+    {% else %}
+
+      <div class="g-empty">
+        <p>No existen eventos registrados para esta versión.</p>
+      </div>
+
+    {% endif %}
+
+  </div>
+
+  <p class="g-back">
+    <a href="{% url 'atractivo_editar' version.atractivo_id %}">← Volver al historial</a>
+  </p>
 
 {% endblock %}

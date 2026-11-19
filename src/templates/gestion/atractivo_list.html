@@ -1,76 +1,140 @@
 {% extends "gestion/base_gestion.html" %}
 
+{% block titulo %}Atractivos{% endblock %}
+
 {% block content %}
 
-<h1>Gestión de atractivos turísticos</h1>
+  {% with cantidad=atractivos|length %}
 
-<p>
-    Administra el contenido y sus versiones editoriales.
-</p>
+    <div class="g-page-head">
+      <div>
+        <h1>Atractivos turísticos</h1>
+        <p>Administra el contenido y el historial de versiones de cada ficha.</p>
+      </div>
 
-<a href="{% url 'atractivo_crear' %}">
-    + Nuevo atractivo
-</a>
+      <a class="button button-dark" href="{% url 'atractivo_crear' %}">+ Nuevo atractivo</a>
+    </div>
 
-<form method="get">
-    <input
-        type="search"
-        name="q"
-        value="{{ busqueda }}"
-        placeholder="Buscar atractivo"
-    >
+    <div class="g-toolbar">
+      <form class="g-search" method="get" role="search" aria-label="Filtrar atractivos">
 
-    <button type="submit">Buscar</button>
-</form>
+        <label class="g-sr" for="filtro-q">Buscar atractivo</label>
+        <input
+          id="filtro-q"
+          type="search"
+          name="q"
+          value="{{ busqueda }}"
+          placeholder="Buscar por nombre, categoría o dirección"
+        >
 
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Categoría</th>
-            <th>Zona</th>
-            <th>Publicación</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+        <label class="g-sr" for="filtro-zona">Zona</label>
+        <select id="filtro-zona" name="zona">
+          <option value="">Todas las zonas</option>
+          <option value="casablanca"{% if zona == "casablanca" %} selected{% endif %}>Casablanca</option>
+          <option value="quintay"{% if zona == "quintay" %} selected{% endif %}>Quintay</option>
+        </select>
 
-    <tbody>
+        <button type="submit" class="button button-dark">Filtrar</button>
 
-        {% for atractivo in atractivos %}
+        {% if busqueda or zona %}
+          <a href="{% url 'gestion_atractivos' %}">Limpiar filtros</a>
+        {% endif %}
 
-        <tr>
-            <td>{{ atractivo.nombre }}</td>
+      </form>
+    </div>
 
-            <td>{{ atractivo.categoria.nombre }}</td>
+    <p class="g-results">
+      {% if busqueda or zona %}
+        {{ cantidad }} resultado{{ cantidad|pluralize:"s" }}
+        {% if busqueda %}para «{{ busqueda }}»{% endif %}
+        {% if zona %}en {{ zona|capfirst }}{% endif %}
+      {% else %}
+        {{ cantidad }} atractivo{{ cantidad|pluralize:"s" }} en el catálogo
+      {% endif %}
+    </p>
 
-            <td>{{ atractivo.get_zona_display }}</td>
+    <div class="g-card">
 
-            <td>
+      {% if atractivos %}
+
+        <ul class="g-list">
+
+          {% for atractivo in atractivos %}
+
+            <li class="g-list-item">
+
+              <div class="g-list-main">
+
+                <span class="g-list-mark g-list-mark--{{ atractivo.zona }}" aria-hidden="true">{{ atractivo.nombre|slice:":1" }}</span>
+
+                <div class="g-list-text">
+
+                  <h2 class="g-list-title">
+                    <a href="{% url 'atractivo_editar' atractivo.pk %}">{{ atractivo.nombre }}</a>
+                  </h2>
+
+                  <p class="g-list-meta">
+                    {{ atractivo.categoria.nombre }}
+                    <span aria-hidden="true">·</span>
+                    {{ atractivo.get_zona_display }}
+                    {% if atractivo.direccion %}
+                      <span aria-hidden="true">·</span>
+                      {{ atractivo.direccion }}
+                    {% endif %}
+                  </p>
+
+                </div>
+
+              </div>
+
+              <div class="g-list-side">
+
                 {% if atractivo.publicado %}
-                    Publicado
+                  <span class="g-badge g-badge--on">Publicado</span>
                 {% else %}
-                    No publicado
+                  <span class="g-badge g-badge--off">No publicado</span>
                 {% endif %}
-            </td>
 
-            <td>
-                <a href="{% url 'atractivo_editar' atractivo.pk %}">
-                    Gestionar versiones
-                </a>
-            </td>
-        </tr>
+                <div class="g-list-actions">
+                  <a
+                    class="g-list-primary"
+                    href="{% url 'atractivo_editar' atractivo.pk %}"
+                    aria-label="Gestionar versiones de {{ atractivo.nombre }}"
+                  >Gestionar versiones</a>
 
-        {% empty %}
+                  {% if atractivo.publicado %}
+                    <a href="{{ atractivo.get_absolute_url }}" target="_blank" rel="noopener">
+                      Ver en el sitio<span class="g-sr"> (se abre en una pestaña nueva)</span>
+                    </a>
+                  {% endif %}
+                </div>
 
-        <tr>
-            <td colspan="5">
-                No hay atractivos registrados.
-            </td>
-        </tr>
+              </div>
 
-        {% endfor %}
+            </li>
 
-    </tbody>
-</table>
+          {% endfor %}
+
+        </ul>
+
+      {% else %}
+
+        <div class="g-empty">
+
+          {% if busqueda or zona %}
+            <p>No hay atractivos que coincidan con los filtros aplicados.</p>
+            <a class="button button-light" href="{% url 'gestion_atractivos' %}">Limpiar filtros</a>
+          {% else %}
+            <p>Todavía no hay atractivos registrados. Crea el primero para comenzar el catálogo.</p>
+            <a class="button button-dark" href="{% url 'atractivo_crear' %}">+ Nuevo atractivo</a>
+          {% endif %}
+
+        </div>
+
+      {% endif %}
+
+    </div>
+
+  {% endwith %}
 
 {% endblock %}

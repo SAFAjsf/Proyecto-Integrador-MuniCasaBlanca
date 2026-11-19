@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias
+        run: |
+          cd src
+          pip install -r requirements.txt
+      - name: Verificaciones de Django
+        env:
+          DJANGO_SECRET_KEY: ci-secret-key-not-for-production
+          DJANGO_DEBUG: "True"
+          DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+        run: |
+          cd src
+          python manage.py check
+          python manage.py test

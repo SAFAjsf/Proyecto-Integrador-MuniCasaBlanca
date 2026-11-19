@@ -1,28 +1,93 @@
 {% extends "gestion/base_gestion.html" %}
+{% load formularios %}
+
+{% block titulo %}Nuevo atractivo{% endblock %}
 
 {% block content %}
 
-<h1>Nuevo atractivo turístico</h1>
+  <nav class="g-breadcrumb" aria-label="Ruta de navegación">
+    <a href="{% url 'gestion_atractivos' %}">Atractivos</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Nuevo atractivo</span>
+  </nav>
 
-<p>
-    El contenido se creará como borrador.
-    No será visible hasta su aprobación.
-</p>
+  <div class="g-page-head">
+    <div>
+      <h1>Nuevo atractivo turístico</h1>
+      <p>Completa los datos base. En el paso siguiente agregarás fotografías, secciones y recomendaciones.</p>
+    </div>
+  </div>
 
-<form method="post">
+  <ol class="g-steps" aria-label="Pasos para publicar un atractivo">
+    <li class="g-step is-current" aria-current="step">
+      <span class="g-step-num" aria-hidden="true">1</span>
+      Datos generales
+    </li>
+    <li class="g-step">
+      <span class="g-step-num" aria-hidden="true">2</span>
+      Contenido y fotografías
+    </li>
+    <li class="g-step">
+      <span class="g-step-num" aria-hidden="true">3</span>
+      Revisión y publicación
+    </li>
+  </ol>
 
+  {% resumen_errores form %}
+
+  <form method="post" class="g-form-stack">
     {% csrf_token %}
 
-    {{ form.as_p }}
+    <div class="g-card">
 
-    <button type="submit">
-        Crear borrador
-    </button>
+      <section class="g-section" aria-labelledby="sec-identificacion">
 
-    <a href="{% url 'gestion_atractivos' %}">
-        Cancelar
-    </a>
+        <div class="g-section-head">
+          <h2 id="sec-identificacion">Identificación</h2>
+          <p>Así se reconocerá el atractivo en el listado y en el sitio público.</p>
+        </div>
 
-</form>
+        <div class="g-section-body">
+
+          {% include "gestion/_campo.html" with campo=form.nombre ayuda="Tal como aparecerá en la tarjeta. La dirección web se genera sola." %}
+
+          <div class="g-grid-2">
+            {% include "gestion/_campo.html" with campo=form.categoria %}
+            {% include "gestion/_campo.html" with campo=form.zona ayuda="Decide si aparece en la grilla de Casablanca o en la de Quintay." %}
+          </div>
+
+          {% include "gestion/_campo.html" with campo=form.direccion ayuda="Opcional. Si la completas, la ficha mostrará el botón «Cómo llegar»." %}
+
+        </div>
+      </section>
+
+      <section class="g-section" aria-labelledby="sec-descripcion">
+
+        <div class="g-section-head">
+          <h2 id="sec-descripcion">Descripción</h2>
+          <p>Explica qué hace especial este lugar. En la tarjeta se muestran las primeras 24 palabras; en la ficha se lee completa.</p>
+        </div>
+
+        <div class="g-section-body">
+          {% include "gestion/_campo.html" with campo=form.descripcion ayuda="Dos o tres frases claras: qué es, por qué visitarlo y qué se puede hacer." %}
+        </div>
+      </section>
+
+    </div>
+
+    <div class="g-note g-note--info">
+      <div>
+        <strong>Se guardará como borrador</strong>
+        El atractivo no será visible en el sitio hasta que un administrador revise y apruebe la versión.
+      </div>
+    </div>
+
+    <div class="g-actions-bar">
+      <button type="submit" class="button button-dark">Guardar y continuar</button>
+      <a class="g-link" href="{% url 'gestion_atractivos' %}">Cancelar</a>
+      <p class="g-hint"><span class="g-req" aria-hidden="true">*</span> Campos obligatorios</p>
+    </div>
+
+  </form>
 
 {% endblock %}

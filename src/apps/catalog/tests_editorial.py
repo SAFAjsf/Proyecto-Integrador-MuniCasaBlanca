@@ -346,7 +346,7 @@ class FlujoEditorialTests(TestCase):
         )
 
 
-    def test_no_permite_autoaprobacion(self):
+    def test_administrador_puede_aprobar_su_propia_version(self):
 
         version = crear_version(
             self.atractivo.pk,
@@ -358,12 +358,50 @@ class FlujoEditorialTests(TestCase):
             self.administrador,
         )
 
-        with self.assertRaises(ValidationError):
+        aprobar_version(
+            version.pk,
+            self.administrador,
+        )
 
-            aprobar_version(
-                version.pk,
-                self.administrador,
-            )
+        version.refresh_from_db()
+
+        self.assertEqual(
+            version.estado,
+            VersionAtractivo.Estado.APROBADA,
+        )
+
+        self.atractivo.refresh_from_db()
+
+        self.assertTrue(self.atractivo.publicado)
+
+    def test_administrador_puede_publicar_directamente_sin_revision(self):
+
+        version = crear_version(
+            self.atractivo.pk,
+            self.administrador,
+        )
+
+        # Sin enviar a revisión: el administrador publica su borrador.
+        aprobar_version(
+            version.pk,
+            self.administrador,
+        )
+
+        version.refresh_from_db()
+
+        self.assertEqual(
+            version.estado,
+            VersionAtractivo.Estado.APROBADA,
+        )
+
+        self.atractivo.refresh_from_db()
+
+        self.assertEqual(
+            self.atractivo.version_publicada_id,
+            version.pk,
+        )
+
+        self.assertTrue(self.atractivo.publicado)
 
 
     def test_conserva_version_anterior(self):

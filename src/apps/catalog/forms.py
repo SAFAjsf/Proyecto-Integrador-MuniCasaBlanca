@@ -6,8 +6,6 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.forms import inlineformset_factory
 
-from .models import Atractivo, ImagenAtractivo
-
 from .permissions import (
     GRUPO_FUNCIONARIOS,
     GRUPO_ADMINISTRADORES,
@@ -16,31 +14,6 @@ from .permissions import (
 
 
 Usuario = get_user_model()
-
-
-# ==================================================
-# FORMULARIO DE ATRACTIVOS
-# ==================================================
-
-class AtractivoForm(forms.ModelForm):
-
-    class Meta:
-        model = Atractivo
-
-        fields = (
-            "nombre",
-            "descripcion",
-            "categoria",
-            "zona",
-            "direccion",
-            "publicado",
-        )
-
-        widgets = {
-            "descripcion": forms.Textarea(
-                attrs={"rows": 6}
-            ),
-        }
 
 
 # ==================================================
@@ -96,25 +69,6 @@ class BaseImagenFormSet(forms.BaseInlineFormSet):
             raise ValidationError(
                 "Solo puedes marcar una imagen como portada."
             )
-
-
-ImagenFormSet = inlineformset_factory(
-    Atractivo,
-    ImagenAtractivo,
-
-    formset=BaseImagenFormSet,
-
-    fields=(
-        "imagen",
-        "texto_alternativo",
-        "es_portada",
-        "orden",
-    ),
-
-    extra=3,
-
-    can_delete=True,
-)
 
 
 # ==================================================

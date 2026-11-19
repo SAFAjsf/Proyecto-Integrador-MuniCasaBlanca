@@ -1,0 +1,1353 @@
+/* ==================================================
+   FORMULARIOS DEL PANEL
+   Se carga después de gestion.css.
+   Objetivo: jerarquía visual clara, controles grandes,
+   estados de error legibles y foco siempre visible.
+================================================== */
+
+:root {
+  --g-focus: #2f4a28;
+  --g-line: #ded7c8;
+  --g-line-strong: #bdb39e;
+  --g-surface-soft: #fbf9f4;
+  --g-error: #8d3227;
+  --g-error-bg: #f9e9e6;
+  --g-error-line: #d8a79f;
+  --g-ok: #2f4a28;
+  --g-ok-bg: #e7efe4;
+  --g-warn: #6d5320;
+  --g-warn-bg: #fdf3dd;
+  --g-warn-line: #e2c88c;
+  --g-info-bg: #eef2ea;
+}
+
+/* ---------- Saltar al contenido ---------- */
+
+.g-skip {
+  position: absolute;
+  left: 1rem;
+  top: -6rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--deep);
+  color: var(--white);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.g-skip:focus {
+  top: 1rem;
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---------- Barra superior del panel ----------
+   base.css posiciona .site-header en absoluto para el portal público.
+   En el panel eso hacía que el menú flotara encima del contenido, así
+   que aquí pasa a ser una barra fija con fondo oscuro y texto claro. */
+
+.g-body .site-header.g-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  gap: 0.75rem 1.5rem;
+  flex-wrap: wrap;
+  padding: 0.8rem clamp(1.25rem, 4vw, 3rem);
+  background: var(--deep);
+  color: var(--white);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.g-body .g-nav a {
+  color: #e6e2d7;
+}
+
+.g-body .g-nav a:hover,
+.g-body .g-nav a[aria-current="page"] {
+  color: var(--white);
+  border-bottom-color: var(--gold);
+}
+
+.g-body .g-session {
+  color: #d9d4c6;
+}
+
+.g-body .g-logout {
+  color: var(--white);
+}
+
+.g-body .g-logout:hover,
+.g-body .g-logout:focus-visible {
+  border-bottom: 1px solid var(--gold);
+}
+
+/* ---------- Migas de pan ---------- */
+
+.g-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.g-breadcrumb a {
+  color: var(--olive);
+  text-decoration: none;
+}
+
+.g-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Pasos ---------- */
+
+.g-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  list-style: none;
+}
+
+.g-step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--white);
+  border: 1px solid var(--g-line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.g-step-num {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: #efeade;
+  color: var(--deep);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.g-step.is-done {
+  background: var(--g-ok-bg);
+  border-color: #c3d6bd;
+  color: var(--g-ok);
+}
+
+.g-step.is-done .g-step-num {
+  background: #cfe0c8;
+  color: var(--g-ok);
+}
+
+.g-step.is-current {
+  background: var(--white);
+  border-color: var(--olive);
+  box-shadow: 0 0 0 1px var(--olive);
+  color: var(--deep);
+  font-weight: 600;
+}
+
+.g-step.is-current .g-step-num {
+  background: var(--olive);
+  color: var(--white);
+}
+
+/* ---------- Estructura del formulario ---------- */
+
+.g-form-stack {
+  display: grid;
+  gap: 1.25rem;
+  padding: 0;
+  margin: 0;
+}
+
+.g-form-layout {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.g-form-main {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+.g-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.g-title-row h1 {
+  margin: 0;
+}
+
+.g-link {
+  color: var(--olive);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.g-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Secciones dentro de la tarjeta ---------- */
+
+.g-section {
+  padding: 1.5rem 1.75rem;
+}
+
+.g-section + .g-section {
+  border-top: 1px solid #eee8dc;
+}
+
+.g-section-head {
+  margin-bottom: 1.1rem;
+}
+
+.g-section-head--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.g-section-head h2 {
+  margin: 0 0 0.3rem;
+  color: var(--deep);
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+}
+
+.g-section-head p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.g-section-body {
+  display: grid;
+  gap: 1rem;
+}
+
+.g-grid-3 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+/* ---------- Campos ---------- */
+
+.g-form-stack .g-field {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.g-form-stack .g-label {
+  color: var(--charcoal);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.g-req {
+  color: var(--g-error);
+  font-weight: 700;
+}
+
+.g-form-stack .g-control {
+  width: 100%;
+  padding: 0.72rem 0.85rem;
+  color: var(--charcoal);
+  background: var(--white);
+  border: 1px solid var(--g-line-strong);
+  border-radius: 8px;
+  font: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.g-form-stack textarea.g-control {
+  min-height: 9rem;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+/* Las recomendaciones son una frase corta: no necesitan un área grande. */
+.g-form-stack .g-item textarea[name$="-texto"] {
+  min-height: 5rem;
+}
+
+.g-form-stack select.g-control {
+  padding-right: 2.2rem;
+  cursor: pointer;
+}
+
+.g-form-stack .g-control:hover {
+  border-color: #a99f88;
+}
+
+.g-form-stack .g-control:focus,
+.g-form-stack .g-control:focus-visible {
+  border-color: var(--g-focus);
+  outline: 3px solid rgba(47, 74, 40, 0.35);
+  outline-offset: 1px;
+}
+
+.g-form-stack .g-file {
+  padding: 0.5rem;
+  background: var(--g-surface-soft);
+  font-size: 0.88rem;
+}
+
+.g-form-stack .g-file::file-selector-button {
+  margin-right: 0.75rem;
+  padding: 0.45rem 0.85rem;
+  color: var(--deep);
+  background: var(--cream);
+  border: 1px solid var(--g-line-strong);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.g-form-stack .g-file::file-selector-button:hover {
+  background: var(--sand);
+}
+
+.g-form-stack .g-field--error .g-control {
+  background: #fffafa;
+  border-color: var(--g-error-line);
+}
+
+.g-help {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.g-errors {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.g-error {
+  margin: 0;
+  color: var(--g-error);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.g-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* ---------- Casillas tipo tarjeta ---------- */
+
+.g-form-stack .g-check {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  background: var(--g-surface-soft);
+  border: 1px solid var(--g-line);
+  border-radius: 9px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.g-form-stack .g-check:hover {
+  border-color: #bfb5a0;
+}
+
+.g-form-stack .g-check:focus-within {
+  border-color: var(--g-focus);
+  box-shadow: 0 0 0 3px rgba(47, 74, 40, 0.18);
+}
+
+.g-check-control {
+  display: flex;
+  flex: 0 0 auto;
+  padding-top: 0.15rem;
+}
+
+.g-form-stack .g-checkbox {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: var(--olive);
+  cursor: pointer;
+}
+
+.g-form-stack .g-checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.g-form-stack .g-check:has(.g-checkbox:disabled) {
+  background: #f1eee5;
+  border-style: dashed;
+}
+
+.g-check-text {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.g-check-label {
+  color: var(--charcoal);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.g-form-stack .g-check--danger {
+  background: #fdf4f2;
+  border-color: #e8c9c3;
+}
+
+.g-form-stack .g-check--danger .g-check-label {
+  color: var(--g-error);
+}
+
+.g-form-stack .g-check--error {
+  border-color: var(--g-error-line);
+}
+
+/* ---------- Resumen de errores ---------- */
+
+.g-error-summary {
+  padding: 1.1rem 1.25rem;
+  background: var(--g-error-bg);
+  border: 1px solid var(--g-error-line);
+  border-left: 4px solid var(--g-error);
+  border-radius: 8px;
+}
+
+.g-error-summary:focus {
+  outline: 3px solid var(--g-error);
+  outline-offset: -3px;
+}
+
+.g-error-summary h2 {
+  margin: 0 0 0.5rem;
+  color: #6f2419;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+.g-error-summary ul {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.g-error-summary a {
+  color: #6f2419;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ---------- Avisos ---------- */
+
+.g-note {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.g-note strong {
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.g-note--info {
+  background: var(--g-info-bg);
+  border-color: #c3d6bd;
+  color: var(--g-ok);
+}
+
+.g-note--warning {
+  background: var(--g-warn-bg);
+  border-color: var(--g-warn-line);
+  color: var(--g-warn);
+}
+
+/* ---------- Bloques de formset ---------- */
+
+.g-item {
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--g-line);
+  border-radius: 10px;
+}
+
+.g-item--error {
+  border-color: var(--g-error-line);
+}
+
+.g-item-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1rem;
+  background: #f4f0e6;
+  border-bottom: 1px solid var(--g-line);
+}
+
+.g-item-head h3 {
+  margin: 0;
+  color: var(--deep);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.g-item-body {
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem 1rem;
+}
+
+.g-item-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.g-item-flags .g-field {
+  width: 130px;
+}
+
+.g-item-flags .g-check {
+  flex: 1 1 240px;
+}
+
+.g-thumb {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 0;
+}
+
+.g-thumb img {
+  width: 96px;
+  height: 72px;
+  object-fit: cover;
+  border: 1px solid var(--g-line);
+  border-radius: 6px;
+}
+
+.g-thumb figcaption {
+  color: var(--muted);
+  font-size: 0.75rem;
+  word-break: break-all;
+}
+
+/* ---------- Acciones ---------- */
+
+.g-form-stack .g-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid #eee8dc;
+}
+
+.g-form-stack .g-actions-bar .g-hint {
+  margin-left: auto;
+  max-width: 42ch;
+}
+
+.g-form-stack .button,
+.g-actions-bar .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.7rem 1.5rem;
+}
+
+.g-actions-bar .button:focus-visible,
+.g-toggle:focus-visible,
+.g-link:focus-visible {
+  outline: 3px solid var(--g-focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Mostrar / ocultar contraseña ---------- */
+
+.g-toggle {
+  padding: 0.5rem 0.9rem;
+  color: var(--deep);
+  background: var(--white);
+  border: 1px solid var(--g-line-strong);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.g-toggle:hover {
+  background: var(--cream);
+}
+
+/* ---------- Resumen del rol ---------- */
+
+.g-role-result {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  color: var(--g-ok);
+  background: var(--g-info-bg);
+  border: 1px dashed #b8c9b1;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ---------- Columna de ayuda ---------- */
+
+.g-form-aside .g-card {
+  padding: 1.25rem;
+}
+
+.g-help-card h2 {
+  margin: 0 0 0.85rem;
+  color: var(--deep);
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+}
+
+.g-help-card dl {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.g-help-card dt {
+  color: var(--charcoal);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.g-help-card dd {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* ---------- Etiquetas de estado ---------- */
+
+.g-badge--borrador { background: #efeade; color: #5c5342; }
+.g-badge--pendiente { background: #fdf3dd; color: #6d5320; }
+.g-badge--observada { background: #f9e9e6; color: #8d3227; }
+.g-badge--aprobada { background: #e7efe4; color: #2f4a28; }
+
+/* ---------- Adaptación a pantallas ---------- */
+
+@media (min-width: 1024px) {
+  .g-form-layout {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    align-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .g-section {
+    padding: 1.25rem 1rem;
+  }
+
+  .g-page-head {
+    align-items: flex-start;
+  }
+
+  .g-form-stack .g-actions-bar .g-hint {
+    margin-left: 0;
+    max-width: none;
+    width: 100%;
+  }
+
+  .g-item-flags .g-field {
+    width: 100%;
+  }
+
+  .g-form-stack .button,
+  .g-actions-bar .button {
+    width: 100%;
+  }
+}
+
+/* ---------- Movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .g-form-stack *,
+  .g-form-stack *::before,
+  .g-form-stack *::after {
+    transition: none !important;
+  }
+}
+
+/* ==================================================
+   RESUMEN Y LISTADOS DEL PANEL
+   Mismo lenguaje visual que los formularios:
+   tarjetas, jerarquía clara y acciones evidentes.
+================================================== */
+
+/* ---------- Texto solo para lectores de pantalla ---------- */
+
+.g-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Buscador con selector ---------- */
+
+.g-toolbar .g-search input,
+.g-toolbar .g-search select {
+  min-height: 44px;
+  padding: 0.65rem 0.85rem;
+  color: var(--charcoal);
+  background: var(--white);
+  border: 1px solid #d8d2c4;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.g-toolbar .g-search input {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+.g-toolbar .g-search select {
+  flex: 0 1 auto;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+.g-toolbar .g-search input:focus,
+.g-toolbar .g-search select:focus {
+  border-color: var(--g-focus);
+  outline: 3px solid rgba(47, 74, 40, 0.35);
+  outline-offset: 1px;
+}
+
+.g-toolbar .g-search .button {
+  min-height: 44px;
+}
+
+/* gestion.css pinta los enlaces del encabezado en oliva; dentro de un
+   botón eso deja texto oscuro sobre fondo oscuro. Se restituye el color. */
+
+.g-page-head > .button-dark {
+  color: var(--white);
+}
+
+.g-page-head > .button-light {
+  color: var(--charcoal);
+}
+
+/* ---------- Cifras del resumen ---------- */
+
+.g-metrics {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: 1.5rem;
+}
+
+.g-metric {
+  padding: 1.2rem 1.35rem;
+  background: var(--white);
+  border: 1px solid #e4ded1;
+  border-left: 4px solid var(--g-line-strong);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(41, 41, 36, 0.06);
+}
+
+.g-metric--ok {
+  border-left-color: #6f8f63;
+}
+
+.g-metric--warn {
+  border-left-color: #c8a45c;
+}
+
+.g-metric-value {
+  margin: 0 0 0.3rem;
+  color: var(--deep);
+  font-family: var(--font-title);
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.g-metric-label {
+  margin: 0 0 0.25rem;
+  color: var(--charcoal);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.g-metric-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+/* ---------- Bloques del resumen ---------- */
+
+.g-dash-grid {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.g-dash-block {
+  padding: 1.5rem 1.75rem;
+}
+
+/* ---------- Accesos rápidos ---------- */
+
+.g-quick-actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.g-quick {
+  display: block;
+  padding: 0.9rem 1rem;
+  background: var(--g-surface-soft);
+  border: 1px solid var(--g-line);
+  border-radius: 9px;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.g-quick:hover {
+  background: #f4f0e6;
+  border-color: var(--olive);
+}
+
+.g-quick:focus-visible {
+  outline: 3px solid var(--g-focus);
+  outline-offset: 2px;
+}
+
+.g-quick-title {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--deep);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.g-quick-text {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* ---------- Flujo editorial ---------- */
+
+.g-flow {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.g-flow li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.g-flow-num {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--deep);
+  background: var(--cream);
+  border: 1px solid var(--g-line);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.g-flow-text {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.g-flow-text strong {
+  display: block;
+  color: var(--charcoal);
+  font-size: 0.9rem;
+}
+
+/* ---------- Resultado de filtros ---------- */
+
+.g-results {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Listados en tarjeta ---------- */
+
+.g-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.g-list-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.35rem;
+  transition: background 0.15s ease;
+}
+
+.g-list-item + .g-list-item {
+  border-top: 1px solid #eee8dc;
+}
+
+.g-list-item:hover {
+  background: #faf8f3;
+}
+
+.g-list-main {
+  display: flex;
+  flex: 1 1 320px;
+  gap: 0.9rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.g-list-mark {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  color: var(--deep);
+  background: var(--cream);
+  border-radius: 9px;
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+}
+
+.g-list-mark--casablanca {
+  color: #3c5533;
+  background: #e8eede;
+}
+
+.g-list-mark--quintay {
+  color: #31505c;
+  background: #e6edf0;
+}
+
+.g-list-mark--version {
+  width: auto;
+  min-width: 2.9rem;
+  padding: 0 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.g-list-text {
+  min-width: 0;
+}
+
+.g-list-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0 0 0.2rem;
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.g-list-title a {
+  color: var(--deep);
+  text-decoration: none;
+}
+
+.g-list-title a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.g-list-title a:focus-visible,
+.g-list-actions a:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid var(--g-focus);
+  outline-offset: 3px;
+}
+
+.g-list-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.g-list-side {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.g-list-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.g-list-actions a {
+  color: var(--olive);
+  font-size: 0.86rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.g-list-actions a:hover {
+  text-decoration: underline;
+}
+
+.g-list-primary {
+  font-weight: 600;
+}
+
+/* ---------- Datos rápidos de una ficha ---------- */
+
+.g-facts {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.g-fact {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.g-fact-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.g-fact-value {
+  color: var(--charcoal);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* ---------- Acciones de la ficha ---------- */
+
+.g-action-row {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #eee8dc;
+}
+
+.g-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.g-action-row form {
+  margin: 0;
+}
+
+.g-action-row .button {
+  min-height: 44px;
+}
+
+.g-action-row .button:focus-visible {
+  outline: 3px solid var(--g-focus);
+  outline-offset: 3px;
+}
+
+.g-action-row .g-hint {
+  max-width: 72ch;
+  margin: 0;
+}
+
+/* ---------- Ficha de una versión ---------- */
+
+.g-body-text {
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.g-photo-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.g-photo {
+  margin: 0;
+  overflow: hidden;
+  background: var(--g-surface-soft);
+  border: 1px solid var(--g-line);
+  border-radius: 9px;
+}
+
+.g-photo img {
+  display: block;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+
+.g-photo figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.5rem 0.65rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.g-content-blocks {
+  display: grid;
+  gap: 1rem;
+}
+
+.g-content-block {
+  padding: 1rem 1.15rem;
+  background: var(--g-surface-soft);
+  border: 1px solid var(--g-line);
+  border-left: 3px solid var(--olive);
+  border-radius: 9px;
+}
+
+.g-content-block h3 {
+  margin: 0 0 0.35rem;
+  color: var(--deep);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.g-content-block p {
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.g-reco-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-left: 1.35rem;
+  color: var(--charcoal);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.g-reco-list li::marker {
+  color: var(--olive);
+  font-weight: 600;
+}
+
+.g-obs-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.g-history {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.g-history-item {
+  padding: 0.85rem 1rem;
+  background: var(--g-surface-soft);
+  border: 1px solid var(--g-line);
+  border-radius: 9px;
+}
+
+.g-history-item + .g-history-item {
+  margin-top: 0;
+}
+
+.g-history-date {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.g-history-action {
+  margin-left: 0.5rem;
+  color: var(--deep);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.g-history-user {
+  margin-left: 0.5rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.g-history-desc {
+  margin: 0.4rem 0 0;
+  color: var(--charcoal);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.g-fact-sub {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+.g-btn-danger {
+  color: var(--g-error);
+  border: 1px solid #e0b9b2;
+}
+
+.g-btn-danger:hover {
+  background: var(--g-error-bg);
+}
+
+/* ---------- Títulos de bloque y enlaces de vuelta ---------- */
+
+.g-block-title {
+  margin: 1.75rem 0 0.85rem;
+  color: var(--deep);
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+}
+
+.g-back {
+  margin: 1.5rem 0 0;
+}
+
+.g-back a {
+  color: var(--olive);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.g-back a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Adaptación a pantallas ---------- */
+
+@media (min-width: 900px) {
+  .g-dash-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .g-dash-block {
+    padding: 1.25rem 1rem;
+  }
+
+  .g-metric-value {
+    font-size: 2rem;
+  }
+
+  .g-list-item {
+    padding: 1rem;
+  }
+
+  .g-list-side {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .g-action-row form,
+  .g-action-row .button {
+    width: 100%;
+  }
+
+  .g-action-row .g-hint {
+    max-width: none;
+  }
+}

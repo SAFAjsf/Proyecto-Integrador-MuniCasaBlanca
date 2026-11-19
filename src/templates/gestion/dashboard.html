@@ -1,10 +1,137 @@
 {% extends "gestion/base_gestion.html" %}
-{% block content %}
-  <h1>Dashboard</h1>
-  <p>Total de atractivos: {{ total }}</p>
-  <p>Atractivos publicados: {{ publicados }}</p>
 
-  <a class="button button-dark" href="{% url 'gestion_atractivos' %}">
-    Gestionar atractivos
-  </a>
+{% block titulo %}Resumen{% endblock %}
+
+{% block content %}
+
+  <div class="g-page-head">
+    <div>
+      <h1>Resumen del panel</h1>
+      <p>Estado del catálogo turístico y tareas de publicación.</p>
+    </div>
+
+    <a href="{% url 'inicio' %}">Ver sitio público</a>
+  </div>
+
+  <section aria-labelledby="sec-cifras">
+
+    <h2 class="g-sr" id="sec-cifras">Cifras del catálogo</h2>
+
+    <div class="g-metrics">
+
+      <div class="g-metric">
+        <p class="g-metric-value">{{ total }}</p>
+        <p class="g-metric-label">Atractivos registrados</p>
+        <p class="g-metric-hint">Todas las fichas del catálogo, publicadas o no.</p>
+      </div>
+
+      <div class="g-metric g-metric--ok">
+        <p class="g-metric-value">{{ publicados }}</p>
+        <p class="g-metric-label">Publicados</p>
+        <p class="g-metric-hint">Visibles hoy en el sitio público.</p>
+      </div>
+
+      <div class="g-metric g-metric--warn">
+        <p class="g-metric-value">{{ borradores }}</p>
+        <p class="g-metric-label">No publicados</p>
+        <p class="g-metric-hint">En preparación, en revisión o retirados del sitio.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  {% if total %}
+
+    <div class="g-dash-grid">
+
+      <section class="g-card g-dash-block" aria-labelledby="sec-acciones">
+
+        <div class="g-section-head">
+          <h2 id="sec-acciones">Accesos rápidos</h2>
+          <p>Las tareas más frecuentes del día a día.</p>
+        </div>
+
+        <div class="g-quick-actions">
+
+          <a class="g-quick" href="{% url 'atractivo_crear' %}">
+            <span class="g-quick-title">+ Nuevo atractivo</span>
+            <span class="g-quick-text">Crea la ficha base y su primer borrador editorial.</span>
+          </a>
+
+          <a class="g-quick" href="{% url 'gestion_atractivos' %}">
+            <span class="g-quick-title">Gestionar atractivos</span>
+            <span class="g-quick-text">Busca una ficha, revisa sus versiones y su estado.</span>
+          </a>
+
+          {% if es_administrador %}
+            <a class="g-quick" href="{% url 'gestion_usuarios' %}">
+              <span class="g-quick-title">Gestionar usuarios</span>
+              <span class="g-quick-text">Crea cuentas y define quién puede editar o publicar.</span>
+            </a>
+          {% endif %}
+
+        </div>
+
+      </section>
+
+      <section class="g-card g-dash-block" aria-labelledby="sec-flujo">
+
+        <div class="g-section-head">
+          <h2 id="sec-flujo">Cómo se publica un atractivo</h2>
+          <p>Cada cambio queda en una versión, así el sitio nunca muestra contenido a medio editar.</p>
+        </div>
+
+        <ol class="g-flow">
+          <li>
+            <span class="g-flow-num" aria-hidden="true">1</span>
+            <span class="g-flow-text">
+              <strong>Se crea el atractivo</strong>
+              Queda como borrador y no aparece en el sitio.
+            </span>
+          </li>
+          <li>
+            <span class="g-flow-num" aria-hidden="true">2</span>
+            <span class="g-flow-text">
+              <strong>Se completa el contenido</strong>
+              Datos, fotografías, secciones y recomendaciones.
+            </span>
+          </li>
+          <li>
+            <span class="g-flow-num" aria-hidden="true">3</span>
+            <span class="g-flow-text">
+              <strong>Se envía a revisión</strong>
+              La versión queda pendiente de aprobación. Los administradores pueden publicar directamente.
+            </span>
+          </li>
+          <li>
+            <span class="g-flow-num" aria-hidden="true">4</span>
+            <span class="g-flow-text">
+              <strong>Se aprueba y publica</strong>
+              Un administrador la aprueba y reemplaza lo visible.
+            </span>
+          </li>
+        </ol>
+
+        {% if not es_administrador %}
+          <p class="g-hint">
+            Tu cuenta puede crear y editar versiones. La aprobación y la publicación las realiza un administrador.
+          </p>
+        {% endif %}
+
+      </section>
+
+    </div>
+
+  {% else %}
+
+    <div class="g-card">
+      <div class="g-empty">
+        <p>Todavía no hay atractivos registrados. Crea el primero para comenzar el catálogo.</p>
+        <a class="button button-dark" href="{% url 'atractivo_crear' %}">+ Nuevo atractivo</a>
+      </div>
+    </div>
+
+  {% endif %}
+
 {% endblock %}

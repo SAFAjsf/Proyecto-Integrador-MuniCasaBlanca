@@ -1,86 +1,168 @@
 {% extends "gestion/base_gestion.html" %}
+{% load formularios %}
 
 {% block titulo %}{{ titulo }}{% endblock %}
 
 {% block content %}
 
+  <nav class="g-breadcrumb" aria-label="Ruta de navegación">
+    <a href="{% url 'gestion_usuarios' %}">Usuarios</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{{ titulo }}</span>
+  </nav>
+
   <div class="g-page-head">
     <div>
       <h1>{{ titulo }}</h1>
-      <p>Completa los datos de la cuenta y define su nivel de acceso.</p>
+      <p>Completa los datos de la cuenta y define su nivel de acceso al panel municipal.</p>
     </div>
 
     <a href="{% url 'gestion_usuarios' %}">← Volver al listado</a>
   </div>
 
-  <div class="g-card">
-    <form class="g-form" method="post" novalidate>
-      {% csrf_token %}
+  <div class="g-form-layout">
 
-      {% if form.non_field_errors %}
-        <div class="g-alert g-alert--error">
-          {{ form.non_field_errors }}
+    <div class="g-form-main">
+
+      {% if form.instance.pk and form.instance.pk == user.pk %}
+        <div class="g-note g-note--warning">
+          <div>
+            <strong>Estás editando tu propia cuenta</strong>
+            No puedes desactivarla ni quitarte el rol de administrador.
+          </div>
         </div>
       {% endif %}
 
-      <fieldset class="g-fieldset">
-        <legend>Datos de la cuenta</legend>
+      {% resumen_errores form %}
 
-        <div class="g-grid-2">
-          {% include "gestion/_campo.html" with campo=form.username %}
-          {% include "gestion/_campo.html" with campo=form.email %}
-          {% include "gestion/_campo.html" with campo=form.first_name %}
-          {% include "gestion/_campo.html" with campo=form.last_name %}
+      <form method="post" class="g-form-stack" novalidate>
+        {% csrf_token %}
+
+        <div class="g-card">
+
+          <!-- ============================== PERSONA ============================== -->
+
+          <section class="g-section" aria-labelledby="sec-persona">
+
+            <div class="g-section-head">
+              <h2 id="sec-persona">Datos de la persona</h2>
+              <p>El nombre se muestra en la barra superior; el usuario es con el que se inicia sesión.</p>
+            </div>
+
+            <div class="g-section-body">
+
+              <div class="g-grid-2">
+                {% include "gestion/_campo.html" with campo=form.first_name %}
+                {% include "gestion/_campo.html" with campo=form.last_name %}
+              </div>
+
+              <div class="g-grid-2">
+                {% include "gestion/_campo.html" with campo=form.username ayuda="Sin espacios ni tildes. Es el nombre con el que iniciará sesión." %}
+                {% include "gestion/_campo.html" with campo=form.email ayuda="Opcional. Sirve para identificarlo en el listado." %}
+              </div>
+
+            </div>
+          </section>
+
+          <!-- ============================= CONTRASEÑA ============================= -->
+
+          <section class="g-section" aria-labelledby="sec-password">
+
+            <div class="g-section-head g-section-head--row">
+              <div>
+                <h2 id="sec-password">Contraseña</h2>
+                <p>
+                  {% if form.instance.pk %}
+                    Déjala en blanco para mantener la contraseña actual.
+                  {% else %}
+                    Obligatoria al crear la cuenta. Mínimo 10 caracteres.
+                  {% endif %}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                class="g-toggle"
+                data-password-toggle="id_password1 id_password2"
+                aria-pressed="false"
+                aria-controls="id_password1 id_password2"
+              >
+                Mostrar
+              </button>
+            </div>
+
+            <div class="g-section-body">
+
+              <div class="g-grid-2">
+                {% include "gestion/_campo.html" with campo=form.password1 %}
+                {% include "gestion/_campo.html" with campo=form.password2 %}
+              </div>
+
+            </div>
+          </section>
+
+          <!-- =============================== ACCESO =============================== -->
+
+          <section class="g-section" aria-labelledby="sec-acceso">
+
+            <div class="g-section-head">
+              <h2 id="sec-acceso">Acceso y permisos</h2>
+              <p>Marca solo lo que la persona necesita para hacer su trabajo.</p>
+            </div>
+
+            <div class="g-section-body">
+
+              {% include "gestion/_casilla.html" with campo=form.is_active etiqueta="Cuenta activa" ayuda="Si la desmarcas, la persona no podrá iniciar sesión, pero su historial se conserva." %}
+
+              {% include "gestion/_casilla.html" with campo=form.es_funcionario etiqueta="Editor de contenido" ayuda="Puede entrar al panel, crear atractivos y preparar versiones para revisión." %}
+
+              {% include "gestion/_casilla.html" with campo=form.es_administrador etiqueta="Administrador" ayuda="Puede además revisar, aprobar, publicar y gestionar usuarios." %}
+
+              <p class="g-role-result" data-role-summary aria-live="polite"></p>
+
+              <p class="g-hint">Si marcas «Administrador», el rol de editor queda incluido. Una misma cuenta puede tener ambos.</p>
+
+            </div>
+          </section>
+
         </div>
 
-        <div class="g-grid-2">
-          {% include "gestion/_campo.html" with campo=form.password1 %}
-          {% include "gestion/_campo.html" with campo=form.password2 %}
+        <div class="g-actions-bar">
+          <button type="submit" class="button button-dark">Guardar usuario</button>
+          <a class="g-link" href="{% url 'gestion_usuarios' %}">Cancelar</a>
+          <p class="g-hint"><span class="g-req" aria-hidden="true">*</span> Campos obligatorios</p>
         </div>
-      </fieldset>
 
-      <fieldset class="g-fieldset">
-        <legend>Rol y acceso</legend>
+      </form>
 
-        <label class="g-check">
-          {{ form.is_active }}
-          <span>
-            <strong>Cuenta activa</strong>
-            <span class="g-help">Si la desmarcas, el usuario no puede iniciar sesión.</span>
-          </span>
-        </label>
-        {% for error in form.is_active.errors %}
-          <span class="g-error">{{ error }}</span>
-        {% endfor %}
+    </div>
 
-        <label class="g-check">
-          {{ form.es_funcionario }}
-          <span>
-            <strong>Funcionario municipal</strong>
-            <span class="g-help">Puede entrar a /gestion/ y administrar atractivos.</span>
-          </span>
-        </label>
-        {% for error in form.es_funcionario.errors %}
-          <span class="g-error">{{ error }}</span>
-        {% endfor %}
+    <aside class="g-form-aside" aria-label="Ayuda sobre los roles">
 
-        <label class="g-check">
-          {{ form.es_administrador }}
-          <span>
-            <strong>Administrador</strong>
-            <span class="g-help">{{ form.es_administrador.help_text|default:"Accede al admin de Django y gestiona usuarios." }}</span>
-          </span>
-        </label>
-        {% for error in form.es_administrador.errors %}
-          <span class="g-error">{{ error }}</span>
-        {% endfor %}
-      </fieldset>
+      <div class="g-card g-help-card">
 
-      <div class="g-actions-bar">
-        <button type="submit" class="button button-dark">Guardar</button>
-        <a href="{% url 'gestion_usuarios' %}">Cancelar</a>
+        <h2>Roles del panel</h2>
+
+        <dl>
+          <dt>Sin rol</dt>
+          <dd>La cuenta existe, pero no puede entrar al panel municipal.</dd>
+
+          <dt>Editor de contenido</dt>
+          <dd>Crea y edita atractivos. Prepara versiones, pero no las publica.</dd>
+
+          <dt>Administrador</dt>
+          <dd>Todo lo del editor, más aprobar, publicar, retirar y gestionar usuarios.</dd>
+        </dl>
+
+        <p class="g-hint">
+          El superusuario se crea por consola y conserva acceso al admin de Django.
+          No se asigna desde este formulario.
+        </p>
+
       </div>
-    </form>
+
+    </aside>
+
   </div>
 
 {% endblock %}

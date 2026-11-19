@@ -1,0 +1,13 @@
+{% if errores %}
+  <div class="g-error-summary" id="resumen-errores" role="alert" tabindex="-1">
+    <h2>Revisa la información antes de continuar</h2>
+
+    <ul>
+      {% for error in errores %}
+        <li>
+          <a href="#{{ error.ancla }}">{{ error.texto }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

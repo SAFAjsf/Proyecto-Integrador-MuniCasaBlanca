@@ -279,14 +279,20 @@ def aprobar_version(version_id, usuario):
         version_id
     )
 
-    if version.estado != VersionAtractivo.Estado.PENDIENTE:
-        raise ValidationError(
-            "Solo puedes aprobar versiones pendientes."
-        )
+    # Los administradores y superusuarios pueden publicar directamente,
+    # sin pasar por revisión ni depender de otro administrador.
+    # Los editores no llegan aquí: la vista exige el permiso
+    # catalog.aprobar_version.
 
-    if version.creado_por_id == usuario.pk:
+    estados_aprobables = (
+        VersionAtractivo.Estado.BORRADOR,
+        VersionAtractivo.Estado.OBSERVADA,
+        VersionAtractivo.Estado.PENDIENTE,
+    )
+
+    if version.estado not in estados_aprobables:
         raise ValidationError(
-            "No puedes aprobar tu propia versión."
+            "Esta versión no se puede aprobar."
         )
 
     if not version.categoria.activa:

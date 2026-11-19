@@ -1,122 +1,164 @@
 {% extends "gestion/base_gestion.html" %}
 
+{% block titulo %}{{ atractivo.nombre }}{% endblock %}
+
 {% block content %}
 
-<h1>{{ atractivo.nombre }}</h1>
+  <nav class="g-breadcrumb" aria-label="Ruta de navegación">
+    <a href="{% url 'gestion_atractivos' %}">Atractivos</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{{ atractivo.nombre }}</span>
+  </nav>
 
-<h2>Historial editorial</h2>
+  <div class="g-page-head">
+    <div>
+      <div class="g-title-row">
+        <h1>{{ atractivo.nombre }}</h1>
 
-<p>
-    Estado público:
+        {% if atractivo.publicado %}
+          <span class="g-badge g-badge--on">Publicado</span>
+        {% else %}
+          <span class="g-badge g-badge--off">No publicado</span>
+        {% endif %}
+      </div>
+
+      <p>Historial editorial de la ficha. Cada cambio se guarda como una versión.</p>
+    </div>
 
     {% if atractivo.publicado %}
-        Publicado
-    {% else %}
-        No publicado
+      <a href="{{ atractivo.get_absolute_url }}" target="_blank" rel="noopener">
+        Ver en el sitio<span class="g-sr"> (se abre en una pestaña nueva)</span>
+      </a>
     {% endif %}
-</p>
+  </div>
 
-{% if atractivo.version_publicada and atractivo.publicado %}
+  <div class="g-card g-dash-block">
 
-<p>
-    Versión publicada:
-    {{ atractivo.version_publicada.numero_version }}
-</p>
+    <div class="g-facts">
 
-{% endif %}
+      <div class="g-fact">
+        <span class="g-fact-label">Estado público</span>
+        <span class="g-fact-value">
+          {% if atractivo.publicado %}Visible en el sitio{% else %}Oculto al público{% endif %}
+        </span>
+      </div>
 
-<form
-    method="post"
-    action="{% url 'version_crear' atractivo.pk %}"
->
+      <div class="g-fact">
+        <span class="g-fact-label">Versión publicada</span>
+        <span class="g-fact-value">
+          {% if atractivo.publicado and atractivo.version_publicada %}
+            V{{ atractivo.version_publicada.numero_version }}
+          {% else %}
+            —
+          {% endif %}
+        </span>
+      </div>
 
-    {% csrf_token %}
+      <div class="g-fact">
+        <span class="g-fact-label">Versiones registradas</span>
+        <span class="g-fact-value">{{ versiones|length }}</span>
+      </div>
 
-    <button type="submit">
-        Abrir o crear borrador
-    </button>
+    </div>
 
-</form>
+    <div class="g-action-row">
 
-{% if es_administrador and atractivo.publicado %}
+      <div class="g-action-buttons">
 
-<form
-    method="post"
-    action="{% url 'atractivo_retirar' atractivo.pk %}"
->
+        <form method="post" action="{% url 'version_crear' atractivo.pk %}">
+          {% csrf_token %}
+          <button type="submit" class="button button-dark">Abrir o crear borrador</button>
+        </form>
 
-    {% csrf_token %}
+        {% if es_administrador and atractivo.publicado %}
+          <form method="post" action="{% url 'atractivo_retirar' atractivo.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="button button-light g-btn-danger">Retirar publicación</button>
+          </form>
+        {% endif %}
 
-    <button type="submit">
-        Retirar publicación
-    </button>
+      </div>
 
-</form>
+      <p class="g-hint">
+        Si ya hay un borrador abierto, el botón lo retoma en lugar de crear otro.
+        Los cambios no se ven en el sitio hasta que un administrador los apruebe.
+      </p>
 
-{% endif %}
+    </div>
 
-<table>
+  </div>
 
-    <thead>
-        <tr>
-            <th>Versión</th>
-            <th>Estado</th>
-            <th>Autor</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+  <h2 class="g-block-title" id="sec-versiones">Versiones</h2>
 
-    <tbody>
+  <div class="g-card">
+
+    {% if versiones %}
+
+      <ul class="g-list" aria-labelledby="sec-versiones">
 
         {% for version in versiones %}
 
-        <tr>
+          <li class="g-list-item">
 
-            <td>V{{ version.numero_version }}</td>
+            <div class="g-list-main">
 
-            <td>{{ version.get_estado_display }}</td>
+              <span class="g-list-mark g-list-mark--version" aria-hidden="true">V{{ version.numero_version }}</span>
 
-            <td>
-                {{ version.creado_por|default:"Importación inicial" }}
-            </td>
+              <div class="g-list-text">
 
-            <td>
-                {{ version.fecha_creacion|date:"d/m/Y H:i" }}
-            </td>
+                <h3 class="g-list-title">
+                  Versión {{ version.numero_version }}
+                  <span class="g-badge g-badge--{{ version.estado }}">{{ version.get_estado_display }}</span>
+                  {% if version.es_version_publicada %}
+                    <span class="g-badge g-badge--on">En el sitio</span>
+                  {% endif %}
+                </h3>
 
-            <td>
-                <a href="{% url 'version_detalle' version.pk %}">
-                    Ver
-                </a>
+                <p class="g-list-meta">
+                  {{ version.creado_por|default:"Importación inicial" }}
+                  <span aria-hidden="true">·</span>
+                  {{ version.fecha_creacion|date:"d/m/Y H:i" }}
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="g-list-side">
+              <div class="g-list-actions">
+                <a
+                  class="g-list-primary"
+                  href="{% url 'version_detalle' version.pk %}"
+                  aria-label="Ver ficha de la versión {{ version.numero_version }}"
+                >Ver ficha</a>
 
                 {% if version.es_editable %}
-
-                <a href="{% url 'version_editar' version.pk %}">
-                    Editar
-                </a>
-
+                  <a
+                    href="{% url 'version_editar' version.pk %}"
+                    aria-label="Editar la versión {{ version.numero_version }}"
+                  >Editar</a>
                 {% endif %}
-            </td>
+              </div>
+            </div>
 
-        </tr>
-
-        {% empty %}
-
-        <tr>
-            <td colspan="5">
-                No hay versiones.
-            </td>
-        </tr>
+          </li>
 
         {% endfor %}
 
-    </tbody>
+      </ul>
 
-</table>
+    {% else %}
 
-<a href="{% url 'gestion_atractivos' %}">
-    Volver al catálogo
-</a>
+      <div class="g-empty">
+        <p>Esta ficha todavía no tiene versiones. Usa «Abrir o crear borrador» para comenzar.</p>
+      </div>
+
+    {% endif %}
+
+  </div>
+
+  <p class="g-back">
+    <a href="{% url 'gestion_atractivos' %}">← Volver al catálogo</a>
+  </p>
 
 {% endblock %}
