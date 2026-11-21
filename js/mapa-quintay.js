@@ -385,6 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const botonAmpliar = document.getElementById("mq-expand");
 
   const dialogo = document.getElementById("mq-dialog");
+  const mapaViewport = document.getElementById("mq-map-viewport");
   const botonCerrar = document.getElementById("mq-close");
   const panelAmpliado = document.getElementById("mq-dialog-panel");
   const botonCerrarFicha = document.getElementById("mq-dialog-panel-close");
@@ -405,6 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
     !fichaContenido ||
     !fichaImagen ||
     !dialogo ||
+    !mapaViewport ||
     !ficha ||
     !panelAmpliado ||
     !botonCerrarFicha ||
@@ -713,6 +715,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   botonCerrar?.addEventListener("click", cerrarMapa);
   botonCerrarFicha.addEventListener("click", cerrarFichaAmpliada);
+
+  let panPointerId = null;
+  let panStartX = 0;
+  let panStartY = 0;
+  let panScrollLeft = 0;
+  let panScrollTop = 0;
+
+  mapaViewport.addEventListener("pointerdown", (event) => {
+    if (
+      event.pointerType !== "mouse" ||
+      event.button !== 0 ||
+      event.target.closest("button")
+    ) {
+      return;
+    }
+
+    panPointerId = event.pointerId;
+    panStartX = event.clientX;
+    panStartY = event.clientY;
+    panScrollLeft = mapaViewport.scrollLeft;
+    panScrollTop = mapaViewport.scrollTop;
+    mapaViewport.setPointerCapture(event.pointerId);
+    mapaViewport.classList.add("is-panning");
+  });
+
+  mapaViewport.addEventListener("pointermove", (event) => {
+    if (event.pointerId !== panPointerId) return;
+
+    mapaViewport.scrollLeft = panScrollLeft - (event.clientX - panStartX);
+    mapaViewport.scrollTop = panScrollTop - (event.clientY - panStartY);
+  });
+
+  function finalizarDesplazamiento(event) {
+    if (event.pointerId !== panPointerId) return;
+
+    panPointerId = null;
+    mapaViewport.classList.remove("is-panning");
+  }
+
+  mapaViewport.addEventListener("pointerup", finalizarDesplazamiento);
+  mapaViewport.addEventListener("pointercancel", finalizarDesplazamiento);
 
   dialogo.addEventListener("close", () => {
     cerrarFichaAmpliada();
