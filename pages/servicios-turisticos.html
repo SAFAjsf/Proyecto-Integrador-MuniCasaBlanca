@@ -1,0 +1,408 @@
+
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title data-i18n="services.meta.title">
+    Servicios turísticos | Casablanca Chile
+  </title>
+
+  <meta
+    name="description"
+    data-i18n-content="services.meta.description"
+    content="Encuentra alojamientos, gastronomía y experiencias turísticas en Casablanca y sus localidades."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/servicios-turisticos.css" />
+</head>
+
+<body>
+
+  <!-- NAVEGACIÓN -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="../index.html"
+      aria-label="Casablanca, inicio"
+      data-i18n-attr="aria-label:nav.home"
+    >
+      CASABLANCA<span>CHILE</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      aria-label="Abrir menú"
+      data-i18n-attr="aria-label:nav.open"
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav
+      id="main-nav"
+      class="main-nav"
+      aria-label="Navegación principal"
+      data-i18n-attr="aria-label:nav.main"
+    >
+      <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+      <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+      <a href="historia.html" data-i18n="nav.history">Historia</a>
+      <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+      <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+      <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      <a
+        href="servicios-turisticos.html"
+        aria-current="page"
+        data-i18n="nav.services"
+      >
+        Servicios turísticos
+      </a>
+      <a href="clima.html" data-i18n="nav.weather">Clima</a>
+
+      <div class="language-control">
+        <label for="language-switcher" data-i18n="language.label">
+          Idioma
+        </label>
+
+        <select
+          id="language-switcher"
+          data-language-switcher
+          data-i18n-attr="aria-label:language.label"
+        >
+          <option value="es" data-i18n="language.spanish">Español</option>
+          <option value="en" data-i18n="language.english">English</option>
+          <option value="pt" data-i18n="language.portuguese">Português</option>
+          <option value="fr" data-i18n="language.french">Français</option>
+        </select>
+      </div>
+    </nav>
+
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="services-hero">
+
+      <div class="services-hero-content">
+
+        <span class="eyebrow light" data-i18n="services.hero.eyebrow">
+          PLANIFICA TU VISITA
+        </span>
+
+        <h1>
+          <span data-i18n="services.hero.title">Servicios para</span>
+          <em data-i18n="services.hero.titleItalic">descubrir Casablanca.</em>
+        </h1>
+
+        <p data-i18n="services.hero.description">
+          Encuentra lugares donde disfrutar de la gastronomía local,
+          descansar y conocer experiencias que conectan el valle
+          con la costa.
+        </p>
+
+        <a href="#directorio" class="button button-light">
+          <span data-i18n="services.hero.cta">
+            Explorar servicios
+          </span>
+          <span aria-hidden="true">↓</span>
+        </a>
+
+      </div>
+
+      <div class="services-hero-decoration" aria-hidden="true">
+        <span>CASABLANCA</span>
+        <span>VALLE · CAMPO · COSTA</span>
+      </div>
+
+    </section>
+
+
+    <!-- INTRODUCCIÓN -->
+
+    <section class="services-intro section">
+
+      <div>
+        <span class="eyebrow" data-i18n="services.intro.eyebrow">
+          DESCUBRE EL TERRITORIO
+        </span>
+
+        <h2>
+          <span data-i18n="services.intro.title">Una comuna,</span>
+          <em data-i18n="services.intro.titleItalic">muchas experiencias.</em>
+        </h2>
+      </div>
+
+      <p data-i18n="services.intro.description">
+        Casablanca reúne distintas alternativas para quienes desean
+        recorrer sus localidades, conocer su gastronomía, disfrutar
+        del paisaje y descubrir nuevas experiencias.
+      </p>
+
+    </section>
+
+
+    <!-- DIRECTORIO -->
+
+    <section id="directorio" class="services-directory section">
+
+      <div class="services-directory-heading">
+
+        <span class="eyebrow" data-i18n="services.directory.eyebrow">
+          DIRECTORIO TURÍSTICO
+        </span>
+
+        <h2 data-i18n="services.directory.title">
+          Encuentra lo que necesitas.
+        </h2>
+
+        <p data-i18n="services.directory.description">
+          Explora los establecimientos y servicios turísticos
+          disponibles en distintas localidades de la comuna.
+        </p>
+
+      </div>
+
+
+      <!-- FILTROS -->
+
+      <div class="services-filters">
+
+        <div class="services-search">
+
+          <label for="services-search" data-i18n="services.search.label">
+            Buscar establecimiento
+          </label>
+
+          <input
+            type="search"
+            id="services-search"
+            placeholder="Escribe un nombre..."
+            data-i18n-placeholder="services.search.placeholder"
+            autocomplete="off"
+          />
+
+        </div>
+
+
+        <div class="services-filter-group">
+
+          <label for="services-category" data-i18n="services.category.label">
+            Categoría
+          </label>
+
+          <select id="services-category">
+
+            <option value="todos" data-i18n="services.category.all">
+              Todas las categorías
+            </option>
+
+            <option value="gastronomia" data-i18n="services.category.food">
+              Gastronomía
+            </option>
+
+            <option value="alojamiento" data-i18n="services.category.stay">
+              Alojamientos
+            </option>
+
+            <option value="experiencia" data-i18n="services.category.experience">
+              Experiencias turísticas
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="services-filter-group">
+
+          <label for="services-location" data-i18n="services.location.label">
+            Localidad
+          </label>
+
+          <select id="services-location">
+
+            <option value="todos" data-i18n="services.location.all">
+              Todas las localidades
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="services-reset"
+          class="services-reset"
+          data-i18n="services.filters.reset"
+        >
+          Limpiar filtros
+        </button>
+
+      </div>
+
+
+      <!-- RESULTADOS -->
+
+      <div class="services-results-header">
+
+        <p
+          id="services-results-count"
+          aria-live="polite"
+          data-i18n="services.results.loading"
+        >
+          Cargando servicios...
+        </p>
+
+      </div>
+
+
+      <div
+        id="services-grid"
+        class="services-grid"
+        aria-live="polite"
+      >
+      </div>
+
+
+      <!-- ESTADO SIN RESULTADOS -->
+
+      <div id="services-empty" class="services-empty" hidden>
+
+        <span aria-hidden="true">⌕</span>
+
+        <h3 data-i18n="services.empty.title">
+          No encontramos resultados.
+        </h3>
+
+        <p data-i18n="services.empty.description">
+          Prueba con otro nombre o modifica los filtros seleccionados.
+        </p>
+
+      </div>
+
+
+      <p class="services-disclaimer" data-i18n="services.disclaimer">
+        La información de este directorio proviene de material
+        turístico municipal y puede estar sujeta a modificaciones.
+        Confirma directamente con cada establecimiento sus datos,
+        disponibilidad y condiciones de atención.
+      </p>
+
+    </section>
+
+
+    <!-- CIERRE -->
+
+    <section class="services-closing">
+
+      <div>
+
+        <span class="eyebrow light" data-i18n="services.closing.eyebrow">
+          SIGUE EXPLORANDO
+        </span>
+
+        <h2 data-i18n="services.closing.title">
+          Del valle hasta el mar.
+        </h2>
+
+        <p data-i18n="services.closing.description">
+          Descubre los paisajes, la historia y las localidades
+          que forman parte de Casablanca.
+        </p>
+
+      </div>
+
+      <a href="quintay.html" class="button button-light">
+        <span data-i18n="services.closing.cta">
+          Explorar Quintay
+        </span>
+        <span aria-hidden="true">→</span>
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer">
+
+    <div class="footer-top">
+
+      <a
+        class="brand brand-footer"
+        href="../index.html"
+        aria-label="Casablanca, inicio"
+        data-i18n-attr="aria-label:nav.home"
+      >
+        CASABLANCA<span>CHILE</span>
+      </a>
+
+      <p data-i18n="footer.description">
+        Historias entre el valle y el mar.
+      </p>
+
+      <nav
+        aria-label="Navegación del pie"
+        data-i18n-attr="aria-label:nav.footer"
+      >
+        <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+        <a href="historia.html" data-i18n="nav.history">Historia</a>
+        <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+        <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+        <a href="servicios-turisticos.html" data-i18n="nav.services">
+          Servicios turísticos
+        </a>
+        <a href="clima.html" data-i18n="nav.weather">Clima</a>
+      </nav>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span data-i18n="footer.platform">
+        Plataforma turística de Casablanca
+      </span>
+
+      <span data-i18n="footer.notice">
+        Contenido informativo sujeto a actualización.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- SCRIPTS -->
+
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/main.js"></script>
+
+  <script src="../js/servicios-data.js"></script>
+  <script src="../js/servicios-turisticos.js"></script>
+
+</body>
+</html>

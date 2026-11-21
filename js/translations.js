@@ -2422,6 +2422,11 @@ Object.assign(window.CasablancaTranslations.es, {
   "quintay.explorer.title": "Explora los rincones",
   "quintay.explorer.titleSecond": "de Quintay.",
   "quintay.explorer.description": "Selecciona un lugar y descubre los paisajes, la memoria marítima y las expresiones que forman parte de la identidad de esta localidad costera.",
+  "quintay.map.cta": "Explorar el mapa",
+  "quintay.map.eyebrow": "EXPLORA LA COSTA",
+  "quintay.map.title": "Un mapa para descubrir Quintay.",
+  "quintay.map.description": "Consulta playas, patrimonio y puntos de interés en el mapa turístico interactivo de Quintay.",
+  "quintay.map.imageAlt": "Mapa turístico ilustrado de Quintay",
   "quintay.explorer.optionsLabel": "Lugares de Quintay",
   "quintay.place.beaches.title": "Playa Grande y Playa Chica",
   "quintay.place.beaches.category": "Playas y paisaje costero",
@@ -2505,6 +2510,11 @@ Object.assign(window.CasablancaTranslations.en, {
   "quintay.explorer.title": "Explore the hidden corners",
   "quintay.explorer.titleSecond": "of Quintay.",
   "quintay.explorer.description": "Choose a place to discover the landscapes, maritime heritage and local culture that shape this coastal community.",
+  "quintay.map.cta": "Explore the map",
+  "quintay.map.eyebrow": "EXPLORE THE COAST",
+  "quintay.map.title": "A map to discover Quintay.",
+  "quintay.map.description": "Explore beaches, heritage and points of interest on Quintay's interactive tourist map.",
+  "quintay.map.imageAlt": "Illustrated tourist map of Quintay",
   "quintay.explorer.optionsLabel": "Places in Quintay",
   "quintay.place.beaches.title": "Playa Grande and Playa Chica",
   "quintay.place.beaches.category": "Beaches and coastal scenery",
@@ -3248,6 +3258,11 @@ Object.assign(window.CasablancaTranslations.pt, {
   "quintay.explorer.title": "Explore os recantos",
   "quintay.explorer.titleSecond": "de Quintay.",
   "quintay.explorer.description": "Escolha um lugar e descubra as paisagens, a memória marítima e as manifestações que fazem parte da identidade desta localidade costeira.",
+  "quintay.map.cta": "Explorar o mapa",
+  "quintay.map.eyebrow": "EXPLORE O LITORAL",
+  "quintay.map.title": "Um mapa para descobrir Quintay.",
+  "quintay.map.description": "Explore praias, patrimônio e pontos de interesse no mapa turístico interativo de Quintay.",
+  "quintay.map.imageAlt": "Mapa turístico ilustrado de Quintay",
   "quintay.explorer.optionsLabel": "Lugares de Quintay",
   "quintay.place.beaches.title": "Playa Grande e Playa Chica",
   "quintay.place.beaches.category": "Praias e paisagem costeira",
@@ -3970,6 +3985,11 @@ Object.assign(window.CasablancaTranslations.fr, {
   "quintay.explorer.title": "Explorez les recoins",
   "quintay.explorer.titleSecond": "de Quintay.",
   "quintay.explorer.description": "Choisissez un lieu pour découvrir les paysages, la mémoire maritime et les expressions locales qui façonnent l'identité de ce village côtier.",
+  "quintay.map.cta": "Explorer la carte",
+  "quintay.map.eyebrow": "EXPLOREZ LA CÔTE",
+  "quintay.map.title": "Une carte pour découvrir Quintay.",
+  "quintay.map.description": "Découvrez les plages, le patrimoine et les lieux d'intérêt grâce à la carte touristique interactive de Quintay.",
+  "quintay.map.imageAlt": "Carte touristique illustrée de Quintay",
   "quintay.explorer.optionsLabel": "Lieux à découvrir à Quintay",
   "quintay.place.beaches.title": "Playa Grande et Playa Chica",
   "quintay.place.beaches.category": "Plages et paysages côtiers",
@@ -4119,4 +4139,239 @@ Object.assign(window.CasablancaTranslations.fr, {
   "directions.links.pullmanContact": "Consulter les coordonnées et agences",
   "directions.links.gr": "Consulter Buses GR Quintay",
   "directions.links.turbus": "Visiter le site officiel de Turbus"
+});
+
+/* ==========================================
+   SERVICIOS TURÍSTICOS
+========================================== */
+
+Object.assign(window.CasablancaTranslations.es, {
+
+  "nav.services": "Servicios turísticos",
+  "nav.weather": "Clima",
+
+  "services.meta.title": "Servicios turísticos | Casablanca Chile",
+  "services.meta.description": "Encuentra alojamientos, gastronomía y experiencias turísticas en Casablanca y sus localidades.",
+
+  "services.hero.eyebrow": "PLANIFICA TU VISITA",
+  "services.hero.title": "Servicios para",
+  "services.hero.titleItalic": "descubrir Casablanca.",
+  "services.hero.description": "Encuentra lugares donde disfrutar de la gastronomía local, descansar y conocer experiencias que conectan el valle con la costa.",
+  "services.hero.cta": "Explorar servicios",
+
+  "services.intro.eyebrow": "DESCUBRE EL TERRITORIO",
+  "services.intro.title": "Una comuna,",
+  "services.intro.titleItalic": "muchas experiencias.",
+  "services.intro.description": "Casablanca reúne distintas alternativas para quienes desean recorrer sus localidades, conocer su gastronomía, disfrutar del paisaje y descubrir nuevas experiencias.",
+
+  "services.directory.eyebrow": "DIRECTORIO TURÍSTICO",
+  "services.directory.title": "Encuentra lo que necesitas.",
+  "services.directory.description": "Explora los establecimientos y servicios turísticos disponibles en distintas localidades de la comuna.",
+
+  "services.search.label": "Buscar establecimiento",
+  "services.search.placeholder": "Escribe un nombre...",
+
+  "services.category.label": "Categoría",
+  "services.category.all": "Todas las categorías",
+  "services.category.food": "Gastronomía",
+  "services.category.stay": "Alojamientos",
+  "services.category.experience": "Experiencias turísticas",
+
+  "services.location.label": "Localidad",
+  "services.location.all": "Todas las localidades",
+
+  "services.filters.reset": "Limpiar filtros",
+
+  "services.results.loading": "Cargando servicios...",
+  "services.results.one": "servicio encontrado",
+  "services.results.many": "servicios encontrados",
+
+  "services.card.address": "Dirección",
+  "services.card.phone": "Teléfono",
+  "services.card.email": "Correo",
+
+  "services.empty.title": "No encontramos resultados.",
+  "services.empty.description": "Prueba con otro nombre o modifica los filtros seleccionados.",
+
+  "services.disclaimer": "La información de este directorio proviene de material turístico municipal y puede estar sujeta a modificaciones. Confirma directamente con cada establecimiento sus datos, disponibilidad y condiciones de atención.",
+
+  "services.closing.eyebrow": "SIGUE EXPLORANDO",
+  "services.closing.title": "Del valle hasta el mar.",
+  "services.closing.description": "Descubre los paisajes, la historia y las localidades que forman parte de Casablanca.",
+  "services.closing.cta": "Explorar Quintay"
+
+});
+
+
+Object.assign(window.CasablancaTranslations.en, {
+
+  "nav.services": "Tourism services",
+  "nav.weather": "Weather",
+
+  "services.meta.title": "Tourism services | Casablanca Chile",
+  "services.meta.description": "Find accommodation, gastronomy and tourism experiences in Casablanca and its localities.",
+
+  "services.hero.eyebrow": "PLAN YOUR VISIT",
+  "services.hero.title": "Services to",
+  "services.hero.titleItalic": "discover Casablanca.",
+  "services.hero.description": "Find places to enjoy local gastronomy, rest and discover experiences connecting the valley with the coast.",
+  "services.hero.cta": "Explore services",
+
+  "services.intro.eyebrow": "DISCOVER THE REGION",
+  "services.intro.title": "One commune,",
+  "services.intro.titleItalic": "many experiences.",
+  "services.intro.description": "Casablanca offers different alternatives for visitors who want to explore its localities, discover its gastronomy, enjoy the landscape and find new experiences.",
+
+  "services.directory.eyebrow": "TOURISM DIRECTORY",
+  "services.directory.title": "Find what you need.",
+  "services.directory.description": "Explore establishments and tourism services available throughout the commune.",
+
+  "services.search.label": "Search establishments",
+  "services.search.placeholder": "Enter a name...",
+
+  "services.category.label": "Category",
+  "services.category.all": "All categories",
+  "services.category.food": "Food and gastronomy",
+  "services.category.stay": "Accommodation",
+  "services.category.experience": "Tourism experiences",
+
+  "services.location.label": "Locality",
+  "services.location.all": "All localities",
+
+  "services.filters.reset": "Clear filters",
+
+  "services.results.loading": "Loading services...",
+  "services.results.one": "service found",
+  "services.results.many": "services found",
+
+  "services.card.address": "Address",
+  "services.card.phone": "Phone",
+  "services.card.email": "Email",
+
+  "services.empty.title": "No results found.",
+  "services.empty.description": "Try another name or change the selected filters.",
+
+  "services.disclaimer": "The information in this directory comes from municipal tourism material and may be subject to changes. Please contact each establishment directly to confirm its details, availability and conditions.",
+
+  "services.closing.eyebrow": "KEEP EXPLORING",
+  "services.closing.title": "From the valley to the sea.",
+  "services.closing.description": "Discover the landscapes, history and localities that make up Casablanca.",
+  "services.closing.cta": "Explore Quintay"
+
+});
+
+
+Object.assign(window.CasablancaTranslations.pt, {
+
+  "nav.services": "Serviços turísticos",
+  "nav.weather": "Clima",
+
+  "services.meta.title": "Serviços turísticos | Casablanca Chile",
+  "services.meta.description": "Encontre hospedagens, gastronomia e experiências turísticas em Casablanca e suas localidades.",
+
+  "services.hero.eyebrow": "PLANEJE SUA VISITA",
+  "services.hero.title": "Serviços para",
+  "services.hero.titleItalic": "descobrir Casablanca.",
+  "services.hero.description": "Encontre lugares para desfrutar da gastronomia local, descansar e conhecer experiências que conectam o vale ao litoral.",
+  "services.hero.cta": "Explorar serviços",
+
+  "services.intro.eyebrow": "DESCUBRA O TERRITÓRIO",
+  "services.intro.title": "Uma comuna,",
+  "services.intro.titleItalic": "muitas experiências.",
+  "services.intro.description": "Casablanca reúne diferentes alternativas para quem deseja conhecer suas localidades, descobrir sua gastronomia, apreciar a paisagem e viver novas experiências.",
+
+  "services.directory.eyebrow": "DIRETÓRIO TURÍSTICO",
+  "services.directory.title": "Encontre o que procura.",
+  "services.directory.description": "Explore os estabelecimentos e serviços turísticos disponíveis nas diferentes localidades da comuna.",
+
+  "services.search.label": "Buscar estabelecimento",
+  "services.search.placeholder": "Digite um nome...",
+
+  "services.category.label": "Categoria",
+  "services.category.all": "Todas as categorias",
+  "services.category.food": "Gastronomia",
+  "services.category.stay": "Hospedagem",
+  "services.category.experience": "Experiências turísticas",
+
+  "services.location.label": "Localidade",
+  "services.location.all": "Todas as localidades",
+
+  "services.filters.reset": "Limpar filtros",
+
+  "services.results.loading": "Carregando serviços...",
+  "services.results.one": "serviço encontrado",
+  "services.results.many": "serviços encontrados",
+
+  "services.card.address": "Endereço",
+  "services.card.phone": "Telefone",
+  "services.card.email": "E-mail",
+
+  "services.empty.title": "Nenhum resultado encontrado.",
+  "services.empty.description": "Tente outro nome ou modifique os filtros selecionados.",
+
+  "services.disclaimer": "As informações deste diretório vêm de material turístico municipal e podem sofrer alterações. Confirme diretamente com cada estabelecimento seus dados, disponibilidade e condições de atendimento.",
+
+  "services.closing.eyebrow": "CONTINUE EXPLORANDO",
+  "services.closing.title": "Do vale ao mar.",
+  "services.closing.description": "Descubra as paisagens, a história e as localidades que fazem parte de Casablanca.",
+  "services.closing.cta": "Explorar Quintay"
+
+});
+
+
+Object.assign(window.CasablancaTranslations.fr, {
+
+  "nav.services": "Services touristiques",
+  "nav.weather": "Météo",
+
+  "services.meta.title": "Services touristiques | Casablanca Chili",
+  "services.meta.description": "Découvrez les hébergements, la gastronomie et les expériences touristiques de Casablanca et de ses localités.",
+
+  "services.hero.eyebrow": "PRÉPAREZ VOTRE VISITE",
+  "services.hero.title": "Des services pour",
+  "services.hero.titleItalic": "découvrir Casablanca.",
+  "services.hero.description": "Découvrez des lieux où profiter de la gastronomie locale, vous reposer et vivre des expériences entre la vallée et le littoral.",
+  "services.hero.cta": "Explorer les services",
+
+  "services.intro.eyebrow": "DÉCOUVREZ LE TERRITOIRE",
+  "services.intro.title": "Une commune,",
+  "services.intro.titleItalic": "de nombreuses expériences.",
+  "services.intro.description": "Casablanca propose différentes possibilités pour découvrir ses localités, sa gastronomie, ses paysages et de nouvelles expériences.",
+
+  "services.directory.eyebrow": "ANNUAIRE TOURISTIQUE",
+  "services.directory.title": "Trouvez ce dont vous avez besoin.",
+  "services.directory.description": "Explorez les établissements et les services touristiques disponibles dans les différentes localités de la commune.",
+
+  "services.search.label": "Rechercher un établissement",
+  "services.search.placeholder": "Saisissez un nom...",
+
+  "services.category.label": "Catégorie",
+  "services.category.all": "Toutes les catégories",
+  "services.category.food": "Gastronomie",
+  "services.category.stay": "Hébergements",
+  "services.category.experience": "Expériences touristiques",
+
+  "services.location.label": "Localité",
+  "services.location.all": "Toutes les localités",
+
+  "services.filters.reset": "Effacer les filtres",
+
+  "services.results.loading": "Chargement des services...",
+  "services.results.one": "service trouvé",
+  "services.results.many": "services trouvés",
+
+  "services.card.address": "Adresse",
+  "services.card.phone": "Téléphone",
+  "services.card.email": "E-mail",
+
+  "services.empty.title": "Aucun résultat trouvé.",
+  "services.empty.description": "Essayez un autre nom ou modifiez les filtres sélectionnés.",
+
+  "services.disclaimer": "Les informations de cet annuaire proviennent de documents touristiques municipaux et peuvent être modifiées. Veuillez confirmer directement auprès de chaque établissement ses coordonnées, ses disponibilités et ses conditions d'accueil.",
+
+  "services.closing.eyebrow": "CONTINUEZ À EXPLORER",
+  "services.closing.title": "De la vallée à la mer.",
+  "services.closing.description": "Découvrez les paysages, l'histoire et les localités qui composent Casablanca.",
+  "services.closing.cta": "Explorer Quintay"
+
 });

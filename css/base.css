@@ -389,7 +389,7 @@ button:focus-visible {
 .visit-banner .button {
   flex-shrink: 0;
 }
-@media (max-width: 850px) {
+@media (max-width: 1240px) {
   .site-header {
     padding: 20px 24px;
   }
@@ -415,6 +415,11 @@ button:focus-visible {
   .main-nav a {
     font-size: 0.92rem;
   }
+  .language-control {
+    margin-top: 8px;
+  }
+}
+@media (max-width: 850px) {
   .section-heading {
     display: block;
   }
@@ -517,12 +522,6 @@ button:focus-visible {
 .language-control select option {
   background-color: #263b32;
   color: white;
-}
-
-@media (max-width: 850px) {
-  .language-control {
-    margin-top: 8px;
-  }
 }
 
 @media (max-width: 560px) {

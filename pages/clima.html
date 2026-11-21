@@ -35,6 +35,7 @@
       class="brand"
       href="../index.html"
       aria-label="Casablanca, inicio"
+      data-i18n-attr="aria-label:nav.home"
     >
       CASABLANCA<span>CHILE</span>
     </a>
@@ -44,31 +45,34 @@
       aria-expanded="false"
       aria-controls="main-nav"
       aria-label="Abrir menú"
+      data-i18n-attr="aria-label:nav.open"
     >
       <span></span><span></span>
     </button>
 
-    <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
-      <a href="vinas.html">Valle y viñas</a>
-      <a href="atractivos.html">Atractivos</a>
-      <a href="historia.html">Historia</a>
-      <a href="quintay.html">Quintay</a>
-      <a href="como-llegar.html">Cómo llegar</a>
-      <a href="noticias.html">Noticias</a>
-      <a href="clima.html" aria-current="page">Clima</a>
+    <nav id="main-nav" class="main-nav" aria-label="Navegación principal" data-i18n-attr="aria-label:nav.main">
+      <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+      <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+      <a href="historia.html" data-i18n="nav.history">Historia</a>
+      <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+      <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+      <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+      <a href="servicios-turisticos.html" data-i18n="nav.services">Servicios turísticos</a>
+      <a href="clima.html" aria-current="page" data-i18n="nav.weather">Clima</a>
 
       <div class="language-control">
-        <label for="language-switcher">Idioma</label>
+        <label for="language-switcher" data-i18n="language.label">Idioma</label>
 
         <select
           id="language-switcher"
           data-language-switcher
           aria-label="Seleccionar idioma"
+          data-i18n-attr="aria-label:language.label"
         >
-          <option value="es">Español</option>
-          <option value="en">English</option>
-          <option value="pt">Português</option>
-          <option value="fr">Français</option>
+          <option value="es" data-i18n="language.spanish">Español</option>
+          <option value="en" data-i18n="language.english">English</option>
+          <option value="pt" data-i18n="language.portuguese">Português</option>
+          <option value="fr" data-i18n="language.french">Français</option>
         </select>
       </div>
     </nav>
@@ -361,27 +365,28 @@
   <footer class="site-footer">
     <div class="footer-top">
 
-      <a class="brand brand-footer" href="../index.html">
+      <a class="brand brand-footer" href="../index.html" aria-label="Casablanca, inicio" data-i18n-attr="aria-label:nav.home">
         CASABLANCA<span>CHILE</span>
       </a>
 
-      <p>Historias entre el valle y el mar.</p>
+      <p data-i18n="footer.description">Historias entre el valle y el mar.</p>
 
-      <nav aria-label="Navegación del pie">
-        <a href="vinas.html">Valle y viñas</a>
-        <a href="atractivos.html">Atractivos</a>
-        <a href="historia.html">Historia</a>
-        <a href="quintay.html">Quintay</a>
-        <a href="como-llegar.html">Cómo llegar</a>
-        <a href="noticias.html">Noticias</a>
-        <a href="clima.html">Clima</a>
+      <nav aria-label="Navegación del pie" data-i18n-attr="aria-label:nav.footer">
+        <a href="vinas.html" data-i18n="nav.wines">Valle y viñas</a>
+        <a href="atractivos.html" data-i18n="nav.attractions">Atractivos</a>
+        <a href="historia.html" data-i18n="nav.history">Historia</a>
+        <a href="quintay.html" data-i18n="nav.quintay">Quintay</a>
+        <a href="como-llegar.html" data-i18n="nav.directions">Cómo llegar</a>
+        <a href="noticias.html" data-i18n="nav.news">Noticias</a>
+        <a href="servicios-turisticos.html" data-i18n="nav.services">Servicios turísticos</a>
+        <a href="clima.html" data-i18n="nav.weather">Clima</a>
       </nav>
 
     </div>
 
     <div class="footer-bottom">
-      <span>Plataforma turística de Casablanca</span>
-      <span>Contenido informativo sujeto a actualización.</span>
+      <span data-i18n="footer.platform">Plataforma turística de Casablanca</span>
+      <span data-i18n="footer.notice">Contenido informativo sujeto a actualización.</span>
     </div>
   </footer>
 

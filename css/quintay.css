@@ -744,6 +744,72 @@
   margin-right: 6px;
 }
 
+/* ACCESO AL MAPA INTERACTIVO */
+
+.quintay-map-promo {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  background: var(--coast-dark);
+  color: #fff;
+  overflow: hidden;
+}
+
+.quintay-map-promo-image {
+  min-height: 430px;
+  overflow: hidden;
+}
+
+.quintay-map-promo-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.quintay-map-promo:hover .quintay-map-promo-image img,
+.quintay-map-promo:focus-within .quintay-map-promo-image img {
+  transform: scale(1.035);
+}
+
+.quintay-map-promo-content {
+  align-self: center;
+  padding: clamp(35px, 6vw, 75px);
+}
+
+.quintay-map-promo-content h2 {
+  margin: 20px 0;
+  font: 400 clamp(2.5rem, 4.5vw, 4rem)/1.08 var(--font-title);
+}
+
+.quintay-map-promo-content p {
+  max-width: 430px;
+  margin-bottom: 28px;
+  color: #ffffffc9;
+}
+
+@media (max-width: 1000px) {
+  .quintay-map-promo-content {
+    padding: 35px;
+  }
+}
+
+@media (max-width: 760px) {
+  .quintay-map-promo {
+    grid-template-columns: 1fr;
+  }
+
+  .quintay-map-promo-image,
+  .quintay-map-promo-image img {
+    min-height: 300px;
+  }
+
+  .quintay-map-promo-content {
+    padding: 40px 24px 50px;
+  }
+}
+
 /* TRANSICIÓN DE CONTENIDO */
 
 .coast-explorer-image img.changing {
